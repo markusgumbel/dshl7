@@ -1,0 +1,114 @@
+<codeSystemMap>
+   <!-- this one is handled specially right now -->
+   <codeSystem codeSystem="2.16.840.1.113883.5.1008" class="org.hl7.types.impl.NullFlavorImpl" cache="false"/>
+   <!-- The NullFlavorImpl is very special, I have tried using a Java Enum for this but that doesn't work
+        because it can't set the static environment up properly when classes are being statically initialized. 
+        This is very tricky to overcome.
+    codeSystem codeSystem="2.16.840.1.113883.5.1008.1" domain="NullFlavor" class="org.hl7.types.enums.NullFlavor" cache="false"/ -->
+   <!-- here is another special class to interpret its codes (which are terms) -->
+   <!-- UCUM Units -->
+   <codeSystem codeSystem="2.16.840.1.113883.6.8" class="org.regenstrief.ucum.Unit" cache="false"/>
+   <!-- the so-called "structural codes" use the generated java enums -->
+   <codeSystem codeSystem="2.16.840.1.113883.5.1001" domain="ActMood" class="org.hl7.types.enums.ActMood" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.43" domain="EntityNamePartQualifier" class="org.hl7.types.enums.EntityNamePartQualifier" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.44" domain="EntityNamePartType" class="org.hl7.types.enums.EntityNamePartType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1" domain="AdministrativeGender" class="org.hl7.types.enums.AdministrativeGender" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.45" domain="EntityNameUse" class="org.hl7.types.enums.EntityNameUse" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.16" domain="AddressPartType" class="org.hl7.types.enums.AddressPartType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1011" domain="TelecommunicationAddressUse" class="org.hl7.types.enums.TelecommunicationAddressUse" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1012" domain="PostalAddressUse" class="org.hl7.types.enums.PostalAddressUse" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.6" domain="ActClass" class="org.hl7.types.enums.ActClass" cache="true"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.14" domain="ActStatus" class="org.hl7.types.enums.ActStatus" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.83" domain="ObservationInterpretation" class="org.hl7.types.enums.ObservationInterpretation" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.7" domain="ActPriority" class="org.hl7.types.enums.ActPriority" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1002" domain="ActRelationshipType" class="org.hl7.types.enums.ActRelationshipType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.10" domain="ActRelationshipCheckpoint" class="org.hl7.types.enums.ActRelationshipCheckpoint" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.11" domain="RelationshipConjunction" class="org.hl7.types.enums.RelationshipConjunction" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.12" domain="ActRelationshipJoin" class="org.hl7.types.enums.ActRelationshipJoin" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.13" domain="ActRelationshipSplit" class="org.hl7.types.enums.ActRelationshipSplit" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.25" domain="Confidentiality" class="org.hl7.types.enums.Confidentiality" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.30" domain="EntityDeterminer" class="org.hl7.types.enums.EntityDeterminer" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.41" domain="EntityClass" class="org.hl7.types.enums.EntityClass" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1057" domain="ContextControl" class="org.hl7.types.enums.ContextControl" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.110" domain="RoleClass" class="org.hl7.types.enums.RoleClass" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1068" domain="RoleStatus" class="org.hl7.types.enums.RoleStatus" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.90" domain="ParticipationType" class="org.hl7.types.enums.ParticipationType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1062" domain="ManagedParticipationStatus" class="org.hl7.types.enums.ManagedParticipationStatus" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1061" domain="EntityStatus" class="org.hl7.types.enums.EntityStatus" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.1064" domain="ParticipationMode" class="org.hl7.types.enums.ParticipationMode" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.89" domain="ParticipationSignature" class="org.hl7.types.enums.ParticipationSignature" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.107" domain="RoleLinkType" class="org.hl7.types.enums.RoleLinkType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.109" domain="ResponseModality" class="org.hl7.types.enums.ResponseModality" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.108" domain="ResponseLevel" class="org.hl7.types.enums.ResponseLevel" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.18" domain="AcknowledgementType" class="org.hl7.types.enums.AcknowledgementType" cache="false"/>
+   <codeSystem codeSystem="2.16.840.1.113883.5.9" domain="CalendarCycle" class="org.hl7.types.enums.CalendarCycle" cache="false"/>
+   <codeSystem domain="TimingEvent" codeSystem="2.16.840.1.113883.5.139" class="org.hl7.types.enums.TimingEvent" cache="false"/>
+   <codeSystem domain="SetOperator" codeSystem="2.16.840.1.113883.5.1069" class="org.hl7.types.enums.SetOperator" cache="false"/>
+   <!-- example how to use the NCI's EVS -->
+   <!-- codeSystem codeSystem="2.16.840.1.113883.5.6" class="org.hl7.types.impl.CVimplUsingEVS" cache="true"/ -->
+   <!-- example how to use the UMLS - ->
+   <codeSystem codeSystem="2.16.840.1.113883.6.2" class="org.hl7.types.impl.CVimplUsingUMLS" cache="true">
+      <parameter name="SAB" value="ICD9CM"/>
+      <parameter name="jdbc-url" value="jdbc:oracle:thin:umlsreader/umlsumlsumls@phoenix.regenstrief.org:1521:rmrs"/>
+      <parameter name="jdbc-driver" value="oracle.jdbc.driver.OracleDriver"/>
+      <parameter name="jdbc-check-sql" value="SELECT CUI FROM UMLS_MRCONSO WHERE SAB=? AND CODE=?"/>
+      <!- - alias codeSystem="2.16.840.1.113883.6.42" altRid="I9"/ - ->
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.2" class="org.hl7.types.impl.CVimplUsingUMLS" cache="true">
+      <parameter name="SAB" value="ICD9CM"/>
+      <parameter name="jdbc-url" value="jdbc:oracle:thin:umlsreader/umlsumlsumls@phoenix.regenstrief.org:1521:rmrs"/>
+      <parameter name="jdbc-driver" value="oracle.jdbc.driver.OracleDriver"/>
+      <parameter name="jdbc-check-sql" value="SELECT CUI FROM UMLS_MRCONSO WHERE SAB=? AND CODE=?"/>
+      <!- - alias codeSystem="2.16.840.1.113883.6.42" altRid="I9"/ - ->
+   </codeSystem>
+   <!- - FIXME: UMLS CUIs are not supported by the CVimplUsingUMLS class - ->
+   <codeSystem codeSystem="2.16.840.1.113883.6.56" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="UML" cache="true" codeSystemName="Unified Medical Language">
+      <parameter name="SAB" value="*"/> <!- - oops, here we need to use a different query - ->
+   </codeSystem>
+   <!- - These are all UMLS Codes, the JDBC parameters are all static, so they aren't needed again here - ->
+   <codeSystem codeSystem="2.16.840.1.113883.6.1" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="LN" cache="true" codeSystemName="Logical Observation Identifier Names and Codes (LOINC)">
+      <parameter name="SAB" value="LNC"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.12" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="C4" cache="true" codeSystemName="CPT-4">
+      <parameter name="SAB" value="CPT"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.13" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="CD2" cache="true" codeSystemName="CDT-2 Codes">
+      <parameter name="SAB" value="CDT"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.14" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="HPC" cache="true" codeSystemName="HCFA Procedure Codes (HCPCS)">
+      <parameter name="SAB" value="HCPCS"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.15" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="NIC" cache="true" codeSystemName="Nursing Intervention Classification">
+      <parameter name="SAB" value="NIC"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.16" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="NOC" cache="true" codeSystemName="Nursing Outcome Classification">
+      <parameter name="SAB" value="NOC"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.17" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="HHC" cache="true" codeSystemName="Home Health Care Classification">
+      <parameter name="SAB" value="HHC"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.20" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="NDA" cache="true" codeSystemName="NANDA">
+      <parameter name="SAB" value="NAN"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.3" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="I10" cache="true" codeSystemName="ICD-10">
+      <parameter name="SAB" value="ICD10"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.49" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="OHA" cache="true" codeSystemName="Omaha System">
+      <parameter name="SAB" value="OMS"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.5" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="SNM" cache="true" codeSystemName="Systemized Nomenclature of Medicine (SNOMED)">
+      <parameter name="SAB" value="SNM2"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.51" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="SNM3" cache="true" codeSystemName="SNOMED International">
+      <parameter name="SAB" value="SNMI"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.52" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="SNT" cache="true" codeSystemName="SNOMED topology codes (anatomic sites)">
+      <parameter name="SAB" value="SNMI"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.70" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="MEDR" cache="true" codeSystemName="Medical Dictionary for Drug Regulatory Affairs (MEDRA)">
+      <parameter name="SAB" value="MDR"/>
+   </codeSystem>
+   <codeSystem codeSystem="2.16.840.1.113883.6.74" class="org.hl7.types.impl.CVimplUsingUMLS" altRid="ART" cache="true" codeSystemName="WHO Adverse Reaction Terms">
+      <parameter name="SAB" value="WHO"/>
+   </codeSystem -->
+</codeSystemMap>

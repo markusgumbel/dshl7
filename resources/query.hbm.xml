@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <query name="roleById" cacheable="true">
+      SELECT o FROM RoleImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension = :extension
+   </query>
+   <query name="roleByIdRootOnly" cacheable="true">
+      SELECT o FROM RoleImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension IS NULL
+   </query>
+   <query name="actById" cacheable="true">
+      SELECT o FROM ActImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension = :extension
+   </query>
+   <query name="actByIdRootOnly" cacheable="true">
+      SELECT o FROM ActImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension IS NULL
+   </query>
+   <query name="entityById" cacheable="true">
+      SELECT o FROM EntityImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension = :extension
+   </query>
+   <query name="entityByIdRootOnly" cacheable="true">
+      SELECT o FROM EntityImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension IS NULL
+   </query>
+   <query name="managedParticipationById" cacheable="true">
+      SELECT o FROM ManagedParticipationImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension = :extension
+   </query>
+   <query name="managedParticipationByIdRootOnly" cacheable="true">
+      SELECT o FROM ManagedParticipationImpl o INNER JOIN o.id AS i WHERE i.root = :root AND i.extension IS NULL
+   </query>
+   <query name="entityKindByCode" cacheable="true">
+    SELECT e
+    FROM EntityImpl e
+      WHERE e.determinerCode.code='KIND'
+        AND e.code.code=:code 
+	AND e.code.codeSystem=:codeSystem
+  </query>
+  <query name="actDefinitionByCode" cacheable="true">
+    SELECT a
+    FROM ActImpl a
+      WHERE a.moodCode.code='DEF'
+        AND a.code.code=:code 
+        AND a.code.codeSystem=:codeSystem
+  </query>
+  <query name="entityKindByName" cacheable="true">
+    SELECT e FROM EntityImpl e INNER JOIN e.name AS name WHERE name.trivialName = :name
+       AND e.determinerCode.code='KIND'
+  </query>
+  <query name="matchingActRelationship" cacheable="true">
+    SELECT r
+    FROM ActRelationshipImpl r
+    WHERE r.source = :source
+      AND r.target = :target
+      AND r.typeCode = :typeCode
+  </query>
+  <query name="matchingParticipation" cacheable="true">
+    SELECT p
+    FROM ParticipationImpl p
+    WHERE p.act = :act
+      AND p.role = :role
+      AND p.typeCode = :typeCode
+  </query>
+  <query name="matchingRole" cacheable="true">
+    SELECT r
+    FROM RoleImpl r
+    WHERE r.player.internalId = :playerId
+      AND r.scoper.internalId = :scoperId
+      AND r.classCode = :classCode
+  </query>
+  <query name="matchingRoleLink" cacheable="true">
+    SELECT r
+    FROM RoleLinkImpl r
+    WHERE r.source = :source
+      AND r.target = :target
+      AND r.typeCode = :typeCode
+  </query>
+</hibernate-mapping>
