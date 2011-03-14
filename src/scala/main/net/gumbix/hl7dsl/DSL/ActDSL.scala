@@ -268,7 +268,7 @@ class ActDSL(val act: Act) {
   /**
    * Quick and dirty!!!
    */
-  class Participates {
+  object Participates {
     def update(cloneName: String, p: Participation) = {
       p.setCloneCode(CSimpl.valueOf(cloneName, "egal"))
       act.addParticipation(p)
@@ -282,7 +282,7 @@ class ActDSL(val act: Act) {
     }
   }
 
-  def participates = new Participates()
+  def participates = Participates
   
   /**
    * @return ActRelationshipDSL
