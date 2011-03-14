@@ -262,7 +262,7 @@ class ActDSL(val act: Act) {
   def outboundRelationship = {
     new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
       {v => act.addOutboundRelationship(v)},
-      act.getOutboundRelationship().toList,
+      act.getOutboundRelationship(),
       {p => new ActRelationshipDSL(p)})
   }
 

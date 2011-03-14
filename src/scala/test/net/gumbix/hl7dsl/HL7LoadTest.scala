@@ -39,16 +39,14 @@ class HL7LoadTest extends TestCase {
 
     println("------------- Anamnese Komponente ---------------")
     cda.outboundRelationship.list.foreach {
-      o =>
+      o => // ActRelationship
         println("level 1")
-        /*
-        o.outboundRelationship.list.foreach {
-          o =>
+        o.target().outboundRelationship.list.foreach {
+          o => // ActRelationship
             println("level 2")
-            println(o.target.title)
-            println(o.target.text)
+            println(o.target().title)
+            println(o.target().text)
         }
-        */
     }
 
     /*
@@ -61,22 +59,24 @@ class HL7LoadTest extends TestCase {
     println("")
     println("// Alle Überschriften auslesen")
     val sections = cda.outboundRelationship("component").
-            target.list
-    sections.foreach(a => println("-> " + a.title))
+            target().outboundRelationship.list
+    sections.foreach(a => println("-> " + a.target().title))
 
     println("")
     println("")
     println("// Alle Adressen auslesen")
     cda.participation.list.foreach {
       a =>
-        println("-> " + DatatypeTool.AddressTool.getAll(a.role.list(0).getAddr))
+        println("-> " + DatatypeTool.AddressTool.getAll(a.role().getAddr))
     }
 
     // -------------------------------------
 
-    val ms = cda.outboundRelationship.list(0).target.list
-    ms.foreach(a => a.title = a.title + "!!!")
+    /*
+    cda.outboundRelationship.list(0).target().title =
+            cda.outboundRelationship.list(0).target().title + "!!!"
 
+*/
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println("=============")
     println(modified)

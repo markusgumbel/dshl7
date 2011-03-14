@@ -54,30 +54,6 @@ class HL7TestCDADemo extends TestCase {
         }
       }
 
-      /*
-      xparticipation("recordTarget") = new ParticipationDSL("") {
-          role = new PatientDSL("patientRole") {
-            player = patient // see above.
-          }
-        }
-
-
-      xparticipation("recordTarget") {
-        new ParticipationDSL("") {
-          role = new PatientDSL("patientRole") {
-            player = patient // see above.
-          }
-        }
-      }
-      */
-
-      /*
-      participation = new ParticipationDSL("recordTarget") {
-        role = new PatientDSL("patientRole") {
-          player = patient // see above.
-        }
-      }
-      */
       participation("author") = new ParticipationDSL {
         role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
@@ -91,6 +67,7 @@ class HL7TestCDADemo extends TestCase {
           }
         }
       }
+      
       participation("custodian") = new ParticipationDSL {
         time = "20070905"
         role("assignedCustodian") = new RoleDSL {

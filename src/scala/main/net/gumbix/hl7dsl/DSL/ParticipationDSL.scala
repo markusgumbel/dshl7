@@ -21,7 +21,7 @@ import org.hl7.rim.{RimObjectFactory, Role}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
 import util.Random
-import net.gumbix.hl7dsl.build.RimRelationshipMany
+import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for the RIM Class "Participation"
@@ -169,9 +169,9 @@ class ParticipationDSL(val participation: Participation) {
   }
 
   def role = {
-    new RimRelationshipMany[Role, RoleDSL](
+    new RimRelationshipOne[Role, RoleDSL](
       p => participation.setRole(p),
-      participation.getRole :: Nil,
+      participation.getRole,
       p => new RoleDSL(p))
   }
 }
