@@ -34,19 +34,21 @@ class HL7LoadTest extends TestCase {
 
     val cda = new DocumentDSL(clinicalDocument)
 
-    val rt = cda.participates("recordTarget")
+    val rt = cda.participation("recordTarget")
     println("recordTarget = " + rt.getRole)
 
     println("------------- Anamnese Komponente ---------------")
-    cda.outboundRelationship.foreach {
+    cda.outboundRelationship.list.foreach {
       o =>
         println("level 1")
-        o.target.outboundRelationship.foreach {
+        /*
+        o.outboundRelationship.list.foreach {
           o =>
             println("level 2")
             println(o.target.title)
             println(o.target.text)
         }
+        */
     }
 
     /*
@@ -58,21 +60,22 @@ class HL7LoadTest extends TestCase {
     println("")
     println("")
     println("// Alle Überschriften auslesen")
-    val sections = cda.outboundRelationship(0).target.outboundRelationship
-    sections.toList.foreach(a => println("-> " + a.target.title))
+    val sections = cda.outboundRelationship("component").
+            target.list
+    sections.foreach(a => println("-> " + a.title))
 
     println("")
     println("")
     println("// Alle Adressen auslesen")
-    cda.participations.toList.foreach {
+    cda.participation.list.foreach {
       a =>
-        println("-> " + DatatypeTool.AddressTool.getAll(a.role.getAddr))
+        println("-> " + DatatypeTool.AddressTool.getAll(a.role.list(0).getAddr))
     }
 
     // -------------------------------------
 
-    val ms = cda.outboundRelationship(0).target.outboundRelationship
-    ms.toList.foreach(a => a.target.title = a.target.title + "!!!")
+    val ms = cda.outboundRelationship.list(0).target.list
+    ms.foreach(a => a.title = a.title + "!!!")
 
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println("=============")

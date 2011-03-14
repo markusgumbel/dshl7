@@ -18,6 +18,7 @@ package net.gumbix.hl7dsl.DSL
 import org.hl7.rim.{RimObjectFactory, ActRelationship, Act}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import net.gumbix.hl7dsl.build.RimRelationshipMany
 
 /**
  * Wrapper Class for the RIM Class "ActRelationship"
@@ -25,9 +26,8 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  */
 
 class ActRelationshipDSL(actRelationship: ActRelationship) {
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("ActRelationship").asInstanceOf[ActRelationship])
-    cloneCode = (cloneName, "egal")
   }
 
   /**
@@ -186,19 +186,17 @@ class ActRelationshipDSL(actRelationship: ActRelationship) {
   /**
    * @return ActDSL
    */
-  def source  = new ActDSL(actRelationship.getSource)
+  def source = new ActDSL(actRelationship.getSource)
 
   def source_=(v: Act) {
     actRelationship.setSource(v)
   }
 
-  /**
-   * @return ActDSL
-   */
-  def target = new ActDSL(actRelationship.getTarget)
-
-  def target_=(v: Act) {
-    actRelationship.setTarget(v)
+  def target = {
+    new RimRelationshipMany[Act, ActDSL](
+      {v => actRelationship.setTarget(v)},
+      actRelationship.getTarget :: Nil,
+      v => new ActDSL(v))
   }
 
   /**

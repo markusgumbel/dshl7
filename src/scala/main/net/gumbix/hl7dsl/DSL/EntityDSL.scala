@@ -31,10 +31,9 @@ class EntityDSL(val entity: Entity) {
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Entity").asInstanceOf[Entity])
-    cloneCode = (cloneName, "egal")
-  }  
+  }
 
   /**
    * @return CS

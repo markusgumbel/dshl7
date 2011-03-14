@@ -21,6 +21,7 @@ import org.hl7.types._
 import java.util.ArrayList
 import scala.collection.JavaConversions._
 import java.util.List
+import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for RIM Class "Role"
@@ -32,10 +33,9 @@ class RoleDSL(val role: Role) {
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Role").asInstanceOf[Role])
-    cloneCode = (cloneName, "egal")
-  }  
+  }
 
   /**
    * @return CS
@@ -154,22 +154,18 @@ class RoleDSL(val role: Role) {
     role.setPositionNumber(v)
   }
 
-  /**
-   * @return Entity
-   */
-  def player = role.getPlayer
-
-  def player_=(p: Entity) {
-    role.setPlayer(p)
+  def player = {
+    new RimRelationshipOne[Entity, EntityDSL](
+      {e => role.setPlayer(e)},
+      role.getPlayer,
+      {e => new EntityDSL(e)})
   }
 
-  /**
-   * @return Entity
-   */
-  def scoper = new EntityDSL(role.getScoper)
-
-  def scoper_=(p: Entity) {
-    role.setScoper(p)
+  def scoper = {
+    new RimRelationshipOne[Entity, EntityDSL](
+      {s => role.setScoper(s)},
+      role.getScoper,
+      s => new EntityDSL(s)) // TODO
   }
 
   /**
@@ -193,7 +189,7 @@ class RoleDSL(val role: Role) {
   /**
    * @return RoleLinkDSL
    */
-  def outboundLink(i: Int) = new  RoleLinkDSL(role.getOutboundLink.get(i))
+  def outboundLink(i: Int) = new RoleLinkDSL(role.getOutboundLink.get(i))
 
   /**
    * @return List[RoleLinkDSL]

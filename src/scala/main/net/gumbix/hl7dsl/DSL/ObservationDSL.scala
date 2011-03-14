@@ -25,9 +25,8 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  */
 
 class ObservationDSL(observation: Observation) extends ActDSL(observation) {
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Observation").asInstanceOf[Observation])
-    cloneCode = (cloneName, "egal")
   }
 
   /**

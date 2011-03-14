@@ -30,10 +30,9 @@ class PersonDSL(person: Person) extends LivingSubjectDSL(person) {
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Person").asInstanceOf[Person])
-    cloneCode = (cloneName, "egal")
-  }  
+  }
 
   /**
    * @return BAG[AD]
@@ -107,10 +106,9 @@ class PersonDSL(person: Person) extends LivingSubjectDSL(person) {
     person.setEthnicGroupCode(v)
   }
 
-  def cloneAs(cloneName: String) = {
+  override def clone() = {
     val clonedPerson = person.asInstanceOf[PersonImpl].clone()
     val newPerson = new PersonDSL(clonedPerson.asInstanceOf[Person])
-    newPerson.cloneCode = (cloneName, "egal")
     newPerson
   }
 

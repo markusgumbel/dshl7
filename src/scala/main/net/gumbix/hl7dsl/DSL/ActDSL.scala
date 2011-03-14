@@ -21,6 +21,7 @@ import impl.CSimpl
 import java.util.{ArrayList, List}
 import scala.collection.JavaConversions._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import net.gumbix.hl7dsl.build.RimRelationshipMany
 
 /**
  * Wrapper Class for the RIM Class "Act"
@@ -33,9 +34,8 @@ class ActDSL(val act: Act) {
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Act").asInstanceOf[Act])
-    cloneCode = (cloneName, "egal")
   }
 
   /**
@@ -245,81 +245,25 @@ class ActDSL(val act: Act) {
     act.setLanguageCode(v)
   }
 
-  /**
-   * @return ParticipationDSL
-   */
-  def participation(i: Int) = new ParticipationDSL(act.getParticipation.get(i))
-
-  /**
-   * @return List[ParticipationDSL]
-   */
-  def participations: List[ParticipationDSL] = {
-    val list = new ArrayList[ParticipationDSL]
-    (act.getParticipation).toList.map(a => list.add(new ParticipationDSL(a)))
-    list
+  def participation = {
+    new RimRelationshipMany[Participation, ParticipationDSL](
+      {p => act.addParticipation(p)},
+      act.getParticipation().toList,
+      {p => new ParticipationDSL(p)})
   }
 
-  def participation = act.getParticipation.get(0)
-
-  def participation_=(p: Participation) {
-    act.addParticipation(p)
+  def inboundRelationship = {
+    new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
+      {v => act.addInboundRelationship(v)},
+      act.getInboundRelationship().toList,
+      {p => new ActRelationshipDSL(p)})
   }
 
-  /**
-   * Quick and dirty!!!
-   */
-  object Participates {
-    def update(cloneName: String, p: Participation) = {
-      p.setCloneCode(CSimpl.valueOf(cloneName, "egal"))
-      act.addParticipation(p)
-    }
-
-    def apply(cloneName: String): Participation =  {
-      for (e <- act.getParticipation()) {
-        if (e.getCloneCode.code.toString == cloneName) return e
-      }
-      throw new RuntimeException("No such participation: " + cloneName)
-    }
-  }
-
-  def participates = Participates
-  
-  /**
-   * @return ActRelationshipDSL
-   */
-  def inboundRelationship(i: Int) = new ActRelationshipDSL(act.getInboundRelationship.get(i))
-
-  /**
-   * @return List[ActRelationshipDSL]
-   */
-  def inboundRelationship: List[ActRelationshipDSL] = {
-    val list: List[ActRelationshipDSL] = new ArrayList[ActRelationshipDSL]
-    (act.getInboundRelationship).toList.map(a => list.add(new ActRelationshipDSL(a)))
-    list
-  }
-
-  def inboundRelationship_=(v: ActRelationship) {
-    act.addInboundRelationship(v)
-  }
-
-  /**
-   * @return ActRelationshipDSL
-   */
-  def outboundRelationship(i: Int) = new ActRelationshipDSL(act.getOutboundRelationship.get(i))
-
-  /**
-   * @return List[ActRelationshipDSL]
-   */
-  def outboundRelationship: List[ActRelationshipDSL] = {
-    val list: List[ActRelationshipDSL] = new ArrayList[ActRelationshipDSL]
-    if (act.getOutboundRelationship != null) {
-      (act.getOutboundRelationship).toList.map(a => list.add(new ActRelationshipDSL(a)))
-    }
-    list
-  }
-
-  def outboundRelationship_=(v: ActRelationship) {
-    act.addOutboundRelationship(v)
+  def outboundRelationship = {
+    new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
+      {v => act.addOutboundRelationship(v)},
+      act.getOutboundRelationship().toList,
+      {p => new ActRelationshipDSL(p)})
   }
 
   def getAct: Act = act

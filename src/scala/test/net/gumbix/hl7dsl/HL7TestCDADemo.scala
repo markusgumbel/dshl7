@@ -15,7 +15,7 @@ class HL7TestCDADemo extends TestCase {
   def testCDADemo() {
 
     // Create a patient-clone (for reuse):
-    val patient = new PersonDSL("patient") {
+    val patient = new PersonDSL {
       id = ("123433", "123.234.345")
       name = new Name {
         prefix = "Mr"
@@ -34,16 +34,16 @@ class HL7TestCDADemo extends TestCase {
       }
 
       // Basically, this reflects better a 1:n relationship
-      participates("recordTarget") = new ParticipationDSL("") {
-        role = new PatientDSL("patientRole") {
-          player = patient // see above.
+      participation("recordTarget") = new ParticipationDSL {
+        role("patientRole") = new PatientDSL {
+          player("patient") = patient // see above.
         }
       }
 
-      participates("author") = new ParticipationDSL("") {
-        role = new RoleDSL("assignedAuthor")  {
+      participation("author") = new ParticipationDSL {
+        role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
-          player = new PersonDSL("assignedPerson") {
+          player("assignedPerson") = new PersonDSL {
             name = new Name {
               prefix = "Dr"
               given = "John"
@@ -78,10 +78,10 @@ class HL7TestCDADemo extends TestCase {
         }
       }
       */
-      participation = new ParticipationDSL("author") {
-        role = new RoleDSL("assignedAuthor") {
+      participation("author") = new ParticipationDSL {
+        role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
-          player = new PersonDSL("assignedPerson") {
+          player("assignedPerson") = new PersonDSL {
             name = new Name {
               prefix = "Dr"
               given = "John"
@@ -91,10 +91,10 @@ class HL7TestCDADemo extends TestCase {
           }
         }
       }
-      participation = new ParticipationDSL("custodian") {
+      participation("custodian") = new ParticipationDSL {
         time = "20070905"
-        role = new RoleDSL("assignedCustodian") {
-          scoper = new OrganizationDSL("representedCustodianOrganization") {
+        role("assignedCustodian") = new RoleDSL {
+          scoper("representedCustodianOrganization") = new OrganizationDSL {
             id = ("1.22.333.4444", "")
             name = new Name() {
               orgName = "Good Health Clinic"
@@ -103,18 +103,18 @@ class HL7TestCDADemo extends TestCase {
         }
       }
 
-      outboundRelationship = new ActRelationshipDSL("component") {
-        target = new ActDSL("structuredBody") {
-          outboundRelationship = new ActRelationshipDSL("component") {
+      outboundRelationship("component") = new ActRelationshipDSL {
+        target("structuredBody") = new ActDSL {
+          outboundRelationship("component") = new ActRelationshipDSL {
             typeCode = ("COMP", "1.22.333.4444")
-            target = new ActDSL("section") {
-              participation = new ParticipationDSL("subject") {
-                role = new RoleDSL("relatedSubject") {
-                  player = patient cloneAs "subject"
+            target("section") = new ActDSL {
+              participation("subject") = new ParticipationDSL {
+                role("relatedSubject") = new RoleDSL {
+                  player("subject") = patient clone
                 }
               }
-              outboundRelationship = new ActRelationshipDSL("entry") {
-                target = new ObservationDSL("observation") {
+              outboundRelationship("entry") = new ActRelationshipDSL {
+                target("observation") = new ObservationDSL {
                   code = ("44100-6", "2.16.840.1.113883.6.1")
                   moodCode = ("EVN", "1.22.333.4444")
                   title = "History"
@@ -123,8 +123,8 @@ class HL7TestCDADemo extends TestCase {
  His condition is most remarkable for dysphagia Raynauds and telangiectasias on face.""")
                 }
               }
-              outboundRelationship = new ActRelationshipDSL("entry") {
-                target = new ObservationDSL("observation") {
+              outboundRelationship("entry") = new ActRelationshipDSL {
+                target("observation") = new ObservationDSL {
                   code = ("44100-6", "2.16.840.1.113883.6.1")
                   moodCode = ("EVN", "1.22.333.4444")
                   title = "History"

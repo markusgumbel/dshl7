@@ -25,9 +25,8 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  */
 
 class MaterialDSL(material: Material) extends EntityDSL(material) {
-  def this(codeName: String) = {
+  def this() = {
     this(RimObjectFactory.getInstance.createRimObject("Material").asInstanceOf[Material])
-    cloneCode = (codeName, "egal")
   }
 
   /**

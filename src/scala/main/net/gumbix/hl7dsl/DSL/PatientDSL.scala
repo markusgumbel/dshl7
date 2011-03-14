@@ -30,9 +30,8 @@ class PatientDSL(patient: Patient) extends RoleDSL(patient) {
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Patient").asInstanceOf[Patient])
-    cloneCode = (cloneName, "egal")
   }
   
   /**

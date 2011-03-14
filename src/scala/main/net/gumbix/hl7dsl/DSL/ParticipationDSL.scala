@@ -21,6 +21,7 @@ import org.hl7.rim.{RimObjectFactory, Role}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
 import util.Random
+import net.gumbix.hl7dsl.build.RimRelationshipMany
 
 /**
  * Wrapper Class for the RIM Class "Participation"
@@ -28,10 +29,8 @@ import util.Random
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 class ParticipationDSL(val participation: Participation) {
-
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Participation").asInstanceOf[Participation])
-    cloneCode = (cloneName, "egal")
   }
 
   /**
@@ -169,18 +168,10 @@ class ParticipationDSL(val participation: Participation) {
     participation.setSubsetCode(v)
   }
 
-  /**
-   * @return RoleDSL
-   */
-  def role = participation.getRole
-
-  /*
-  def role_=(p: Patient) {
-    participation.setRole(p)
-  }
-  */
-
-  def role_=(p: Role) {
-    participation.setRole(p)
+  def role = {
+    new RimRelationshipMany[Role, RoleDSL](
+      p => participation.setRole(p),
+      participation.getRole :: Nil,
+      p => new RoleDSL(p))
   }
 }

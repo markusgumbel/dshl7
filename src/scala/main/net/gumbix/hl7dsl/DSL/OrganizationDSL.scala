@@ -30,9 +30,8 @@ class OrganizationDSL(organization: Organization)
   /**
    * @param cloneName Required to navigate through the object graph.
    */
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Organization").asInstanceOf[Organization])
-    cloneCode = (cloneName, "egal")
   }
 
   /**

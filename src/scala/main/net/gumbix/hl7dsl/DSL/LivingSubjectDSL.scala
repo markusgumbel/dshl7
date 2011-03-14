@@ -26,9 +26,8 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 class LivingSubjectDSL(livingSubject: LivingSubject) extends EntityDSL(livingSubject) {
 
-  def this(cloneName: String) = {
+  def this() = {
     this (RimObjectFactory.getInstance.createRimObject("LivingSubject").asInstanceOf[LivingSubject])
-    cloneCode = (cloneName, "egal")
   }
 
   /**
