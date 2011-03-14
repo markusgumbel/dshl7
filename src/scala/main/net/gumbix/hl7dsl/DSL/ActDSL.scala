@@ -17,6 +17,7 @@ package net.gumbix.hl7dsl.DSL
 
 import org.hl7.rim.{RimObjectFactory, Act, Participation, ActRelationship}
 import org.hl7.types._
+import impl.CSimpl
 import java.util.{ArrayList, List}
 import scala.collection.JavaConversions._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
@@ -24,6 +25,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 /**
  * Wrapper Class for the RIM Class "Act"
  * @author Ahmet Gül
+ * @author Markus Gumbel ()
  */
 
 class ActDSL(val act: Act) {
@@ -263,17 +265,16 @@ class ActDSL(val act: Act) {
     act.addParticipation(p)
   }
 
-  def addParticipation(p: Participation) {
-    act.addParticipation(p)
+  class Participates() {
+    def update(cloneName: String, p: Participation) = {
+      p.setCloneCode(CSimpl.valueOf(cloneName, "egal"))
+      act.addParticipation(p)
+    }
   }
 
-  def ap(cloneName: String, dox: => Unit) {
-    val p = new ParticipationDSL(cloneName) {
-      dox
-    }
-    act.addParticipation(p)
+  def participates() = {
+    new Participates()
   }
-  def addParticipation(cloneName: String)(dox: => Unit) = ap(cloneName, dox)
 
   /**
    * @return ActRelationshipDSL
@@ -303,7 +304,9 @@ class ActDSL(val act: Act) {
    */
   def outboundRelationship: List[ActRelationshipDSL] = {
     val list: List[ActRelationshipDSL] = new ArrayList[ActRelationshipDSL]
-    (act.getOutboundRelationship).toList.map(a => list.add(new ActRelationshipDSL(a)))
+    if (act.getOutboundRelationship != null) {
+      (act.getOutboundRelationship).toList.map(a => list.add(new ActRelationshipDSL(a)))
+    }
     list
   }
 

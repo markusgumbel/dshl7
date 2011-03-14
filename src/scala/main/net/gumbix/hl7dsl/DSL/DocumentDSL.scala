@@ -51,5 +51,5 @@ object DocumentDSL {
 
   implicit def asDocument(act: DocumentDSL): Document = act.getDocument
 
-  def apply() = new  DocumentDSL()
+  def apply() = new DocumentDSL()
 }

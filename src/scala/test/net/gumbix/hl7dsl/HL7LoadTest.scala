@@ -18,21 +18,39 @@ import scala.collection.JavaConversions._
  */
 
 class HL7LoadTest extends TestCase {
+  def testLoadVHitG01() {
+    loadMessage("cda-examples/vhitg-POCD_EX000001.xml")
+  }
+
   def testLoadMessage() {
-    val doc = StringFromFile.readFileAsString("Arztbrief-2aufLevel3.XML")
+    loadMessage("cda-examples/Arztbrief-02-Level3.xml")
+  }
+
+  def loadMessage(filename: String) {
+    val doc = StringFromFile.readFileAsString(filename)
 
     //--------------- document -------------------
     val clinicalDocument = MessageLoader.LoadMessage("POCD_HD000040", doc).asInstanceOf[Document]
 
     val cda = new DocumentDSL(clinicalDocument)
 
-    println("//------------- Anamnese Komponente ---------------")
-    println(cda.outboundRelationship(0).target.outboundRelationship(0).target.title)
-    println(cda.outboundRelationship(0).target.outboundRelationship(0).target.text)
+    println("------------- Anamnese Komponente ---------------")
+    cda.outboundRelationship.foreach {
+      o =>
+        println("level 1")
+        o.target.outboundRelationship.foreach {
+          o =>
+            println("level 2")
+            println(o.target.title)
+            println(o.target.text)
+        }
+    }
 
+    /*
     println(" //------------- Befund Komponente ---------------")
     println(cda.outboundRelationship(0).target.outboundRelationship(1).target.title)
     println(cda.outboundRelationship(0).target.outboundRelationship(1).target.text)
+    */
 
     println("")
     println("")

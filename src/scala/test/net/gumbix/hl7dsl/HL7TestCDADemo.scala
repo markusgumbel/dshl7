@@ -34,13 +34,42 @@ class HL7TestCDADemo extends TestCase {
       }
 
       // Basically, this reflects better a 1:n relationship
-      addParticipation {
-        new ParticipationDSL("recordTarget") {
+      participates("recordTarget") = new ParticipationDSL("") {
+        role = new PatientDSL("patientRole") {
+          player = patient // see above.
+        }
+      }
+
+      participates("author") = new ParticipationDSL("") {
+        role = new RoleDSL("assignedAuthor")  {
+          id = ("2.16.840.1.113883.3.933", "2112345")
+          player = new PersonDSL("assignedPerson") {
+            name = new Name {
+              prefix = "Dr"
+              given = "John"
+              family = "Night"
+              suffix = "FACP"
+            }
+          }
+        }
+      }
+
+      /*
+      xparticipation("recordTarget") = new ParticipationDSL("") {
+          role = new PatientDSL("patientRole") {
+            player = patient // see above.
+          }
+        }
+
+
+      xparticipation("recordTarget") {
+        new ParticipationDSL("") {
           role = new PatientDSL("patientRole") {
             player = patient // see above.
           }
         }
       }
+      */
 
       /*
       participation = new ParticipationDSL("recordTarget") {
