@@ -265,17 +265,25 @@ class ActDSL(val act: Act) {
     act.addParticipation(p)
   }
 
-  class Participates() {
+  /**
+   * Quick and dirty!!!
+   */
+  class Participates {
     def update(cloneName: String, p: Participation) = {
       p.setCloneCode(CSimpl.valueOf(cloneName, "egal"))
       act.addParticipation(p)
     }
+
+    def apply(cloneName: String): Participation =  {
+      for (e <- act.getParticipation()) {
+        if (e.getCloneCode.code.toString == cloneName) return e
+      }
+      throw new RuntimeException("No such participation: " + cloneName)
+    }
   }
 
-  def participates() = {
-    new Participates()
-  }
-
+  def participates = new Participates()
+  
   /**
    * @return ActRelationshipDSL
    */

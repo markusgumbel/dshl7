@@ -34,6 +34,9 @@ class HL7LoadTest extends TestCase {
 
     val cda = new DocumentDSL(clinicalDocument)
 
+    val rt = cda.participates("recordTarget")
+    println("recordTarget = " + rt.getRole)
+
     println("------------- Anamnese Komponente ---------------")
     cda.outboundRelationship.foreach {
       o =>
