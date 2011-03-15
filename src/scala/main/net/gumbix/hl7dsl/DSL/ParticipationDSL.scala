@@ -28,18 +28,10 @@ import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
-class ParticipationDSL(val participation: Participation) {
+class ParticipationDSL(val participation: Participation)
+        extends RimDSL(participation) {
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Participation").asInstanceOf[Participation])
-  }
-
-  /**
-   * @return CS
-   */
-  def cloneCode = participation.getCloneCode
-
-  def cloneCode_=(v: CS) {
-    participation.setCloneCode(v)
   }
 
   /**

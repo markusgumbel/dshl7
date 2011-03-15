@@ -214,7 +214,7 @@ object ImplicitDef {
 
   implicit def asAct(act: ActDSL): Act = act.act
 
-  implicit def asRole(role: RoleDSL): Role = role.getRole
+  implicit def asRole(role: RoleDSL): Role = role.role
 
   //implicit def asEntity(entity: EntityDSL): Entity = entity.getEntity
   implicit def asEntity(entity: EntityDSL): Entity = entity.entity

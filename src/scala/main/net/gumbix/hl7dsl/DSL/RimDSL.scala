@@ -18,4 +18,6 @@ class RimDSL(rimo: RimObject) {
   def cloneCode_=(v: CS) {
     rimo.setCloneCode(v)
   }
+
+  override def toString = rimo.getClass.getName + ": " + cloneCode._1
 }

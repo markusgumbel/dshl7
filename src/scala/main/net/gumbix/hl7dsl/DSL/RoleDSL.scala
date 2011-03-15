@@ -28,22 +28,13 @@ import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
  * @author Ahmet Gül
  */
 
-class RoleDSL(val role: Role) {
+class RoleDSL(val role: Role) extends RimDSL(role) {
 
   /**
    * @param cloneName Required to navigate through the object graph.
    */
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Role").asInstanceOf[Role])
-  }
-
-  /**
-   * @return CS
-   */
-  def cloneCode = role.getCloneCode
-
-  def cloneCode_=(v: CS) {
-    role.setCloneCode(v)
   }
 
   /**
@@ -203,9 +194,4 @@ class RoleDSL(val role: Role) {
   def outboundLink_=(p: RoleLink) {
     role.addOutboundLink(p)
   }
-
-  /**
-   * @return Role
-   */
-  def getRole: Role = role
 }

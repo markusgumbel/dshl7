@@ -20,28 +20,19 @@ import org.hl7.types._
 import java.util.{ArrayList, List}
 import scala.collection.JavaConversions._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import net.gumbix.hl7dsl.build.{RimRelationshipMany, RimRelationshipOne}
 
 /**
  * Wrapper Class for the RIM Class "Entity"
  * @author Ahmet Gül
  */
-
-class EntityDSL(val entity: Entity) {
+class EntityDSL(val entity: Entity) extends RimDSL(entity) {
 
   /**
    * @param cloneName Required to navigate through the object graph.
    */
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Entity").asInstanceOf[Entity])
-  }
-
-  /**
-   * @return CS
-   */
-  def cloneCode = entity.getCloneCode
-
-  def cloneCode_=(v: CS) {
-    entity.setCloneCode(v)
   }
 
   /**
@@ -152,66 +143,24 @@ class EntityDSL(val entity: Entity) {
     entity.setHandlingCode(v)
   }
 
-  /**
-   * @return LanguageCommunicationDSL
-   */
-  def languageCommunication(i: Int) = new LanguageCommunicationDSL(entity.getLanguageCommunication.get(i))
-
-  /**
-   * @return List[LanguageCommunicationDSL]
-   */
-  def languageCommunication: List[LanguageCommunicationDSL] = {
-    val list: List[LanguageCommunicationDSL] = new ArrayList[LanguageCommunicationDSL]
-    (entity.getLanguageCommunication).toList.map(a => list.add(new LanguageCommunicationDSL(a)))
-    list
+  def languageCommunication = {
+    new RimRelationshipMany[LanguageCommunication, LanguageCommunicationDSL](
+      v => entity.addLanguageCommunication(v),
+      entity.getLanguageCommunication(),
+      p => new LanguageCommunicationDSL(p))
   }
 
-  def languageCommunication_=(v: LanguageCommunication) {
-    entity.addLanguageCommunication(v)
+  def scopedRole = {
+    new RimRelationshipMany[Role, RoleDSL](
+      v => entity.addScopedRole(v),
+      entity.getScopedRole(),
+      p => new RoleDSL(p))
   }
 
-
-  /**
-   * @return RoleDSL
-   */
-  def scopedRole(i: Int) = new RoleDSL(entity.getScopedRole.get(i))
-
-  /**
-   * @return List[RoleDSL]
-   */
-  def scopedRole: List[RoleDSL] = {
-    val list: List[RoleDSL] = new ArrayList[RoleDSL]
-    (entity.getScopedRole).toList.map(a => list.add(new RoleDSL(a)))
-    list
+  def playedRole = {
+    new RimRelationshipMany[Role, RoleDSL](
+      v => entity.addPlayedRole(v),
+      entity.getPlayedRole(),
+      p => new RoleDSL(p))
   }
-
-  def scopedRole_=(v: Role) {
-    entity.addScopedRole(v)
-  }
-
-
-  /**
-   * @return RoleDSL
-   */
-  def playedRole(i: Int) = new RoleDSL(entity.getPlayedRole.get(i))
-
-  /**
-   * @return List[RoleDSL]
-   */
-  def playedRole: List[RoleDSL] = {
-    val list: List[RoleDSL] = new ArrayList[RoleDSL]
-    (entity.getPlayedRole).toList.map(a => list.add(new RoleDSL(a)))
-    list
-  }
-
-  def playedRole_=(v: Role) {
-    entity.addPlayedRole(v)
-  }
-
-  /**
-   * @return Entity
-   */
-  def getEntity: Entity = entity
-
-  override def toString = "Entity " + code._1
 }

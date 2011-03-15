@@ -255,6 +255,4 @@ class ActDSL(val act: Act) extends RimDSL(act) {
       act.getOutboundRelationship(),
       p => new ActRelationshipDSL(p))
   }
-
-  override def toString = "Act " + cloneCode._1
 }
