@@ -205,6 +205,8 @@ object ImplicitDef {
 
   implicit def BAG_ENToName(bag: BAG[EN]): Name = {
     val name = new Name
+    name.family = DatatypeTool.EntityNameTool.getFamilyName(bag)
+    name.given = DatatypeTool.EntityNameTool.getGivenName(bag)
     name
     // TODO
   }

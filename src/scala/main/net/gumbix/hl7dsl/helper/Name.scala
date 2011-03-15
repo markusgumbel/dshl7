@@ -30,7 +30,7 @@ import java.util.List
 
 class Name {
   
-  private val vf: ValueFactory = new ValueFactoryImpl
+  private val vf = new ValueFactoryImpl
   private val list: List[ENXP] = new ArrayList[ENXP]
 
   // ---------------- given: ENXP --------------------

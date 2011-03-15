@@ -24,7 +24,6 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  * Wrapper Class for the RIM Class "Patient"
  * @author Ahmet Gül
  */
-
 class PatientDSL(patient: Patient) extends RoleDSL(patient) {
 
   /**

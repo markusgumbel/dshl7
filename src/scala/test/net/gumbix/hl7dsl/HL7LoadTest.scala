@@ -76,13 +76,13 @@ class HL7LoadTest extends TestCase {
     val cda = new DocumentDSL(doc)
 
     cda.participation("recordTarget").get.role().get.player() match {
-      case None =>
+      case None => println("Achtung: Person nicht vorhanden.")
       case Some(patient) => {
+        // TODO change is not propagated:
         patient.name.family = "Gumbel"
       }
     }
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println(modified)
-
   }
 }
