@@ -212,7 +212,7 @@ object ImplicitDef {
 
   implicit def asParticipation(participation: ParticipationDSL): Participation = participation.participation
 
-  implicit def asAct(act: ActDSL): Act = act.getAct
+  implicit def asAct(act: ActDSL): Act = act.act
 
   implicit def asRole(role: RoleDSL): Role = role.getRole
 

@@ -87,6 +87,7 @@ class HL7TestCDADemo extends TestCase {
             target("section") = new ActDSL {
               participation("subject") = new ParticipationDSL {
                 role("relatedSubject") = new RoleDSL {
+                  // TODO each element could automatically be cloned?
                   player("subject") = patient clone
                 }
               }

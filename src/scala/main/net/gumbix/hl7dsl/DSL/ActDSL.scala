@@ -28,8 +28,7 @@ import net.gumbix.hl7dsl.build.RimRelationshipMany
  * @author Ahmet Gül
  * @author Markus Gumbel ()
  */
-
-class ActDSL(val act: Act) {
+class ActDSL(val act: Act) extends RimDSL(act) {
 
   /**
    * @param cloneName Required to navigate through the object graph.
@@ -45,15 +44,6 @@ class ActDSL(val act: Act) {
 
   def typeId_=(v: II) {
     act.setTypeId(v)
-  }
-
-  /**
-   * @return CS
-   */
-  def cloneCode = act.getCloneCode
-
-  def cloneCode_=(v: CS) {
-    act.setCloneCode(v)
   }
 
   /**
@@ -265,8 +255,6 @@ class ActDSL(val act: Act) {
       act.getOutboundRelationship(),
       p => new ActRelationshipDSL(p))
   }
-
-  def getAct: Act = act
 
   override def toString = "Act " + cloneCode._1
 }

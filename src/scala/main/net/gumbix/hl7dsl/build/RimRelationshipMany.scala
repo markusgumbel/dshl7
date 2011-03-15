@@ -14,7 +14,6 @@ import collection.mutable.ArrayBuffer
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 class RimRelationship[A <: RimObject, B](setLink: A => Unit,
-                                         getLinks: => java.util.List[A],
                                          create: A => B) {
   def update(cloneName: String, p: A) {
     p.setCloneCode(CSimpl.valueOf(cloneName, "egal"))
@@ -25,7 +24,7 @@ class RimRelationship[A <: RimObject, B](setLink: A => Unit,
 class RimRelationshipMany[A <: RimObject, B](setLink: A => Unit,
                                              getLinks: => java.util.List[A],
                                              create: A => B)
-        extends RimRelationship[A, B](setLink, getLinks, create) {
+        extends RimRelationship[A, B](setLink, create) {
   /**
    * Access via a key which is the clone name.
    */
@@ -51,9 +50,9 @@ class RimRelationshipMany[A <: RimObject, B](setLink: A => Unit,
 }
 
 class RimRelationshipOne[A <: RimObject, B](setLink: A => Unit,
-                                            getLink: => java.util.List[A],
+                                            getLink: => A,
                                             create: A => B)
-        extends RimRelationship[A, B](setLink, getLink, create) {
+        extends RimRelationship[A, B](setLink, create) {
   /**
    * Just one relationship is stored, so we access it directly.
    * Note that you have to put a () behind your variable.

@@ -8,9 +8,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 
-trait RIM {
-
-  val rimo: RimObject
+class RimDSL(rimo: RimObject) {
 
   /**
    * @return CS
