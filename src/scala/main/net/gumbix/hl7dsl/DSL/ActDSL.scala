@@ -247,25 +247,26 @@ class ActDSL(val act: Act) {
 
   def participation = {
     new RimRelationshipMany[Participation, ParticipationDSL](
-      {p => act.addParticipation(p)},
-      act.getParticipation().toList,
-      {p => new ParticipationDSL(p)})
+      p => act.addParticipation(p),
+      act.getParticipation(),
+      p => new ParticipationDSL(p))
   }
 
   def inboundRelationship = {
     new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
-      {v => act.addInboundRelationship(v)},
-      act.getInboundRelationship().toList,
-      {p => new ActRelationshipDSL(p)})
+      v => act.addInboundRelationship(v),
+      act.getInboundRelationship(),
+      p => new ActRelationshipDSL(p))
   }
 
   def outboundRelationship = {
     new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
-      {v => act.addOutboundRelationship(v)},
+      v => act.addOutboundRelationship(v),
       act.getOutboundRelationship(),
-      {p => new ActRelationshipDSL(p)})
+      p => new ActRelationshipDSL(p))
   }
 
   def getAct: Act = act
 
+  override def toString = "Act " + cloneCode._1
 }

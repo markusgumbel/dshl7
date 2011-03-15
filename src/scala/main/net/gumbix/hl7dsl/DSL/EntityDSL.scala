@@ -212,4 +212,6 @@ class EntityDSL(val entity: Entity) {
    * @return Entity
    */
   def getEntity: Entity = entity
+
+  override def toString = "Entity " + code._1
 }
