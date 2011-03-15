@@ -18,6 +18,7 @@ package net.gumbix.hl7dsl.DSL
 import org.hl7.rim.{RimObjectFactory, Document}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import org.hl7.util.MessageLoader
 
 /**
  * Wrapper Class for the RIM Class "Document"
@@ -25,11 +26,12 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  */
 
 class DocumentDSL(document: Document) extends ContextStructureDSL(document) {
-
-  // TODO how do we tackle "root" clones?
   def this() = {
-    this(RimObjectFactory.getInstance.createRimObject("Document").asInstanceOf[Document])
-    cloneCode = ("clinicalDocument", "egal") // TODO required for marshalling
+    this (RimObjectFactory.getInstance.createRimObject("Document").asInstanceOf[Document])
+  }
+
+  def this(doc: String) = {
+    this (MessageLoader.LoadMessage("POCD_HD000040", doc).asInstanceOf[Document])
   }
 
   /**
@@ -40,16 +42,4 @@ class DocumentDSL(document: Document) extends ContextStructureDSL(document) {
   def copyTime_=(v: TS) {
     document.setCopyTime(v)
   }
-
-  /**
-   * @return Document
-   */
-  def getDocument: Document = document
-}
-
-object DocumentDSL {
-
-  implicit def asDocument(act: DocumentDSL): Document = act.getDocument
-
-  def apply() = new DocumentDSL()
 }

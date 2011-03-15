@@ -112,7 +112,7 @@ object ImplicitDef {
     CEimpl.valueOf(v._1, v._2, v._3)
   }
 
-  
+
   //------------- SET <CE> ------------------------
   implicit def CEToSet_CE(v: CE): SET[CE] = {
     val array = new ArrayList[CE]
@@ -192,9 +192,22 @@ object ImplicitDef {
     BAGjuListAdapter.valueOf(adList)
   }
 
+  implicit def BAG_ADtoAdress(bag: BAG[AD]): Address = {
+    val address = new Address
+    // address.city = bag.
+    // TODO no idea how to tackle this?!
+    address
+  }
+
   implicit def addressToAD(address: Address): AD = ADimpl.valueOf(address.getAddress)
 
   implicit def nameToBAG_EN(name: Name): BAG[EN] = name.personName
+
+  implicit def BAG_ENToName(bag: BAG[EN]): Name = {
+    val name = new Name
+    name
+    // TODO
+  }
 
   implicit def telToBAG_TEL(tel: Tel): BAG[TEL] = tel.getTel
 

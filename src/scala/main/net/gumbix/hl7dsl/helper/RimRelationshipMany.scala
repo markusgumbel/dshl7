@@ -28,14 +28,14 @@ class RimRelationshipMany[A <: RimObject, B](setLink: A => Unit,
   /**
    * Access via a key which is the clone name.
    */
-  def apply(cloneName: String): B = {
+  def apply(cloneName: String): Option[B] = {
     // Regenstrief's links may be set to null:
     if (getLinks != null) {
       for (e <- getLinks.toList) {
-        if (e.getCloneCode.code.toString == cloneName) return create(e)
+        if (e.getCloneCode.code.toString == cloneName) return Some(create(e))
       }
     }
-    throw new RuntimeException("No such relationship: " + cloneName)
+    None
   }
 
   /**
@@ -58,5 +58,5 @@ class RimRelationshipOne[A <: RimObject, B](setLink: A => Unit,
    * Note that you have to put a () behind your variable.
    * TODO can be improved.
    */
-  def apply(): B = create(getLink)
+  def apply(): Option[B] = if (getLink == null) None else Some(create(getLink))
 }

@@ -19,72 +19,70 @@ import scala.collection.JavaConversions._
 
 class HL7LoadTest extends TestCase {
   def testLoadVHitG01() {
-    loadMessage("cda-examples/vhitg-POCD_EX000001.xml")
+    loadCDA("cda-examples/vhitg-POCD_EX000001.xml")
   }
 
   def testLoadMessage() {
-    loadMessage("cda-examples/Arztbrief-02-Level3.xml")
+    loadCDA("cda-examples/Arztbrief-02-Level3.xml")
   }
 
-  def loadMessage(filename: String) {
+  def loadCDA(filename: String) {
     val doc = StringFromFile.readFileAsString(filename)
+    val cda = new DocumentDSL(doc)
 
-    //--------------- document -------------------
-    val clinicalDocument = MessageLoader.LoadMessage("POCD_HD000040", doc).asInstanceOf[Document]
-
-    val cda = new DocumentDSL(clinicalDocument)
-
+    println("\nPatientenakten:")
     val rt = cda.participation("recordTarget")
-    println("recordTarget = " + rt.getRole)
+    rt match {
+      case None => println(" CDA enthält keine Patientenakte")
+      case _ => println(" Patientenakte = " + rt.get)
+    }
 
-    println("------------- Anamnese Komponente ---------------")
+    println("\nAlle Überschriften auslesen:")
+    val sections = cda.outboundRelationship("component")
+    sections match {
+      case None => println("Dokument hat keine Sections")
+      case Some(rel) => {
+        rel.target().get.outboundRelationship.list.foreach {
+          s => println(" " + s.target().get.title)
+        }
+      }
+    }
+
+    println("\nAlle Adressen auslesen:")
+    cda.participation.list.foreach {
+      a =>
+        println(" " + DatatypeTool.AddressTool.getAll(a.role().get.getAddr))
+    }
+
+    println("\nTraversiere 'component' bis Ebene 2:")
     cda.outboundRelationship.list.foreach {
       o => // ActRelationship
         println("level 1")
-        o.target().outboundRelationship.list.foreach {
+        o.target().get.outboundRelationship.list.foreach {
           o => // ActRelationship
             println("level 2")
-            println(o.target().title)
-            println(o.target().text)
+            println("Überschrift: " + o.target().get.title)
+            println("Inhalt:      " + o.target().get.text)
         }
     }
-
-    /*
-    println(" //------------- Befund Komponente ---------------")
-    println(cda.outboundRelationship(0).target.outboundRelationship(1).target.title)
-    println(cda.outboundRelationship(0).target.outboundRelationship(1).target.text)
-    */
-
-    println("")
-    println("")
-    println("// Alle Überschriften auslesen")
-    val sections = cda.outboundRelationship("component").
-            target().outboundRelationship.list
-    sections.foreach(a => println("-> " + a.target().title))
-
-    println("")
-    println("")
-    println("// Alle Adressen auslesen")
-    cda.participation.list.foreach {
-      a =>
-        println("-> " + DatatypeTool.AddressTool.getAll(a.role().getAddr))
-    }
-
-    // -------------------------------------
-
-    /*
-    cda.outboundRelationship.list(0).target().title =
-            cda.outboundRelationship.list(0).target().title + "!!!"
-
-*/
-    val modified = BuildMessage.toXML(cda, "POCD_HD000040")
-    println("=============")
-    println(modified)
   }
 
-  def testLoadMessage2() {
-    var slm: SimpleLoadMessage = new SimpleLoadMessage
-    var rim: RimObject = slm.LoadMessage("POCD_HD000040", "Arztbrief-2aufLevel3.XML").asInstanceOf[RimObject]
-    println(BuildMessage.toXML(rim, "Arztbrief-2aufLevel3_0.XML"))
+  def testModifyMessage1() {
+    modifyCDA("cda-examples/Arztbrief-02-Level3.xml")
+  }
+
+  def modifyCDA(filename: String) {
+    val doc = StringFromFile.readFileAsString(filename)
+    val cda = new DocumentDSL(doc)
+
+    cda.participation("recordTarget").get.role().get.player() match {
+      case None =>
+      case Some(patient) => {
+        patient.name.family = "Gumbel"
+      }
+    }
+    val modified = BuildMessage.toXML(cda, "POCD_HD000040")
+    println(modified)
+
   }
 }

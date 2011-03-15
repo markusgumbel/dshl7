@@ -67,7 +67,7 @@ class HL7TestCDADemo extends TestCase {
           }
         }
       }
-      
+
       participation("custodian") = new ParticipationDSL {
         time = "20070905"
         role("assignedCustodian") = new RoleDSL {
@@ -116,6 +116,11 @@ Skin and joints of upper extremeties unremarkable.""")
         }
       }
     }
+    println(BuildMessage.toXML(clinicalDocument, "POCD_HD000040"))
+  }
+
+  def testMinimalCDADemo() {
+    val clinicalDocument = new DocumentDSL
     println(BuildMessage.toXML(clinicalDocument, "POCD_HD000040"))
   }
 }
