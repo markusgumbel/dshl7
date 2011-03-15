@@ -22,64 +22,58 @@ import scala.collection._
 import scala.collection.JavaConversions._
 import java.util.ArrayList
 import java.util.List
+import org.hl7.types.DatatypeTool.EntityNameTool
 
 /**
  * Class to build a Person or Organization Name
  * @author Ahmet Gül
  */
 
-class Name {
-  
-  private val vf = new ValueFactoryImpl
-  private val list: List[ENXP] = new ArrayList[ENXP]
+class Name(val name: BAG[EN]) {
 
-  // ---------------- given: ENXP --------------------
-  def given: String = DatatypeTool.EntityNameTool.getGivenName(personName)
-
-  def given_=(v: String) {
-    var givenENXP: ENXP = vf.PNXPvalueOf(v, EntityNamePartType.Given, null)
-    list.add(givenENXP)
+  def this() = {
+    this(new BAGjuCollectionAdapter[EN](new java.util.ArrayList()))
   }
 
-  // ---------------- family: ENXP --------------------
-  def family: String = DatatypeTool.EntityNameTool.getFamilyName(personName)
+  def family = DatatypeTool.EntityNameTool.getFamilyName(name)
 
-  def family_=(v: String) {
-    var familyENXP: ENXP = vf.PNXPvalueOf(v, EntityNamePartType.Family, null)
-    list.add(familyENXP)
+  def family_=(n: String) {
+    val newName = DatatypeTool.EntityNameTool.setFamilyName(name, n)
+    // Copy changes:
+    // TODO how to propagate changes???
+
+    for (name <- name.iterator) {
+      for (entry <- name) {
+        val a: ENXP = entry
+        /*
+        if (a.type.equals(EntityNamePartType.Family)) {
+          
+        }
+        */
+      }
+    }
+    // EntityNamePartType.Family
+    val i = 0
   }
 
-  // ---------------- suffix: ENXP --------------------
-  def suffix: String = ""
+  def given = DatatypeTool.EntityNameTool.getGivenName(name)
 
-  def suffix_=(v: String) {
-    var suffixENXP: ENXP = vf.PNXPvalueOf(v, EntityNamePartType.Suffix, null)
-    list.add(suffixENXP)
+  def given_=(n: String) {
+    val newName = DatatypeTool.EntityNameTool.setGivenName(name, n)
   }
 
-  // ---------------- prefix: ENXP --------------------
-  def prefix: String = ""
+  def prefix = ""
 
-  def prefix_=(v: String) {
-    var prefixENXP: ENXP = vf.PNXPvalueOf(v, EntityNamePartType.Prefix, null)
-    list.add(prefixENXP)
+  def prefix_=(n: String) {
   }
 
-  // ---------------- orgName: ENXP --------------------
-  def orgName: String = DatatypeTool.EntityNameTool.getTrivialName(personName)
+  def suffix = ""
 
-  def orgName_=(v: String) {
-    var orgENXP: ENXP = vf.ONXPvalueOf(v, null, null)
-    list.add(orgENXP)
+  def suffix_=(n: String) {
   }
 
-  // TODO not used?
-  // def getPersonNameList = list
+  def orgName = ""
 
-  def personName = {
-    val ad: EN = ENimpl.valueOf(list)
-    val adList: List[EN] = new ArrayList[EN]
-    adList.add(ad)
-    BAGjuCollectionAdapter.valueOf(adList)
+  def orgName_=(n: String) {
   }
 }

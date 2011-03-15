@@ -201,15 +201,9 @@ object ImplicitDef {
 
   implicit def addressToAD(address: Address): AD = ADimpl.valueOf(address.getAddress)
 
-  implicit def nameToBAG_EN(name: Name): BAG[EN] = name.personName
+  implicit def nameToBAG_EN(name: Name): BAG[EN] = name.name
 
-  implicit def BAG_ENToName(bag: BAG[EN]): Name = {
-    val name = new Name
-    name.family = DatatypeTool.EntityNameTool.getFamilyName(bag)
-    name.given = DatatypeTool.EntityNameTool.getGivenName(bag)
-    name
-    // TODO
-  }
+  implicit def BAG_ENToName(bag: BAG[EN])= new Name(bag)
 
   implicit def telToBAG_TEL(tel: Tel): BAG[TEL] = tel.getTel
 
