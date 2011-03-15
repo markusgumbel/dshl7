@@ -1,4 +1,4 @@
-package net.gumbix.hl7dsl.build
+package net.gumbix.hl7dsl.helper
 
 import scala.collection.JavaConversions._
 import org.hl7.types.impl.CSimpl

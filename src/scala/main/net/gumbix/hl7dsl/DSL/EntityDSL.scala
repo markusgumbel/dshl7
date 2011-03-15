@@ -20,7 +20,7 @@ import org.hl7.types._
 import java.util.{ArrayList, List}
 import scala.collection.JavaConversions._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
-import net.gumbix.hl7dsl.build.{RimRelationshipMany, RimRelationshipOne}
+import net.gumbix.hl7dsl.helper.{RimRelationshipMany, RimRelationshipOne}
 
 /**
  * Wrapper Class for the RIM Class "Entity"

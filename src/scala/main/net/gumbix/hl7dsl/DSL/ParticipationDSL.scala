@@ -16,12 +16,9 @@ Copyright 2010 the original author or authors.
 package net.gumbix.hl7dsl.DSL
 
 import org.hl7.rim.{Participation}
-import org.hl7.rim.{Patient}
 import org.hl7.rim.{RimObjectFactory, Role}
 import org.hl7.types._
-import net.gumbix.hl7dsl.helper.ImplicitDef._
-import util.Random
-import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
+import net.gumbix.hl7dsl.helper.RimRelationshipOne
 
 /**
  * Wrapper Class for the RIM Class "Participation"

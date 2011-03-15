@@ -21,7 +21,7 @@ import org.hl7.types._
 import java.util.ArrayList
 import scala.collection.JavaConversions._
 import java.util.List
-import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
+import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for RIM Class "Role"

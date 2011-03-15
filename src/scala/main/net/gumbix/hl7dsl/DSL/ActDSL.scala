@@ -17,11 +17,7 @@ package net.gumbix.hl7dsl.DSL
 
 import org.hl7.rim.{RimObjectFactory, Act, Participation, ActRelationship}
 import org.hl7.types._
-import impl.CSimpl
-import java.util.{ArrayList, List}
-import scala.collection.JavaConversions._
-import net.gumbix.hl7dsl.helper.ImplicitDef._
-import net.gumbix.hl7dsl.build.RimRelationshipMany
+import net.gumbix.hl7dsl.helper.RimRelationshipMany
 
 /**
  * Wrapper Class for the RIM Class "Act"

@@ -18,7 +18,7 @@ package net.gumbix.hl7dsl.DSL
 import org.hl7.rim.{RimObjectFactory, ActRelationship, Act}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
-import net.gumbix.hl7dsl.build.{RimRelationshipOne, RimRelationshipMany}
+import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for the RIM Class "ActRelationship"
