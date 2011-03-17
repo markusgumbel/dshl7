@@ -28,6 +28,9 @@ import org.hl7.util.MessageLoader
 class DocumentDSL(document: Document) extends ContextStructureDSL(document) {
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("Document").asInstanceOf[Document])
+    // TODO as CDA is often a root element it does not get a clone code
+    // This is required by the RS framework though!
+    cloneCode = ("cda", "egal")
   }
 
   def this(doc: String) = {

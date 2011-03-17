@@ -29,7 +29,7 @@ import org.hl7.types.DatatypeTool.EntityNameTool
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
-class Name(val name: BAG[EN]) {
+class Name(var name: BAG[EN]) {
 
   def this() = {
     this(new BAGjuCollectionAdapter[EN](new java.util.ArrayList()))
@@ -38,28 +38,15 @@ class Name(val name: BAG[EN]) {
   def family = DatatypeTool.EntityNameTool.getFamilyName(name)
 
   def family_=(n: String) {
-    val newName = DatatypeTool.EntityNameTool.setFamilyName(name, n)
+    name = DatatypeTool.EntityNameTool.setFamilyName(name, n)
     // Copy changes:
     // TODO how to propagate changes???
-
-    for (name <- name.iterator) {
-      for (entry <- name) {
-        val a: ENXP = entry
-        /*
-        if (a.type.equals(EntityNamePartType.Family)) {
-          
-        }
-        */
-      }
-    }
-    // EntityNamePartType.Family
-    val i = 0
   }
 
   def given = DatatypeTool.EntityNameTool.getGivenName(name)
 
   def given_=(n: String) {
-    val newName = DatatypeTool.EntityNameTool.setGivenName(name, n)
+    name = DatatypeTool.EntityNameTool.setGivenName(name, n)
   }
 
   def prefix = ""
