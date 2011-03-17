@@ -1,43 +1,68 @@
 package net.gumbix.hl7dsl
 
-import net.gumbix.hl7dsl.build.BuildMessage
-import net.gumbix.hl7dsl.helper.{Name, CodedDataTypes}
-import junit.framework.TestCase
-import net.gumbix.hl7dsl.DSL._
+import build.BuildMessage
+import DSL._
+import helper.{Address, Name, CodedDataTypes}
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import junit.framework.TestCase
+import org.hl7.types.CE
+import java.util.ArrayList
+import org.hl7.types.impl.{SETjuSetAdapter, CEimpl}
 
 /**
- * Implementation CDADemo.java from HL7 Java SIG with the Scala DSL
- * @author Ahmet Gül (guel.ahmet@hotmail.de)
+ * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
-
-class HL7TestCDADemo extends TestCase {
-  def testCDADemo() {
-
-    // Create a patient-clone (for reuse):
-    val patient = new PersonDSL {
-      id = ("123433", "123.234.345")
-      name = new Name {
-        prefix = "Mr"
-        given = "Robert"
-        family = "Zimmerman"
-        suffix = "VII"
-      }
-    }
-
+class VHitGDemo extends TestCase {
+  def testPOCD_EX000001() {
     val clinicalDocument = new DocumentDSL {
-      id = ("1234567", "123.123.123")
-      effectiveTime = "20061105212900.000"
+      id = ("6014161089", "1.2.276.0.76.3645.239")
+      title = "Arztbrief auf der Basis von CDA Release 2"
+      effectiveTime = "20050829"
       code = new CodedDataTypes {
         code = "11488-4"
         codeSystem = "2.16.840.1.113883.6.1"
+        displayName = "Consultation note"
       }
+      /*
+      confidentialityCode = new CodedDataTypes {
+        code = "N"
+        codeSystem = "2.16.840.1.113883.5.25"
+      }
+      */
+      val cc = CEimpl.valueOf("N", "2.16.840.1.113883.5.25", "")
+      val ccList = new ArrayList[CE]
+      ccList.add(cc)
+      val e = SETjuSetAdapter.valueOf(ccList)
+      confidentialityCode = e
 
-      // Basically, this reflects better a 1:n relationship
+      // languageCode = "de-DE"
+
       participation("recordTarget") = new ParticipationDSL {
+        id = ("6245", "2.16.840.1.113883.3.933")
+        id = ("1543627549", "1.2.276.0.76.4.1")
         role("patientRole") = new PatientDSL {
-          player("patient") = patient // see above.
+          player("patient") = new PersonDSL {
+            name = new Name {
+              given = "Paul"
+              family = "Pappel"
+            }
+            birthTime = "19551217"
+            /*
+            administrativeGenderCode = new CodedDataTypes {
+              code = "M"
+              codeSystem = "2.16.840.1.113883.5.1"
+            }
+            */
+            // birthPlace = ... TODO
+          }
+          addr = new Address {
+            streetName = "Riedemannweg 59"
+            postalCode = "13627"
+            city = "Berlin"
+          }
+          // telecom = 
         }
+
       }
 
       participation("author") = new ParticipationDSL {
@@ -86,10 +111,12 @@ class HL7TestCDADemo extends TestCase {
             typeCode = ("COMP", "1.22.333.4444")
             target("section") = new ActDSL {
               participation("subject") = new ParticipationDSL {
+                /*
                 role("relatedSubject") = new RoleDSL {
                   // TODO each element could automatically be cloned?
-                  player("subject") = patient clone
+                  // player("subject") = patient clone
                 }
+                */
               }
               outboundRelationship("entry") = new ActRelationshipDSL {
                 target("observation") = new ObservationDSL {
@@ -116,11 +143,6 @@ Skin and joints of upper extremeties unremarkable.""")
         }
       }
     }
-    println(BuildMessage.toXML(clinicalDocument, "POCD_HD000040"))
-  }
-
-  def testMinimalCDADemo() {
-    val clinicalDocument = new DocumentDSL
     println(BuildMessage.toXML(clinicalDocument, "POCD_HD000040"))
   }
 }

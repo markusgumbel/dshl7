@@ -22,7 +22,7 @@ import org.hl7.rim.impl.PersonImpl
 
 /**
  * Wrapper class for the RIM Class "Person"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class PersonDSL(person: Person) extends LivingSubjectDSL(person) {

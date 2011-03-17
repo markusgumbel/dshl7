@@ -21,7 +21,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 /**
  * Wrapper Class for the RIM Class "LivingSubject"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class LivingSubjectDSL(livingSubject: LivingSubject) extends EntityDSL(livingSubject) {

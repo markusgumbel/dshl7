@@ -21,8 +21,8 @@ import net.gumbix.hl7dsl.helper.RimRelationshipMany
 
 /**
  * Wrapper Class for the RIM Class "Act"
- * @author Ahmet Gül
- * @author Markus Gumbel ()
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
+ * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 class ActDSL(val act: Act) extends RimDSL(act) {
 

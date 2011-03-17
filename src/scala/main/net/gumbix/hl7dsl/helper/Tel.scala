@@ -24,7 +24,7 @@ import java.util.List
 
 /**
  * Class to Build the Telecommunication Address
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class Tel {

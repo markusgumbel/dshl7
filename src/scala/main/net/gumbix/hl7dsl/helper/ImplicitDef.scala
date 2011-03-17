@@ -23,7 +23,7 @@ import net.gumbix.hl7dsl.DSL._
 
 /**
  * Class with all implicit conversation for the DSL
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 object ImplicitDef {

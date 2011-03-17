@@ -21,7 +21,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 /**
  * Wrapper Class for the RIM Class "Organization"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class OrganizationDSL(organization: Organization)

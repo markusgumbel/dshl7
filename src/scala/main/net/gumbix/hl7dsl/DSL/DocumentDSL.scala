@@ -22,7 +22,7 @@ import org.hl7.util.MessageLoader
 
 /**
  * Wrapper Class for the RIM Class "Document"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class DocumentDSL(document: Document) extends ContextStructureDSL(document) {

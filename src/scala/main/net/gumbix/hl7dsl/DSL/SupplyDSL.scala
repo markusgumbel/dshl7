@@ -20,7 +20,7 @@ import org.hl7.types._
 
 /**
  * Wrapper Class for RIM Class "Supply"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class SupplyDSL(supply: Supply) extends ActDSL(supply) {

@@ -22,7 +22,7 @@ import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for the RIM Class "ActRelationship"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class ActRelationshipDSL(actRelationship: ActRelationship) {

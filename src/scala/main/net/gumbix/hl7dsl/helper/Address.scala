@@ -24,7 +24,7 @@ import java.util.List
 
 /**
  * Class to build an address
- * @author Ahmet Gül, Markus Gumbel
+ * @author Ahmet Gül (guel.ahmet@hotmail.de), Markus Gumbel
  */
 
 class Address {

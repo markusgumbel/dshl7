@@ -20,7 +20,7 @@ import org.hl7.types._
 
 /**
  * Wrapper Class for the RIM Class "RoleLink"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class RoleLinkDSL(val roleLink: RoleLink) {

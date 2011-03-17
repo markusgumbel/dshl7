@@ -25,7 +25,7 @@ import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for RIM Class "Role"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class RoleDSL(val role: Role) extends RimDSL(role) {

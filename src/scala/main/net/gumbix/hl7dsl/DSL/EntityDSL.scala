@@ -24,7 +24,7 @@ import net.gumbix.hl7dsl.helper.{RimRelationshipMany, RimRelationshipOne}
 
 /**
  * Wrapper Class for the RIM Class "Entity"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 class EntityDSL(val entity: Entity) extends RimDSL(entity) {
 

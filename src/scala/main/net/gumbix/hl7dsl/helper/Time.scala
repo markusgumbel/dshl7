@@ -24,7 +24,7 @@ import java.util.List
 
 /**
  * Class to Build a Timestamp (TS) or interval of Time as Timestamp (IVL<TS>)
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class Time {

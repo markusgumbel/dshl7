@@ -22,7 +22,7 @@ import java.util.HashMap
 
 /**
  * Class for Context from Java SIG Demo in Scala
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 

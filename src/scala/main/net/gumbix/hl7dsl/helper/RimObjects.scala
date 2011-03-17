@@ -20,7 +20,7 @@ import org.hl7.types._
 
 /**
  * Object to create the RimObject from the RIM Classes
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 object RimObjects    {

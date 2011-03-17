@@ -26,7 +26,7 @@ import org.hl7.types.DatatypeTool.EntityNameTool
 
 /**
  * Class to build a Person or Organization Name
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class Name(val name: BAG[EN]) {

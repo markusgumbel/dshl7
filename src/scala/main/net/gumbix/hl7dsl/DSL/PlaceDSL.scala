@@ -21,7 +21,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 /**
  * Wrapper Class for RIM Class "Place"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class PlaceDSL(place: Place) extends EntityDSL(place) {

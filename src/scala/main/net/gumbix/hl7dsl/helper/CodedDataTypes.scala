@@ -23,7 +23,7 @@ import java.util.List
 
 /**
  * Class to Build the Datatype CD
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class CodedDataTypes {

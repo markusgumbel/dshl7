@@ -21,7 +21,7 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 /**
  * Wrapper Class for the RIM Class "SubstanceAdministration"
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class SubstanceAdministrationDSL(substAdm: SubstanceAdministration) extends ActDSL(substAdm) {

@@ -13,7 +13,7 @@ import net.gumbix.hl7dsl.helper.Address
 import scala.collection.JavaConversions._
 
 /**
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  * Simple load CDA and read data
  */
 

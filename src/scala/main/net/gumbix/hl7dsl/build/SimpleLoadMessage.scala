@@ -25,7 +25,7 @@ import org.hl7.xml.parser.MessageContentHandler
 
 /**
  * Class to load Message from Java SIG Demo in Scala
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 class SimpleLoadMessage {

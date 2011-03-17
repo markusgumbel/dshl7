@@ -28,7 +28,7 @@ import java.io.{ByteArrayOutputStream, FileOutputStream}
 /**
  * Class to Build Message from Java SIG Demo in Scala
  * needs RimObject and not object as parameter
- * @author Ahmet Gül
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
 object BuildMessage {
