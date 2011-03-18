@@ -13,7 +13,7 @@ class RimDSL(rimo: RimObject) {
   // TODO a RIM object could be a root element, which means
   // it does not get a clone code.
   // This is required by the RS framework though!
-  if (rimo.getCloneCode == null) ("default", "default")
+  if (rimo.getCloneCode == null) cloneCode = ("default", "default")
 
   /**
    * @return CS

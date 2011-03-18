@@ -99,8 +99,9 @@ class HL7LoadTest extends TestCase {
     */
 
     // Note: There might be more than one record target!
-    //cda.participation("recordTarget").head.role().get.addr.city = "Mannheim"
-    println(cda.participation("recordTarget").head.role().get.addr.city)
+    val city = cda.participation("recordTarget")(0).role().get.addr.city
+    println("*" + city)    
+    cda.participation("recordTarget")(0).role().get.addr.city = "Mannheim"
 
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println(modified)

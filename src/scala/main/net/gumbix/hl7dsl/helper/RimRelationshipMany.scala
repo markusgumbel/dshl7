@@ -63,8 +63,13 @@ class RimRelationship[A <: RimObject, B <: RimDSL](setLink: A => Unit,
       initDone = true
       if (getLinks != null) {
         for (e <- getLinks.toList) {
-          val cloneName = e.getCloneCode.code.toString
-          update(cloneName, e) // Add it ot our map.
+          e match {
+            case null =>
+            case o: RimObject => {
+              val cloneName = o.getCloneCode.code.toString
+              update(cloneName, e) // Add it ot our map.
+            }
+          }
         }
       }
     }
@@ -102,15 +107,17 @@ class RimRelationshipMany[A <: RimObject, B <: RimDSL](setLink: A => Unit,
     }
   }
 
+  def apply(cloneName: String, pos: Int): B = {
+    apply(cloneName)(pos)
+  }
+
   /**
    * Get all relationships as a list.
    * TODO Q&D: should be a map (clonename, rim-object) to iterate.
    */
   def list = {
     init()
-
-    val x = links.values.flatten.toList
-    x
+    links.values.flatten.toList
   }
 }
 

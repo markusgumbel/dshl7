@@ -26,16 +26,26 @@ import java.util.List
  * Class to build an address
  * @author Ahmet Gül (guel.ahmet@hotmail.de), Markus Gumbel
  */
-
 class Address(addr: BAG[AD], change: Address => Unit) {
-
   def this() = {
-    this(new BAGjuCollectionAdapter[AD](new java.util.ArrayList()),
-      {a: Address => })
+    this (new BAGjuCollectionAdapter[AD](new java.util.ArrayList()),
+      {a: Address =>})
   }
 
   private val vf: ValueFactory = new ValueFactoryImpl
-  private val list: List[ADXP] = new ArrayList[ADXP]
+  private val list = {
+    val l = new ArrayList[ADXP]
+    val it = addr.iterator
+    while (it.hasNext) {
+      val ad = it.next
+      val adIt = ad.iterator
+      while (adIt.hasNext) {
+        val adxp = adIt.next
+        l.add(adxp)
+      }
+    }
+    l
+  }
 
   implicit def stringToADXP(in: String) = ADXPimpl.valueOf(in)
 
@@ -44,6 +54,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
 
   def country_=(v: String) {
     list.add(vf.ADXPvalueOf(v, AddressPartType.Country))
+    change(this)
   }
 
   // ---------------- county: ADXP --------------------
@@ -52,14 +63,16 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def county_=(v: String) {
     var countyAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.CountyOrParish)
     list.add(countyAsADXP)
+    change(this)
   }
 
   // ---------------- city: ADXP --------------------
-  def city: String = ""
+  def city: String = "to be done"
 
   def city_=(v: String) {
-    var cityAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.Municipality)
+    var cityAsADXP = vf.ADXPvalueOf(v, AddressPartType.Municipality)
     list.add(cityAsADXP)
+    change(this)
   }
 
   // ---------------- postalCode: ADXP --------------------
@@ -68,6 +81,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def postalCode_=(v: String) {
     var postalCodeAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.PostalCode)
     list.add(postalCodeAsADXP)
+    change(this)
   }
 
   // ---------------- houseNumber: ADXP --------------------
@@ -76,6 +90,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def houseNumber_=(v: String) {
     var houseNumberAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.BuildingNumber)
     list.add(houseNumberAsADXP)
+    change(this)
   }
 
   // ---------------- streetName: ADXP --------------------
@@ -84,6 +99,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def streetName_=(v: String) {
     var streetNameAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.StreetName)
     list.add(streetNameAsADXP)
+    change(this)
   }
 
   // ---------------- streetAddressLine: ADXP --------------------
@@ -92,6 +108,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def streetAddressLine_=(v: String) {
     var streetAddressLineAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.StreetAddressLine)
     list.add(streetAddressLineAsADXP)
+    change(this)
   }
 
   // ---------------- additionalLocator: ADXP --------------------
@@ -100,6 +117,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def additionalLocator_=(v: String) {
     var additionalLocatorAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.AdditionalLocator)
     list.add(additionalLocatorAsADXP)
+    change(this)
   }
 
   // ---------------- postBox: ADXP --------------------
@@ -108,6 +126,7 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   def postBox_=(v: String) {
     var postBoxAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.PostBox)
     list.add(postBoxAsADXP)
+    change(this)
   }
 
   def getAddress = list
