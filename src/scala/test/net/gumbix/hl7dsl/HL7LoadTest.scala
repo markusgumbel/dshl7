@@ -31,19 +31,27 @@ class HL7LoadTest extends TestCase {
     val cda = new DocumentDSL(doc)
 
     println("\nPatientenakten:")
-    val rt = cda.participation("recordTarget")
-    rt match {
-      case None => println(" CDA enthält keine Patientenakte")
-      case _ => println(" Patientenakte = " + rt.get)
+    val rtList = cda.participation("recordTarget")
+    rtList match {
+      case Nil => println(" CDA enthält keine Patientenakte(n)")
+      case _ => rtList.foreach(rt => println(" Patientenakte = " + rt))
     }
 
     println("\nAlle Überschriften auslesen:")
     val sections = cda.outboundRelationship("component")
     sections match {
-      case None => println("Dokument hat keine Sections")
-      case Some(rel) => {
-        rel.target().get.outboundRelationship.list.foreach {
-          s => println(" " + s.target().get.title)
+      case Nil => println("Dokument hat keine Sections")
+      case _ => {
+        println("Dokument hat folgende Sections:")
+        sections.foreach {
+          section =>
+            val body = section.target().get
+            println(" (Structured) Body " + body)
+            body.outboundRelationship.list.foreach {
+              s =>
+                println("  Section " + s)
+                println("  " + s.target().get.title)
+            }
         }
       }
     }
@@ -89,7 +97,10 @@ class HL7LoadTest extends TestCase {
       }
     }
     */
-    cda.participation("recordTarget").get.role().get.addr.city = "Mannheim"
+
+    // Note: There might be more than one record target!
+    //cda.participation("recordTarget").head.role().get.addr.city = "Mannheim"
+    println(cda.participation("recordTarget").head.role().get.addr.city)
 
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println(modified)
