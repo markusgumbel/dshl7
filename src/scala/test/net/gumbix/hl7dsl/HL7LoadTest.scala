@@ -71,10 +71,16 @@ class HL7LoadTest extends TestCase {
     modifyCDA("cda-examples/Arztbrief-02-Level3.xml")
   }
 
+  def testModifyMessage2() {
+    modifyCDA("cda-examples/vhitg-POCD_EX000001.xml")
+  }
+
+
   def modifyCDA(filename: String) {
     val doc = StringFromFile.readFileAsString(filename)
     val cda = new DocumentDSL(doc)
 
+    /*
     cda.participation("recordTarget").get.role().get.player() match {
       case None => println("Achtung: Person nicht vorhanden.")
       case Some(patient) => {
@@ -82,6 +88,9 @@ class HL7LoadTest extends TestCase {
         patient.name.family = "Gumbel"
       }
     }
+    */
+    cda.participation("recordTarget").get.role().get.addr.city = "Mannheim"
+
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")
     println(modified)
   }

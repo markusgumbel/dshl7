@@ -15,14 +15,15 @@ Copyright 2010 the original author or authors.
 */
 package net.gumbix.hl7dsl.helper
 
-import org.hl7.types.impl._
 import org.hl7.types._
-import org.hl7.types.enums._
+import enums._
+import impl._
 import scala.collection._
 import scala.collection.JavaConversions._
 import java.util.ArrayList
 import java.util.List
 import org.hl7.types.DatatypeTool.EntityNameTool
+import javax.print.attribute.standard.MediaSize.NA
 
 /**
  * Class to build a Person or Organization Name
@@ -30,16 +31,15 @@ import org.hl7.types.DatatypeTool.EntityNameTool
  */
 
 class Name(var name: BAG[EN]) {
-
   def this() = {
-    this(new BAGjuCollectionAdapter[EN](new java.util.ArrayList()))
+    this (new BAGjuCollectionAdapter[EN](new java.util.ArrayList()))
   }
 
   def family = DatatypeTool.EntityNameTool.getFamilyName(name)
 
   def family_=(n: String) {
     name = DatatypeTool.EntityNameTool.setFamilyName(name, n)
-    // Copy changes:
+    val i = 0
     // TODO how to propagate changes???
   }
 
@@ -47,11 +47,16 @@ class Name(var name: BAG[EN]) {
 
   def given_=(n: String) {
     name = DatatypeTool.EntityNameTool.setGivenName(name, n)
+    val i = 0
   }
+
+  val enxpList = new ArrayList[ENXP]
 
   def prefix = ""
 
   def prefix_=(n: String) {
+    enxpList.add(ENXPimpl.valueOf(n,
+      EntityNamePartType.Prefix, DSETnull.NA.asInstanceOf[DSET[CS]]))
   }
 
   def suffix = ""

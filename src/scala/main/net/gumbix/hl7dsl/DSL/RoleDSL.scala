@@ -21,7 +21,7 @@ import org.hl7.types._
 import java.util.ArrayList
 import scala.collection.JavaConversions._
 import java.util.List
-import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
+import net.gumbix.hl7dsl.helper.{Address, RimRelationshipOne, RimRelationshipMany}
 
 /**
  * Wrapper Class for RIM Class "Role"
@@ -85,10 +85,17 @@ class RoleDSL(val role: Role) extends RimDSL(role) {
   /**
    * @return BAG[AD]
    */
-  def addr: BAG[AD] = role.getAddr
+  def addr: Address = {
+    def addressChanged(a: Address) {
+      role.setAddr(a.toRS)
+    }
+    val a = new Address(role.getAddr, addressChanged)
+    a
+  }
 
-  def addr_=(v: BAG[AD]) {
-    role.setAddr(v)
+  def addr_=(a: Address) {
+    // TODO Somehow remember that here was an assignment:
+    role.setAddr(a.toRS)
   }
 
   /**
@@ -145,20 +152,21 @@ class RoleDSL(val role: Role) extends RimDSL(role) {
     role.setPositionNumber(v)
   }
 
-  def player = {
+  val player = {
     new RimRelationshipOne[Entity, EntityDSL](
       {e => role.setPlayer(e)},
       role.getPlayer,
       {e => new EntityDSL(e)})
   }
 
-  def scoper = {
+  val scoper = {
     new RimRelationshipOne[Entity, EntityDSL](
       {s => role.setScoper(s)},
       role.getScoper,
       s => new EntityDSL(s)) // TODO
   }
 
+  // TODO change to new pattern:
   /**
    * @return RoleLinkDSL
    */

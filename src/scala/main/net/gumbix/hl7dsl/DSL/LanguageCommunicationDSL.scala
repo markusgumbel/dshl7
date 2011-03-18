@@ -24,7 +24,8 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
-class LanguageCommunicationDSL(val language: LanguageCommunication) {
+class LanguageCommunicationDSL(val language: LanguageCommunication)
+        extends RimDSL(language) {
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("LanguageCommunication").asInstanceOf[LanguageCommunication])
   }

@@ -25,18 +25,11 @@ import net.gumbix.hl7dsl.helper.{RimRelationshipOne, RimRelationshipMany}
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
-class ActRelationshipDSL(actRelationship: ActRelationship) {
+class ActRelationshipDSL(actRelationship: ActRelationship)
+        extends RimDSL(actRelationship) {
+  
   def this() = {
     this (RimObjectFactory.getInstance.createRimObject("ActRelationship").asInstanceOf[ActRelationship])
-  }
-
-  /**
-   * @return CS
-   */
-  def cloneCode: CS = actRelationship.getCloneCode
-
-  def cloneCode_=(v: CS) {
-    actRelationship.setCloneCode(v)
   }
 
   /**
@@ -192,7 +185,7 @@ class ActRelationshipDSL(actRelationship: ActRelationship) {
     actRelationship.setSource(v)
   }
 
-  def target = {
+  val target = {
     new RimRelationshipOne[Act, ActDSL](
       v => actRelationship.setTarget(v),
       actRelationship.getTarget,

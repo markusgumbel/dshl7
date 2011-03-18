@@ -157,7 +157,7 @@ class ParticipationDSL(val participation: Participation)
     participation.setSubsetCode(v)
   }
 
-  def role = {
+  val role = {
     new RimRelationshipOne[Role, RoleDSL](
       p => participation.setRole(p),
       participation.getRole,

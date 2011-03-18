@@ -143,21 +143,21 @@ class EntityDSL(val entity: Entity) extends RimDSL(entity) {
     entity.setHandlingCode(v)
   }
 
-  def languageCommunication = {
+  val languageCommunication = {
     new RimRelationshipMany[LanguageCommunication, LanguageCommunicationDSL](
       v => entity.addLanguageCommunication(v),
       entity.getLanguageCommunication(),
       p => new LanguageCommunicationDSL(p))
   }
 
-  def scopedRole = {
+  val scopedRole = {
     new RimRelationshipMany[Role, RoleDSL](
       v => entity.addScopedRole(v),
       entity.getScopedRole(),
       p => new RoleDSL(p))
   }
 
-  def playedRole = {
+  val playedRole = {
     new RimRelationshipMany[Role, RoleDSL](
       v => entity.addPlayedRole(v),
       entity.getPlayedRole(),

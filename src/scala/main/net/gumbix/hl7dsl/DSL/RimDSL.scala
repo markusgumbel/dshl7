@@ -10,6 +10,11 @@ import net.gumbix.hl7dsl.helper.ImplicitDef._
 
 class RimDSL(rimo: RimObject) {
 
+  // TODO a RIM object could be a root element, which means
+  // it does not get a clone code.
+  // This is required by the RS framework though!
+  cloneCode = ("default", "default")
+
   /**
    * @return CS
    */

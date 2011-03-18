@@ -231,21 +231,21 @@ class ActDSL(val act: Act) extends RimDSL(act) {
     act.setLanguageCode(v)
   }
 
-  def participation = {
+  val participation = {
     new RimRelationshipMany[Participation, ParticipationDSL](
       p => act.addParticipation(p),
       act.getParticipation(),
       p => new ParticipationDSL(p))
   }
 
-  def inboundRelationship = {
+  val inboundRelationship = {
     new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
       v => act.addInboundRelationship(v),
       act.getInboundRelationship(),
       p => new ActRelationshipDSL(p))
   }
 
-  def outboundRelationship = {
+  val outboundRelationship = {
     new RimRelationshipMany[ActRelationship, ActRelationshipDSL](
       v => act.addOutboundRelationship(v),
       act.getOutboundRelationship(),

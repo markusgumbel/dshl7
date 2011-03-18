@@ -54,6 +54,8 @@ class HL7TestCDADemo extends TestCase {
         }
       }
 
+      /*
+      // twice? Not allowed..
       participation("author") = new ParticipationDSL {
         role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
@@ -67,6 +69,7 @@ class HL7TestCDADemo extends TestCase {
           }
         }
       }
+      */
 
       participation("custodian") = new ParticipationDSL {
         time = "20070905"

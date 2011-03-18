@@ -185,6 +185,7 @@ object ImplicitDef {
   // ---------------- PQ : (magnitudeString: String, unitString: String )--------------------
   implicit def strings2PQ(v: Tuple2[REAL, String]): PQ = PQimpl.valueOf(v._1, v._2)
 
+  /*
   implicit def addressToBAG_AD(address: Address): BAG[AD] = {
     var ad: AD = ADimpl.valueOf(address.getAddress)
     var adList: List[AD] = new ArrayList[AD]
@@ -198,10 +199,14 @@ object ImplicitDef {
     // TODO no idea how to tackle this?!
     address
   }
+  */
 
   implicit def addressToAD(address: Address): AD = ADimpl.valueOf(address.getAddress)
 
-  implicit def nameToBAG_EN(name: Name): BAG[EN] = name.name
+  implicit def nameToBAG_EN(name: Name): BAG[EN] = {
+    val i = 0
+    name.name
+  }
 
   implicit def BAG_ENToName(bag: BAG[EN])= new Name(bag)
 

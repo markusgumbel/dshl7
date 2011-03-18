@@ -27,7 +27,13 @@ import java.util.List
  * @author Ahmet Gül (guel.ahmet@hotmail.de), Markus Gumbel
  */
 
-class Address {
+class Address(addr: BAG[AD], change: Address => Unit) {
+
+  def this() = {
+    this(new BAGjuCollectionAdapter[AD](new java.util.ArrayList()),
+      {a: Address => })
+  }
+
   private val vf: ValueFactory = new ValueFactoryImpl
   private val list: List[ADXP] = new ArrayList[ADXP]
 
@@ -105,4 +111,11 @@ class Address {
   }
 
   def getAddress = list
+
+  def toRS = {
+    val ad = ADimpl.valueOf(list)
+    var adList = new ArrayList[AD]
+    adList.add(ad)
+    BAGjuListAdapter.valueOf(adList)
+  }
 }
