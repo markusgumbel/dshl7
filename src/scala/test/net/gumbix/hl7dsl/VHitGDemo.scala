@@ -2,7 +2,7 @@ package net.gumbix.hl7dsl
 
 import build.BuildMessage
 import DSL._
-import helper.{Address, Name, CodedDataTypes}
+import helper.{Address, Name, Code}
 import net.gumbix.hl7dsl.helper.ImplicitDef._
 import junit.framework.TestCase
 import org.hl7.types.CE
@@ -18,24 +18,26 @@ class VHitGDemo extends TestCase {
       id = ("6014161089", "1.2.276.0.76.3645.239")
       title = "Arztbrief auf der Basis von CDA Release 2"
       effectiveTime = "20050829"
-      code = new CodedDataTypes {
+      code = new Code {
         code = "11488-4"
         codeSystem = "2.16.840.1.113883.6.1"
         displayName = "Consultation note"
       }
-      /*
-      confidentialityCode = new CodedDataTypes {
+
+      confidentialityCode = new Code {
         code = "N"
         codeSystem = "2.16.840.1.113883.5.25"
       }
-      */
+
+      /*
       val cc = CEimpl.valueOf("N", "2.16.840.1.113883.5.25", "")
       val ccList = new ArrayList[CE]
       ccList.add(cc)
       val e = SETjuSetAdapter.valueOf(ccList)
       confidentialityCode = e
+      */
 
-      // languageCode = "de-DE"
+      languageCode = "de-DE"
 
       participation("recordTarget") = new ParticipationDSL {
         id = ("6245", "2.16.840.1.113883.3.933")
@@ -48,7 +50,7 @@ class VHitGDemo extends TestCase {
             }
             birthTime = "19551217"
             /*
-            administrativeGenderCode = new CodedDataTypes {
+            administrativeGenderCode = new Code {
               code = "M"
               codeSystem = "2.16.840.1.113883.5.1"
             }

@@ -95,6 +95,10 @@ object ImplicitDef {
 
   //           implicit for coded data types
 
+  implicit def string2CEimpl(s: String) = CEimpl.valueOf(s, "", "")
+
+  implicit def CE2String(ce: CE) = ce.code.toString
+
   /**
    * String to Coded Simple (CS)
    * @param ( code : String, codeSystem : String )
@@ -120,6 +124,11 @@ object ImplicitDef {
     SETjuSetAdapter.valueOf(array)
   }
 
+  /*
+  implicit def codedDataType2CE(cd: Code) = {
+    CEimpl.valueOf(cd.code, cd.codeSystem, cd.displayName)
+  }
+  */
 
   implicit def csToStrings2(cs: CS): Tuple2[String, String] = (cs.code.toString, cs.codeSystem.toString)
 
@@ -185,34 +194,27 @@ object ImplicitDef {
   // ---------------- PQ : (magnitudeString: String, unitString: String )--------------------
   implicit def strings2PQ(v: Tuple2[REAL, String]): PQ = PQimpl.valueOf(v._1, v._2)
 
-  /*
-  implicit def addressToBAG_AD(address: Address): BAG[AD] = {
-    var ad: AD = ADimpl.valueOf(address.getAddress)
-    var adList: List[AD] = new ArrayList[AD]
-    adList.add(ad)
-    BAGjuListAdapter.valueOf(adList)
-  }
-
-  implicit def BAG_ADtoAdress(bag: BAG[AD]): Address = {
-    val address = new Address
-    // address.city = bag.
-    // TODO no idea how to tackle this?!
-    address
-  }
-  */
-
-  // implicit def addressToAD(address: Address): AD = address.toRSBag
-  // implicit def BAG_ENToName(bag: BAG[EN])= new Name(bag)
-
   implicit def telToBAG_TEL(tel: Tel): BAG[TEL] = tel.getTel
 
-  implicit def codedDataTypesToCD(code: CodedDataTypes): CD = code.getCodeAsCD
+  implicit def codedDataTypesToCD(code: Code): CD = code.getCodeAsCD
 
-  implicit def toCR1(v: Tuple2[CV, CodedDataTypes]): CR = CRimpl.valueOf(v._1, (v._2).getCodeAsCD)
+  implicit def codedDataTypesToSET_CD(code: Code): SET[CD] = {
+    val array = new ArrayList[CD]
+    array.add(code.getCodeAsCD)
+    SETjuSetAdapter.valueOf(array)
+  }
+
+  implicit def codedDataTypesToSET_CE(code: Code): SET[CE] = {
+    val array = new ArrayList[CE]
+    array.add(code.getCodeAsCV)
+    SETjuSetAdapter.valueOf(array)
+  }
+
+  implicit def toCR1(v: Tuple2[CV, Code]): CR = CRimpl.valueOf(v._1, (v._2).getCodeAsCD)
 
   implicit def toCR2(v: Tuple2[CV, CD]): CR = CRimpl.valueOf(v._1, v._2)
 
-  implicit def toCR3(v: Tuple2[CodedDataTypes, CodedDataTypes]): CR = CRimpl.valueOf((v._1).getCodeAsCV, (v._2).getCodeAsCD)
+  implicit def toCR3(v: Tuple2[Code, Code]): CR = CRimpl.valueOf((v._1).getCodeAsCV, (v._2).getCodeAsCD)
 
   //    implicit def for DSL Classes
 

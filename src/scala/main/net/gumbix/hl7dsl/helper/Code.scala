@@ -26,7 +26,7 @@ import java.util.List
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
-class CodedDataTypes {
+class Code {
   var qList: List[CR] = new ArrayList[CR]
   var tList: List[CD] = new ArrayList[CD]
   private var c: ST = null

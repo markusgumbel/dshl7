@@ -1,7 +1,7 @@
 package net.gumbix.hl7dsl
 
 import net.gumbix.hl7dsl.build.BuildMessage
-import net.gumbix.hl7dsl.helper.{Name, CodedDataTypes}
+import net.gumbix.hl7dsl.helper.{Name, Code}
 import junit.framework.TestCase
 import net.gumbix.hl7dsl.DSL._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
@@ -28,7 +28,7 @@ class HL7TestCDADemo extends TestCase {
     val clinicalDocument = new DocumentDSL {
       id = ("1234567", "123.123.123")
       effectiveTime = "20061105212900.000"
-      code = new CodedDataTypes {
+      code = new Code {
         code = "11488-4"
         codeSystem = "2.16.840.1.113883.6.1"
       }
