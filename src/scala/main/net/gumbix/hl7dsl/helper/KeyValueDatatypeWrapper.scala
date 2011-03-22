@@ -57,7 +57,7 @@ abstract class KeyValueDatatypeWrapper[A <: LIST[B], B <: ANY, C <: CS]
     while (it.hasNext) {
       val e = toXP(it.next)
       if (e.`type`.implies(key).isTrue()) {
-        println("found")
+        // println("found")
         return Some(e.toString)
       }
     }
@@ -76,13 +76,13 @@ abstract class KeyValueDatatypeWrapper[A <: LIST[B], B <: ANY, C <: CS]
     while (it.hasNext) {
       val e = toXP(it.next)
       if (e.`type`.implies(key).isTrue()) {
-        println("set " + key + " replace: " + e.toString + "->" + value)
+        // println("set " + key + " replace: " + e.toString + "->" + value)
         found = true
         list.add(newB(value, key))
       } else {
         e.`type` match {
           case a: C => {
-            println("set " + a + " copy: " + e.toString)
+            // println("set " + a + " copy: " + e.toString)
             list.add(newB(e.toString, a))
           }
           case _ =>
@@ -149,7 +149,7 @@ class AddressWrapper(rimValue: AD) {
     while (it.hasNext) {
       val e: ADXP = it.next
       if (e.`type`.implies(key).isTrue()) {
-        println("found")
+        // println("found")
         return Some(e.toString)
       }
     }
@@ -168,13 +168,13 @@ class AddressWrapper(rimValue: AD) {
     while (it.hasNext) {
       val e: ADXP = it.next
       if (e.`type`.implies(key).isTrue()) {
-        println("set " + key + " replace: " + e.toString + "->" + value)
+        // println("set " + key + " replace: " + e.toString + "->" + value)
         found = true
         list.add(ADXPimpl.valueOf(value, key))
       } else {
         e.`type` match {
           case a: AddressPartType => {
-            println("set " + a + " copy: " + e.toString)
+            // println("set " + a + " copy: " + e.toString)
             list.add(ADXPimpl.valueOf(e.toString, a))
           }
           case _ =>
@@ -216,7 +216,7 @@ class PersonNameWrapper(rimValue: EN) {
     while (it.hasNext) {
       val e = it.next
       if (e.`type`.implies(key).isTrue()) {
-        println("found")
+        // println("found")
         return Some(e.toString)
       }
     }
@@ -235,13 +235,13 @@ class PersonNameWrapper(rimValue: EN) {
     while (it.hasNext) {
       val e = it.next
       if (e.`type`.implies(key).isTrue()) {
-        println("set " + key + " replace: " + e.toString + "->" + value)
+        // println("set " + key + " replace: " + e.toString + "->" + value)
         found = true
         list.add(ENXPimpl.valueOf(value, key))
       } else {
         e.`type` match {
           case a: EntityNamePartType => {
-            println("set " + a + " copy: " + e.toString)
+            // println("set " + a + " copy: " + e.toString)
             list.add(ENXPimpl.valueOf(e.toString, a))
           }
           case _ =>

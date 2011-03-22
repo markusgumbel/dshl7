@@ -58,8 +58,9 @@ class HL7LoadTest extends TestCase {
 
     println("\nAlle Adressen auslesen:")
     cda.participation.list.foreach {
-      a =>
-        println(" " + DatatypeTool.AddressTool.getAll(a.role().get.getAddr))
+      p =>
+        println(p.role().get.addr)
+      // println(" " + DatatypeTool.AddressTool.getAll(a.role().get.getAddr))
     }
 
     println("\nTraversiere 'component' bis Ebene 2:")
@@ -89,11 +90,13 @@ class HL7LoadTest extends TestCase {
     val cda = new DocumentDSL(doc)
 
     cda.participation("recordTarget")(0).role().get.player() match {
-      case None => println("Achtung: Person nicht vorhanden.")
-      case Some(patient) => {
-        println("Replace family name = " + patient.name.family +
-                " with Gumbel")
-        patient.name.family = "Gumbel"
+      case None => println("Warning: Person not available.")
+      case Some(patient) => patient.name.family match {
+        case None => println("Family name not set.")
+        case Some(fam) => {
+          println("Replace family name = " + fam + " with Gumbel")
+          patient.name.family = "Gumbel"
+        }
       }
     }
 

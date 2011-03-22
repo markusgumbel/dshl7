@@ -34,11 +34,13 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   }
 
   private val wrapper: AddressWrapper = {
-    val it = addr.iterator
     var wrapper = new AddressWrapper(ADimpl.valueOf(new ArrayList[ADXP]()))
-    while (it.hasNext) {
-      val ad: AD = it.next
-      wrapper = new AddressWrapper(ad)
+    if (addr != null) {
+      val it = addr.iterator
+      while (it.hasNext) {
+        val ad: AD = it.next
+        wrapper = new AddressWrapper(ad)
+      }
     }
     wrapper
   }
@@ -50,66 +52,73 @@ class Address(addr: BAG[AD], change: Address => Unit) {
     BAGjuListAdapter.valueOf(rsList)
   }
 
-  def country: String = wrapper.get(Country).get
+  def country = wrapper.get(Country)
 
   def country_=(v: String) {
     wrapper.set(Country, v)
     change(this)
   }
 
-  def county = wrapper.get(CountyOrParish).get
+  def county = wrapper.get(CountyOrParish)
 
   def county_=(v: String) {
     wrapper.set(CountyOrParish, v)
     change(this)
   }
 
-  def postalCode = wrapper.get(PostalCode).get
+  def postalCode = wrapper.get(PostalCode)
 
   def postalCode_=(v: String) {
     wrapper.set(PostalCode, v)
     change(this)
   }
 
-  def city = wrapper.get(Municipality).get
+  def city = wrapper.get(Municipality)
 
   def city_=(v: String) {
     wrapper.set(Municipality, v)
     change(this)
   }
 
-  def houseNumber = wrapper.get(BuildingNumber).get
+  def houseNumber = wrapper.get(BuildingNumber)
 
   def houseNumber_=(v: String) {
     wrapper.set(BuildingNumber, v)
     change(this)
   }
 
-  def streetName = wrapper.get(StreetName).get
+  def streetName = wrapper.get(StreetName)
 
   def streetName_=(v: String) {
     wrapper.set(StreetName, v)
     change(this)
   }
 
-  def streetAddressLine = wrapper.get(StreetAddressLine).get
+  def streetAddressLine = wrapper.get(StreetAddressLine)
 
   def streetAddressLine_=(v: String) {
     wrapper.set(StreetAddressLine, v)
     change(this)
   }
 
-  def additionalLocator = wrapper.get(AdditionalLocator).get
+  def additionalLocator = wrapper.get(AdditionalLocator)
 
   def additionalLocator_=(v: String) {
     wrapper.set(AdditionalLocator, v)
     change(this)
   }
 
-  def postBox = wrapper.get(PostBox).get
+  def postBox = wrapper.get(PostBox)
 
   def postBox_=(v: String) {
     wrapper.set(PostBox, v)
     change(this)
+  }
+
+  override def toString = {
+    val buffer = new StringBuffer
+    buffer.append(postalCode.getOrElse("") + " ")
+    buffer.append(city.getOrElse("") + " ")
+    buffer.toString
   }
 }

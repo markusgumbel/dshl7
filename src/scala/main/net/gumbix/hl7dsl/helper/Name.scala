@@ -54,21 +54,21 @@ class Name(name: BAG[EN], change: Name => Unit) {
     BAGjuListAdapter.valueOf(rsList)
   }
 
-  def family = wrapper.get(Family).get
+  def family = wrapper.get(Family)
 
   def family_=(n: String) {
     wrapper.set(Family, n)
     change(this)
   }
 
-  def given = wrapper.get(Given).get
+  def given = wrapper.get(Given)
 
   def given_=(n: String) {
     wrapper.set(Given, n)
     change(this)
   }
 
-  def prefix = wrapper.get(Prefix).get
+  def prefix = wrapper.get(Prefix)
 
   def prefix_=(n: String) {
     wrapper.set(Prefix, n)
@@ -79,15 +79,22 @@ class Name(name: BAG[EN], change: Name => Unit) {
       */
   }
 
-  def suffix = wrapper.get(Suffix).get
+  def suffix = wrapper.get(Suffix)
 
   def suffix_=(n: String) {
     wrapper.set(Suffix, n)
     change(this)
   }
 
-  def orgName = ""
+  def orgName = "not impl."
 
   def orgName_=(n: String) {
+  }
+
+  override def toString = {
+    val buffer = new StringBuffer
+    buffer.append(given.getOrElse("") + " ")
+    buffer.append(family.getOrElse("") + " ")
+    buffer.toString
   }
 }
