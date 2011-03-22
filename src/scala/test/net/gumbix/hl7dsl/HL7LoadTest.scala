@@ -88,19 +88,18 @@ class HL7LoadTest extends TestCase {
     val doc = StringFromFile.readFileAsString(filename)
     val cda = new DocumentDSL(doc)
 
-    /*
-    cda.participation("recordTarget").get.role().get.player() match {
+    cda.participation("recordTarget")(0).role().get.player() match {
       case None => println("Achtung: Person nicht vorhanden.")
       case Some(patient) => {
-        // TODO change is not propagated:
+        println("Replace family name = " + patient.name.family +
+                " with Gumbel")
         patient.name.family = "Gumbel"
       }
     }
-    */
 
     // Note: There might be more than one record target!
     val city = cda.participation("recordTarget")(0).role().get.addr.city
-    println("City = " + city)    
+    println("Replace city = " + city + " with Mannheim")
     cda.participation("recordTarget")(0).role().get.addr.city = "Mannheim"
 
     val modified = BuildMessage.toXML(cda, "POCD_HD000040")

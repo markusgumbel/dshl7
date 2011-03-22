@@ -17,14 +17,15 @@ package net.gumbix.hl7dsl.helper
 
 import org.hl7.types.impl._
 import org.hl7.types._
-import org.hl7.types.enums._
+import org.hl7.types.enums.AddressPartType._
 import scala.collection._
 import java.util.ArrayList
 import java.util.List
 
 /**
  * Class to build an address
- * @author Ahmet Gül (guel.ahmet@hotmail.de), Markus Gumbel
+ * @author Ahmet Gül (guel.ahmet@hotmail.de)
+ * @author Markus Gumbel
  */
 class Address(addr: BAG[AD], change: Address => Unit) {
   def this() = {
@@ -32,11 +33,9 @@ class Address(addr: BAG[AD], change: Address => Unit) {
       {a: Address =>})
   }
 
-  private val vf: ValueFactory = new ValueFactoryImpl
-
-  private val list: AddressWrapper = {
+  private val wrapper: AddressWrapper = {
     val it = addr.iterator
-    var wrapper = new AddressWrapper()
+    var wrapper = new AddressWrapper(ADimpl.valueOf(new ArrayList[ADXP]()))
     while (it.hasNext) {
       val ad: AD = it.next
       wrapper = new AddressWrapper(ad)
@@ -44,18 +43,73 @@ class Address(addr: BAG[AD], change: Address => Unit) {
     wrapper
   }
 
-  // ---------------- city: ADXP --------------------
-  def city: String = list.get(AddressPartType.Municipality).get
-
-  def city_=(v: String) {
-    list.set(AddressPartType.Municipality, v)
-    change(this)
-  }
-
   // TODO remove bag
   def toRSBag = {
     val rsList = new ArrayList[AD]()
-    rsList.add(list.currentRimValue)
+    rsList.add(wrapper.currentRimValue)
     BAGjuListAdapter.valueOf(rsList)
+  }
+
+  def country: String = wrapper.get(Country).get
+
+  def country_=(v: String) {
+    wrapper.set(Country, v)
+    change(this)
+  }
+
+  def county = wrapper.get(CountyOrParish).get
+
+  def county_=(v: String) {
+    wrapper.set(CountyOrParish, v)
+    change(this)
+  }
+
+  def postalCode = wrapper.get(PostalCode).get
+
+  def postalCode_=(v: String) {
+    wrapper.set(PostalCode, v)
+    change(this)
+  }
+
+  def city = wrapper.get(Municipality).get
+
+  def city_=(v: String) {
+    wrapper.set(Municipality, v)
+    change(this)
+  }
+
+  def houseNumber = wrapper.get(BuildingNumber).get
+
+  def houseNumber_=(v: String) {
+    wrapper.set(BuildingNumber, v)
+    change(this)
+  }
+
+  def streetName = wrapper.get(StreetName).get
+
+  def streetName_=(v: String) {
+    wrapper.set(StreetName, v)
+    change(this)
+  }
+
+  def streetAddressLine = wrapper.get(StreetAddressLine).get
+
+  def streetAddressLine_=(v: String) {
+    wrapper.set(StreetAddressLine, v)
+    change(this)
+  }
+
+  def additionalLocator = wrapper.get(AdditionalLocator).get
+
+  def additionalLocator_=(v: String) {
+    wrapper.set(AdditionalLocator, v)
+    change(this)
+  }
+
+  def postBox = wrapper.get(PostBox).get
+
+  def postBox_=(v: String) {
+    wrapper.set(PostBox, v)
+    change(this)
   }
 }

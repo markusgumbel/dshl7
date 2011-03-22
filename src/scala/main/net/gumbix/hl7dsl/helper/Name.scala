@@ -24,44 +24,66 @@ import java.util.ArrayList
 import java.util.List
 import org.hl7.types.DatatypeTool.EntityNameTool
 import javax.print.attribute.standard.MediaSize.NA
+import org.hl7.types.enums.EntityNamePartType._
 
 /**
  * Class to build a Person or Organization Name
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
 
-class Name(var name: BAG[EN]) {
+class Name(name: BAG[EN], change: Name => Unit) {
   def this() = {
-    this (new BAGjuCollectionAdapter[EN](new java.util.ArrayList()))
+    this (new BAGjuCollectionAdapter[EN](new java.util.ArrayList()),
+      {a: Name =>})
   }
 
-  def family = DatatypeTool.EntityNameTool.getFamilyName(name)
+  private val wrapper: PersonNameWrapper = {
+    val it = name.iterator
+    var wrapper = new PersonNameWrapper(ENimpl.valueOf(new ArrayList[ENXP]()))
+    while (it.hasNext) {
+      val name = it.next
+      wrapper = new PersonNameWrapper(name)
+    }
+    wrapper
+  }
+
+  // TODO remove bag
+  def toRSBag = {
+    val rsList = new ArrayList[EN]()
+    rsList.add(wrapper.currentRimValue)
+    BAGjuListAdapter.valueOf(rsList)
+  }
+
+  def family = wrapper.get(Family).get
 
   def family_=(n: String) {
-    name = DatatypeTool.EntityNameTool.setFamilyName(name, n)
-    val i = 0
-    // TODO how to propagate changes???
+    wrapper.set(Family, n)
+    change(this)
   }
 
-  def given = DatatypeTool.EntityNameTool.getGivenName(name)
+  def given = wrapper.get(Given).get
 
   def given_=(n: String) {
-    name = DatatypeTool.EntityNameTool.setGivenName(name, n)
-    val i = 0
+    wrapper.set(Given, n)
+    change(this)
   }
 
-  val enxpList = new ArrayList[ENXP]
-
-  def prefix = ""
+  def prefix = wrapper.get(Prefix).get
 
   def prefix_=(n: String) {
+    wrapper.set(Prefix, n)
+    change(this)
+    /*
     enxpList.add(ENXPimpl.valueOf(n,
       EntityNamePartType.Prefix, DSETnull.NA.asInstanceOf[DSET[CS]]))
+      */
   }
 
-  def suffix = ""
+  def suffix = wrapper.get(Suffix).get
 
   def suffix_=(n: String) {
+    wrapper.set(Suffix, n)
+    change(this)
   }
 
   def orgName = ""

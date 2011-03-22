@@ -20,7 +20,7 @@ import org.hl7.types._
 import java.util.{ArrayList, List}
 import scala.collection.JavaConversions._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
-import net.gumbix.hl7dsl.helper.{RimRelationshipMany, RimRelationshipOne}
+import net.gumbix.hl7dsl.helper.{Name, RimRelationshipMany, RimRelationshipOne}
 
 /**
  * Wrapper Class for the RIM Class "Entity"
@@ -83,10 +83,15 @@ class EntityDSL(val entity: Entity) extends RimDSL(entity) {
   /**
    * @return BAG[EN]
    */
-  def name: BAG[EN] = entity.getName
+  def name = {
+    def nameChanged(name: Name) {
+      entity.setName(name.toRSBag)
+    }
+    new Name(entity.getName, nameChanged)
+  }
 
-  def name_=(pn: BAG[EN]) {
-    entity.setName(pn)
+  def name_=(pn: Name) {
+    entity.setName(pn.toRSBag)
   }
 
   /**

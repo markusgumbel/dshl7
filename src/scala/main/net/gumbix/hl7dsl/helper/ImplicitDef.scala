@@ -202,13 +202,7 @@ object ImplicitDef {
   */
 
   // implicit def addressToAD(address: Address): AD = address.toRSBag
-
-  implicit def nameToBAG_EN(name: Name): BAG[EN] = {
-    val i = 0
-    name.name
-  }
-
-  implicit def BAG_ENToName(bag: BAG[EN])= new Name(bag)
+  // implicit def BAG_ENToName(bag: BAG[EN])= new Name(bag)
 
   implicit def telToBAG_TEL(tel: Tel): BAG[TEL] = tel.getTel
 
