@@ -201,7 +201,7 @@ object ImplicitDef {
   }
   */
 
-  implicit def addressToAD(address: Address): AD = ADimpl.valueOf(address.getAddress)
+  // implicit def addressToAD(address: Address): AD = address.toRSBag
 
   implicit def nameToBAG_EN(name: Name): BAG[EN] = {
     val i = 0

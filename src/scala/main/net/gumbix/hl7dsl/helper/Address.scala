@@ -33,108 +33,29 @@ class Address(addr: BAG[AD], change: Address => Unit) {
   }
 
   private val vf: ValueFactory = new ValueFactoryImpl
-  private val list = {
-    val l = new ArrayList[ADXP]
+
+  private val list: AddressWrapper = {
     val it = addr.iterator
+    var wrapper = new AddressWrapper()
     while (it.hasNext) {
-      val ad = it.next
-      val adIt = ad.iterator
-      while (adIt.hasNext) {
-        val adxp = adIt.next
-        l.add(adxp)
-      }
+      val ad: AD = it.next
+      wrapper = new AddressWrapper(ad)
     }
-    l
-  }
-
-  implicit def stringToADXP(in: String) = ADXPimpl.valueOf(in)
-
-  // ---------------- country: ADXP --------------------
-  def country: String = ""
-
-  def country_=(v: String) {
-    list.add(vf.ADXPvalueOf(v, AddressPartType.Country))
-    change(this)
-  }
-
-  // ---------------- county: ADXP --------------------
-  def county: String = ""
-
-  def county_=(v: String) {
-    var countyAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.CountyOrParish)
-    list.add(countyAsADXP)
-    change(this)
+    wrapper
   }
 
   // ---------------- city: ADXP --------------------
-  def city: String = "to be done"
+  def city: String = list.get(AddressPartType.Municipality).get
 
   def city_=(v: String) {
-    var cityAsADXP = vf.ADXPvalueOf(v, AddressPartType.Municipality)
-    list.add(cityAsADXP)
+    list.set(AddressPartType.Municipality, v)
     change(this)
   }
 
-  // ---------------- postalCode: ADXP --------------------
-  def postalCode: String = ""
-
-  def postalCode_=(v: String) {
-    var postalCodeAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.PostalCode)
-    list.add(postalCodeAsADXP)
-    change(this)
-  }
-
-  // ---------------- houseNumber: ADXP --------------------
-  def houseNumber: String = ""
-
-  def houseNumber_=(v: String) {
-    var houseNumberAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.BuildingNumber)
-    list.add(houseNumberAsADXP)
-    change(this)
-  }
-
-  // ---------------- streetName: ADXP --------------------
-  def streetName: String = ""
-
-  def streetName_=(v: String) {
-    var streetNameAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.StreetName)
-    list.add(streetNameAsADXP)
-    change(this)
-  }
-
-  // ---------------- streetAddressLine: ADXP --------------------
-  def streetAddressLine: String = ""
-
-  def streetAddressLine_=(v: String) {
-    var streetAddressLineAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.StreetAddressLine)
-    list.add(streetAddressLineAsADXP)
-    change(this)
-  }
-
-  // ---------------- additionalLocator: ADXP --------------------
-  def additionalLocator: String = ""
-
-  def additionalLocator_=(v: String) {
-    var additionalLocatorAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.AdditionalLocator)
-    list.add(additionalLocatorAsADXP)
-    change(this)
-  }
-
-  // ---------------- postBox: ADXP --------------------
-  def postBox: String = ""
-
-  def postBox_=(v: String) {
-    var postBoxAsADXP: ADXP = vf.ADXPvalueOf(v, AddressPartType.PostBox)
-    list.add(postBoxAsADXP)
-    change(this)
-  }
-
-  def getAddress = list
-
-  def toRS = {
-    val ad = ADimpl.valueOf(list)
-    var adList = new ArrayList[AD]
-    adList.add(ad)
-    BAGjuListAdapter.valueOf(adList)
+  // TODO remove bag
+  def toRSBag = {
+    val rsList = new ArrayList[AD]()
+    rsList.add(list.currentRimValue)
+    BAGjuListAdapter.valueOf(rsList)
   }
 }

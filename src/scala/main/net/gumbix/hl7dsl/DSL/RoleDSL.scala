@@ -87,7 +87,7 @@ class RoleDSL(val role: Role) extends RimDSL(role) {
    */
   def addr: Address = {
     def addressChanged(a: Address) {
-      role.setAddr(a.toRS)
+      role.setAddr(a.toRSBag)
     }
     val a = new Address(role.getAddr, addressChanged)
     a
@@ -95,7 +95,7 @@ class RoleDSL(val role: Role) extends RimDSL(role) {
 
   def addr_=(a: Address) {
     // TODO Somehow remember that here was an assignment:
-    role.setAddr(a.toRS)
+    role.setAddr(a.toRSBag)
   }
 
   /**
