@@ -78,14 +78,12 @@ object ImplicitDef {
 
   // -------------- Implicit for coded data types ----------------------
 
-  implicit def stringToCE(s: String) = CEimpl.valueOf(s, "", "")
+  implicit def stringToCE(s: String) = CSimpl.valueOf(s, "")
+  implicit def CEToString(ce: CS) = ce.code.toString
 
-  implicit def CEToString(ce: CE) = ce.code.toString
-
-  implicit def stringTupelToCS(v: Tuple2[String, String]) = {
+  implicit def stringTupleToCS(v: Tuple2[String, String]) = {
     CSimpl.valueOf(v._1, v._2)
   }
-
   implicit def CSToStringTuple(cs: CS) = (cs.code.toString, cs.codeSystem.toString)
 
 
@@ -127,6 +125,13 @@ object ImplicitDef {
     val l = new ArrayList[CE]
     list.foreach(c => l.add(c.getCodeAsCV))
     SETjuSetAdapter.valueOf(l)
+  }
+
+  // Convenience (this is code -> CE -> SET_CE)
+  implicit def stringTupleToSETCE(tuple: Tuple2[String, String]): SET[CE] = {
+    val array = new ArrayList[CE]
+    array.add(stringTupleToCS(tuple._1, tuple._2))
+    SETjuSetAdapter.valueOf(array)
   }
 
   // TODO left over?

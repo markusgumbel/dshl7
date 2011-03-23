@@ -2,12 +2,15 @@ package net.gumbix.hl7dsl
 
 import build.BuildMessage
 import DSL._
-import helper.{Address, Name, Code}
+import helper.{Tel, Address, Name, Code}
 import net.gumbix.hl7dsl.helper.ImplicitDef._
 import junit.framework.TestCase
 import org.hl7.types.CE
 import java.util.ArrayList
 import org.hl7.types.impl.{SETjuSetAdapter, CEimpl}
+import org.hl7.types.enums.TelecommunicationAddressUse._
+import org.hl7.types.enums.ActStatus._
+import org.hl7.types.enums.ActRelationshipType._
 
 /**
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
@@ -23,10 +26,13 @@ class VHitGDemo extends TestCase {
         codeSystem = "2.16.840.1.113883.6.1"
         displayName = "Consultation note"
       }
+      /*
       confidentialityCode = new Code {
         code = "N"
         codeSystem = "2.16.840.1.113883.5.25"
       }
+      */
+      confidentialityCode = ("N", "2.16.840.1.113883.5.25")
 
       /*
       val cc = CEimpl.valueOf("N", "2.16.840.1.113883.5.25", "")
@@ -50,32 +56,17 @@ class VHitGDemo extends TestCase {
               family = "Pappel"
             }
             birthTime = "19551217"
-            administrativeGenderCode = new Code {
-              code = "M"
-              codeSystem = "2.16.840.1.113883.5.1"
-            }
+            administrativeGenderCode = ("M", "2.16.840.1.113883.5.1")
             // birthPlace = TODO
           }
           addr = new Address {
-            streetName = "Riedemannweg 59"
+            streetName = "Riedemannweg"
+            houseNumber = "59"
             postalCode = "13627"
             city = "Berlin"
           }
-          // telecom = 
-        }
-
-      }
-
-      participation("author") = new ParticipationDSL {
-        role("assignedAuthor") = new RoleDSL {
-          id = ("2.16.840.1.113883.3.933", "2112345")
-          player("assignedPerson") = new PersonDSL {
-            name = new Name {
-              prefix = "Dr"
-              given = "John"
-              family = "Night"
-              suffix = "FACP"
-            }
+          telecom = new Tel {
+            number = ("tel:030.456.345345", HomeAddressUse)
           }
         }
       }
@@ -91,54 +82,70 @@ class VHitGDemo extends TestCase {
               suffix = "FACP"
             }
           }
+        }
+      }
+
+      participation("author") = new ParticipationDSL {
+        id = ("2.16.840.1.113883.3.67.933", "ied8984938")
+        role("assignedAuthor") = new RoleDSL {
+          id = ("2.16.840.1.113883.3.933", "2112345")
+          player("assignedPerson") = new PersonDSL {
+            name = new Name {
+              prefix = "Dr. med."
+              given = "Theo"
+              family = "Phyllin"
+            }
+          }
+          // represented organization = TODO
         }
       }
 
       participation("custodian") = new ParticipationDSL {
-        time = "20070905"
         role("assignedCustodian") = new RoleDSL {
           scoper("representedCustodianOrganization") = new OrganizationDSL {
-            id = ("1.22.333.4444", "")
+            id = ("1.2.276.0.58", "M345")
             name = new Name() {
-              orgName = "Good Health Clinic"
+              orgName = "Praxis Dr. med. Phyllin"
+            }
+            addr = new Address {
+              streetName = "Krankenhausstraße"
+              houseNumber = "59"
+              postalCode = "51371"
+              city = "Leverkusen"
             }
           }
+        }
+      }
+
+      outboundRelationship("relatedDocument") = new ActRelationshipDSL {
+        typeCode = IsAppendage // "APND"
+        target("parentDocument") = new DocumentDSL {
+          id = ("463957847", "1.2.276.0.58")
+        }
+      }
+
+      outboundRelationship("authorization") = new ActRelationshipDSL {
+        target("consent") = new ActDSL {
+          id = ("cs856727-298784", "1.2.276.0.76.3645.239")
+          code = ("3-00d", "1.2.276.0.76.5.310")
+          statusCode = Completed
         }
       }
 
       outboundRelationship("component") = new ActRelationshipDSL {
         target("structuredBody") = new ActDSL {
           outboundRelationship("component") = new ActRelationshipDSL {
-            typeCode = ("COMP", "1.22.333.4444")
             target("section") = new ActDSL {
-              participation("subject") = new ParticipationDSL {
-                /*
-                role("relatedSubject") = new RoleDSL {
-                  // TODO each element could automatically be cloned?
-                  // player("subject") = patient clone
-                }
-                */
+              code = new Code {
+                code = "10164-2"
+                codeSystem = "2.16.840.1.113883.6.1"
+                codeSystemName = "LOINC"
               }
-              outboundRelationship("entry") = new ActRelationshipDSL {
-                target("observation") = new ObservationDSL {
-                  code = ("44100-6", "2.16.840.1.113883.6.1")
-                  moodCode = ("EVN", "1.22.333.4444")
-                  title = "History"
-                  text = (""""Pt is a 46 yo male with a hx of CREST syndrome first diagnosed 4 years ago at Stanford.
- He is treated with Cupramine and Prilosec.  Family Hx is neg for CTD.
- His condition is most remarkable for dysphagia Raynauds and telangiectasias on face.""")
-                }
-              }
-              outboundRelationship("entry") = new ActRelationshipDSL {
-                target("observation") = new ObservationDSL {
-                  code = ("44100-6", "2.16.840.1.113883.6.1")
-                  moodCode = ("EVN", "1.22.333.4444")
-                  title = "History"
-                  text = (""""Telangiectasias on face, palms and in mouth.
-Nail fold capillaries dilated and redundant.
-Skin and joints of upper extremeties unremarkable.""")
-                }
-              }
+              title = "29.08.2005: Anamnese"
+              text = """Sei Jahren wiederholt
+              <content styleCode="Bold">chronische Bronchitiden</content>
+              besonders bei kalter Luft. Bei Anstrengung expiratorische
+              Atemnot. Kontakt mit Haustieren."""
             }
           }
         }

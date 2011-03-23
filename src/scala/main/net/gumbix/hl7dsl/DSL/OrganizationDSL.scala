@@ -18,6 +18,7 @@ package net.gumbix.hl7dsl.DSL
 import org.hl7.rim.{RimObjectFactory, Organization}
 import org.hl7.types._
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import net.gumbix.hl7dsl.helper.Address
 
 /**
  * Wrapper Class for the RIM Class "Organization"
@@ -37,10 +38,17 @@ class OrganizationDSL(organization: Organization)
   /**
    * @return BAG[AD]
    */
-  def addr: BAG[AD] = organization.getAddr
+  def addr: Address = {
+    def addressChanged(a: Address) {
+      organization.setAddr(a.toRSBag)
+    }
+    val a = new Address(organization.getAddr, addressChanged)
+    a
+  }
 
-  def addr_=(v: BAG[AD]) {
-    organization.setAddr(v)
+  def addr_=(a: Address) {
+    // TODO Somehow remember that here was an assignment:
+    organization.setAddr(a.toRSBag)
   }
 
   /**
