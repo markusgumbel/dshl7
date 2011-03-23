@@ -26,12 +26,6 @@ class VHitGDemo extends TestCase {
         codeSystem = "2.16.840.1.113883.6.1"
         displayName = "Consultation note"
       }
-      /*
-      confidentialityCode = new Code {
-        code = "N"
-        codeSystem = "2.16.840.1.113883.5.25"
-      }
-      */
       confidentialityCode = ("N", "2.16.840.1.113883.5.25")
 
       /*
