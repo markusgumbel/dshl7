@@ -25,7 +25,6 @@ import java.util.List
  * Class to Build the Datatype CD
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
  */
-
 class Code {
   var qList: List[CR] = new ArrayList[CR]
   var tList: List[CD] = new ArrayList[CD]
@@ -37,52 +36,37 @@ class Code {
   private var oT: ED = null
   private var oTS: ST = null
 
-  def code: ST = c
-
+  def code = c
   def code_=(c: String) = {this.c = STjlStringAdapter.valueOf(c)}
 
-
-  def codeSystem: UID = cS
-
+  def codeSystem = cS
   def codeSystem_=(cS: String) = {this.cS = UIDimpl.valueOf(cS)}
 
-
-  def codeSystemName: ST = cSN
-
+  def codeSystemName = cSN
   def codeSystemName_=(cSN: String) {this.cSN = STjlStringAdapter.valueOf(cSN)}
 
-
   def codeSystemVersion: ST = cSV
-
   def codeSystemVersion_=(cSV: String) {this.cSV = STjlStringAdapter.valueOf(cSV)}
 
 
   def displayName: ST = dN
-
   def displayName_=(dN: String) {this.dN = STjlStringAdapter.valueOf(dN)}
 
-
   def originalText: ED = oT
-
   def originalText_=(oT: ED) {this.oT = oT}
 
-
   def originalTextString: ST = oTS
-
   def originalTextString_=(oT: ST) {this.oTS = oTS}
 
-
   def qualifier: List[CR] = qList
-
   def qualifier_=(q: CR) {qList.add(q)}
 
-
   def translation: List[CD] = tList
-
   def translation_=(t: CD) {tList.add(t)}
 
+  // Exports:
+  
   def getCodeAsCD: CD = CDimpl.valueOf(c, cS, cSN, cSV, dN, oT, LISTjuListAdapter.valueOf(qList), SETjuSetAdapter.valueOf(tList))
 
   def getCodeAsCV: CV = CVimpl.valueOf(c, cS, oTS, dN, cSN, cSV)
-
 }

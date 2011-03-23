@@ -23,7 +23,6 @@ class VHitGDemo extends TestCase {
         codeSystem = "2.16.840.1.113883.6.1"
         displayName = "Consultation note"
       }
-
       confidentialityCode = new Code {
         code = "N"
         codeSystem = "2.16.840.1.113883.5.25"
@@ -40,8 +39,10 @@ class VHitGDemo extends TestCase {
       languageCode = "de-DE"
 
       participation("recordTarget") = new ParticipationDSL {
-        id = ("6245", "2.16.840.1.113883.3.933")
-        id = ("1543627549", "1.2.276.0.76.4.1")
+        id = List(
+          ("6245", "2.16.840.1.113883.3.933"),
+          ("1543627549", "1.2.276.0.76.4.1")
+          )
         role("patientRole") = new PatientDSL {
           player("patient") = new PersonDSL {
             name = new Name {
@@ -49,13 +50,11 @@ class VHitGDemo extends TestCase {
               family = "Pappel"
             }
             birthTime = "19551217"
-            /*
             administrativeGenderCode = new Code {
               code = "M"
               codeSystem = "2.16.840.1.113883.5.1"
             }
-            */
-            // birthPlace = ... TODO
+            // birthPlace = TODO
           }
           addr = new Address {
             streetName = "Riedemannweg 59"

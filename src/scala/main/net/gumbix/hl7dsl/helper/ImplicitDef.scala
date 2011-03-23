@@ -22,56 +22,39 @@ import java.util.{ArrayList, List}
 import net.gumbix.hl7dsl.DSL._
 
 /**
- * Class with all implicit conversation for the DSL
+ * Class with all implicit conversions for the DSL. All conversions
+ * are listed pairwise forward-backward.
+ * TODO remove redundant implicit defs.
  * @author Ahmet Gül (guel.ahmet@hotmail.de)
+ * @author Markus Gumbel
  */
-
 object ImplicitDef {
 
-  //       Implicit for basic data types
+  // -------------- all RIM relationships ----------------------------------
+  implicit def asActRelationship(actRelationship: ActRelationshipDSL) =
+    actRelationship.getActRelationship
 
-  /**
-   * The Boolean type stands for the values of two-valued logic
-   * @param true or false (boolean)
-   * @return true or false as BL
-   */
+  implicit def asParticipation(participation: ParticipationDSL) =
+    participation.participation
+
+  implicit def asAct(act: ActDSL) = act.act
+
+  implicit def asRole(role: RoleDSL) = role.role
+
+  implicit def asEntity(entity: EntityDSL) = entity.entity
+
+  // -------------- Implicit for basic data types -------------------------
+
   implicit def booleanToBL(v: Boolean): BL = BLimpl.valueOf(v)
 
-
-  /**
-   * Integer numbers
-   * @param Int
-   * @return INT
-   */
   implicit def intToINT(v: Int): INT = INTlongAdapter.valueOf(v)
 
-  /**
-   * Integer numbers
-   * @param INT
-   * @return Int
-   */
   implicit def INTToInt(int: INT): Int = int.intValue
 
-  /**
-   * Integer numbers
-   * @param String
-   * @return ST
-   */
   implicit def stringToST(v: String): ST = STjlStringAdapter.valueOf(v)
 
-  /**
-   * Integer numbers
-   * @param ST
-   * @return String
-   */
   implicit def STToString(st: ST): String = st.toString
 
-
-  /**
-   * Integer numbers
-   * @param ED
-   * @return String
-   */
   implicit def ED2String(ed: ED): String = ed.toString
 
   /**
@@ -93,67 +76,93 @@ object ImplicitDef {
   }
 
 
-  //           implicit for coded data types
+  // -------------- Implicit for coded data types ----------------------
 
-  implicit def string2CEimpl(s: String) = CEimpl.valueOf(s, "", "")
+  implicit def stringToCE(s: String) = CEimpl.valueOf(s, "", "")
 
-  implicit def CE2String(ce: CE) = ce.code.toString
+  implicit def CEToString(ce: CE) = ce.code.toString
 
-  /**
-   * String to Coded Simple (CS)
-   * @param ( code : String, codeSystem : String )
-   * @return Coded Simple as (CS)
-   */
-  implicit def strings2CSimpl2(v: Tuple2[String, String]): CS = {
+  implicit def stringTupelToCS(v: Tuple2[String, String]) = {
     CSimpl.valueOf(v._1, v._2)
   }
 
-  /**
-   * @param ( code : String, codeSystem : String, displayName : String )
-   * @return Coded With Equivalents as (CE)
-   */
-  implicit def strings2CEimpl3(v: Tuple3[String, String, String]): CE = {
+  implicit def CSToStringTuple(cs: CS) = (cs.code.toString, cs.codeSystem.toString)
+
+
+  implicit def stringsTripleToCE(v: Tuple3[String, String, String]) = {
     CEimpl.valueOf(v._1, v._2, v._3)
   }
 
+  implicit def CEToStringTuple(ce: CE): Tuple2[String, String] =
+    (ce.code.toString, ce.codeSystem.toString)
 
-  //------------- SET <CE> ------------------------
-  implicit def CEToSet_CE(v: CE): SET[CE] = {
-    val array = new ArrayList[CE]
-    array.add(v)
+
+  implicit def codeToCE(code: Code): CE = code.getCodeAsCV
+
+  // Convenience
+  /* implied by CE
+  implicit def codeToSETCD(code: Code): SET[CD] = {
+    val array = new ArrayList[CD]
+    array.add(code.getCodeAsCD)
     SETjuSetAdapter.valueOf(array)
-  }
-
-  /*
-  implicit def codedDataType2CE(cd: Code) = {
-    CEimpl.valueOf(cd.code, cd.codeSystem, cd.displayName)
   }
   */
 
-  implicit def csToStrings2(cs: CS): Tuple2[String, String] = (cs.code.toString, cs.codeSystem.toString)
+  // Convenience
+  implicit def CEToSETCE(ce: CE) = {
+    val array = new ArrayList[CE]
+    array.add(ce)
+    SETjuSetAdapter.valueOf(array)
+  }
 
-  implicit def ceToStrings2(ce: CE): Tuple2[String, String] = (ce.code.toString, ce.codeSystem.toString)
+  // Convenience (this is code -> CE -> SET_CE)
+  implicit def codeToSETCE(code: Code): SET[CE] = {
+    val array = new ArrayList[CE]
+    array.add(code.getCodeAsCV)
+    SETjuSetAdapter.valueOf(array)
+  }
 
-  implicit def cdToStrings2(cd: CD): Tuple2[String, String] = (cd.code.toString, cd.codeSystem.toString)
+  // Most generic case:
+  implicit def codeListToSetCE(list: scala.List[Code]) = {
+    val l = new ArrayList[CE]
+    list.foreach(c => l.add(c.getCodeAsCV))
+    SETjuSetAdapter.valueOf(l)
+  }
 
-  //------------- SC (data: String, code: String, codeSystem: String)-----------------------------
-  implicit def stringCode2SC(v: Tuple3[String, String, String]): SC = SCimpl.valueOf(v._1, CVimpl.valueOf(v._2, v._3))
-
-  implicit def SCToString3(v: SC): Tuple3[String, String, String] = (v.charset.toString, v.code.code, v.code.codeSystem)
-
-  //------------- II (rootString: String, extensionString: String) ------------------------
-  implicit def strings2II(v: Tuple2[String, String]): II = IIimpl.valueOf(v._1, v._2)
-
-  implicit def II2Strings2(ii: II): Tuple2[String, String] = (ii.root.toString, ii.extension.toString)
+  // TODO left over?
+  // implicit def cdToStrings2(cd: CD): Tuple2[String, String] = (cd.code.toString, cd.codeSystem.toString)
 
 
-  //------------- SET <II> ------------------------
-  implicit def strings2SetII(args: Tuple2[String, String]) = {
+  // ------------- Instance identifier ----------------------
+  implicit def stringTupleToII(v: Tuple2[String, String]) = IIimpl.valueOf(v._1, v._2)
+
+  implicit def IIToStringTuple(ii: II) = (ii.root.toString, ii.extension.toString)
+
+  implicit def stringTupleToSETII(args: Tuple2[String, String]) = {
     val iid = IIimpl.valueOf(args._1, args._2)
     val idarr = new ArrayList[II]
     idarr.add(iid)
     SETjuSetAdapter.valueOf(idarr)
   }
+
+  // Most generic case:
+  implicit def stringTupleListToSetII(args: scala.List[Tuple2[String, String]]) = {
+    val idarr = new ArrayList[II]
+    args.foreach {
+      ii =>
+        val iid = IIimpl.valueOf(ii._1, ii._2)
+        idarr.add(iid)
+    }
+    SETjuSetAdapter.valueOf(idarr)
+  }
+
+  // TODO from here not revised...
+
+
+  //------------- SC (data: String, code: String, codeSystem: String)-----------------------------
+  implicit def stringCode2SC(v: Tuple3[String, String, String]): SC = SCimpl.valueOf(v._1, CVimpl.valueOf(v._2, v._3))
+
+  implicit def SCToString3(v: SC): Tuple3[String, String, String] = (v.charset.toString, v.code.code, v.code.codeSystem)
 
   /**
    * Point in Time (TS)
@@ -196,36 +205,9 @@ object ImplicitDef {
 
   implicit def telToBAG_TEL(tel: Tel): BAG[TEL] = tel.getTel
 
-  implicit def codedDataTypesToCD(code: Code): CD = code.getCodeAsCD
-
-  implicit def codedDataTypesToSET_CD(code: Code): SET[CD] = {
-    val array = new ArrayList[CD]
-    array.add(code.getCodeAsCD)
-    SETjuSetAdapter.valueOf(array)
-  }
-
-  implicit def codedDataTypesToSET_CE(code: Code): SET[CE] = {
-    val array = new ArrayList[CE]
-    array.add(code.getCodeAsCV)
-    SETjuSetAdapter.valueOf(array)
-  }
-
   implicit def toCR1(v: Tuple2[CV, Code]): CR = CRimpl.valueOf(v._1, (v._2).getCodeAsCD)
 
   implicit def toCR2(v: Tuple2[CV, CD]): CR = CRimpl.valueOf(v._1, v._2)
 
   implicit def toCR3(v: Tuple2[Code, Code]): CR = CRimpl.valueOf((v._1).getCodeAsCV, (v._2).getCodeAsCD)
-
-  //    implicit def for DSL Classes
-
-  implicit def asActRelationship(actRelationship: ActRelationshipDSL): ActRelationship = actRelationship.getActRelationship
-
-  implicit def asParticipation(participation: ParticipationDSL): Participation = participation.participation
-
-  implicit def asAct(act: ActDSL): Act = act.act
-
-  implicit def asRole(role: RoleDSL): Role = role.role
-
-  //implicit def asEntity(entity: EntityDSL): Entity = entity.getEntity
-  implicit def asEntity(entity: EntityDSL): Entity = entity.entity
 }
