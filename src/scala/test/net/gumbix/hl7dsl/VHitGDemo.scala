@@ -66,20 +66,6 @@ class VHitGDemo extends TestCase {
       }
 
       participation("author") = new ParticipationDSL {
-        role("assignedAuthor") = new RoleDSL {
-          id = ("2.16.840.1.113883.3.933", "2112345")
-          player("assignedPerson") = new PersonDSL {
-            name = new Name {
-              prefix = "Dr"
-              given = "John"
-              family = "Night"
-              suffix = "FACP"
-            }
-          }
-        }
-      }
-
-      participation("author") = new ParticipationDSL {
         id = ("2.16.840.1.113883.3.67.933", "ied8984938")
         role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
