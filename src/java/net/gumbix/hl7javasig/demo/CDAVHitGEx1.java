@@ -20,6 +20,7 @@ public class CDAVHitGEx1 {
         clinicalDocument.setCloneCode(CSimpl.valueOf("clinicalDocument",
                 "clinicalDocument"));
 
+        clinicalDocument.setTypeId(IIimpl.valueOf("2.16.840.1.113883.1.3", "POCD_HD000040"));
         SET<II> idset = makeId("6014161089", "1.2.276.0.76.3645.239");
         clinicalDocument.setId(idset);
 

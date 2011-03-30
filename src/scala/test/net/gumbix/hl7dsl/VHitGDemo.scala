@@ -13,11 +13,15 @@ import org.hl7.types.enums.ActStatus._
 import org.hl7.types.enums.ActRelationshipType._
 
 /**
+ * This demo is used to have a reference CDA.
+ * TODO confidentialityCode: codeSystem is not displayed
+ *
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 class VHitGDemo extends TestCase {
   def testPOCD_EX000001() {
     val clinicalDocument = new DocumentDSL {
+      typeId = ("POCD_HD000040", "2.16.840.1.113883.1.3")
       id = ("6014161089", "1.2.276.0.76.3645.239")
       title = "Arztbrief auf der Basis von CDA Release 2"
       effectiveTime = "20050829"
@@ -27,16 +31,7 @@ class VHitGDemo extends TestCase {
         displayName = "Consultation note"
       }
       confidentialityCode = ("N", "2.16.840.1.113883.5.25")
-
-      /*
-      val cc = CEimpl.valueOf("N", "2.16.840.1.113883.5.25", "")
-      val ccList = new ArrayList[CE]
-      ccList.add(cc)
-      val e = SETjuSetAdapter.valueOf(ccList)
-      confidentialityCode = e
-      */
-
-      languageCode = "de-DE"
+      languageCode = ("de-DE", "1.22.333.4444")
 
       participation("recordTarget") = new ParticipationDSL {
         id = List(
@@ -49,24 +44,30 @@ class VHitGDemo extends TestCase {
               given = "Paul"
               family = "Pappel"
             }
-            birthTime = "19551217"
             administrativeGenderCode = ("M", "2.16.840.1.113883.5.1")
+            birthTime = "19551217"
             // birthPlace = TODO
           }
           addr = new Address {
-            streetName = "Riedemannweg"
-            houseNumber = "59"
+            streetName = "Riedemannweg 59"
             postalCode = "13627"
             city = "Berlin"
           }
           telecom = new Tel {
             number = ("tel:030.456.345345", HomeAddressUse)
           }
+          scoper("providerOrganziation") = new OrganizationDSL {
+            addr = new Address {
+              streetName = "Krankenhausstraße"
+              postalCode = "51371"
+              city = "Leverkusen"
+            }
+          }
         }
       }
-
       participation("author") = new ParticipationDSL {
         id = ("2.16.840.1.113883.3.67.933", "ied8984938")
+        time = "20050829"
         role("assignedAuthor") = new RoleDSL {
           id = ("2.16.840.1.113883.3.933", "2112345")
           player("assignedPerson") = new PersonDSL {
@@ -76,7 +77,19 @@ class VHitGDemo extends TestCase {
               family = "Phyllin"
             }
           }
-          // represented organization = TODO
+          scoper("representedOrganization") = new OrganizationDSL {
+            name = new Name() {
+              orgName = "Praxis Dr. med. Phyllin"
+            }
+            telecom = new Tel {
+              number = ("tel:0214.2127070", WorkPlaceAddressUse)
+            }
+            addr = new Address {
+              streetName = "Krankenhausstraße"
+              postalCode = "51371"
+              city = "Leverkusen"
+            }
+          }
         }
       }
 
@@ -87,11 +100,39 @@ class VHitGDemo extends TestCase {
             name = new Name() {
               orgName = "Praxis Dr. med. Phyllin"
             }
+            telecom = new Tel {
+              number = ("tel:0214.2127070", WorkPlaceAddressUse)
+            }
             addr = new Address {
               streetName = "Krankenhausstraße"
               houseNumber = "59"
               postalCode = "51371"
               city = "Leverkusen"
+            }
+          }
+        }
+      }
+
+      participation("informationRecipient") = new ParticipationDSL {
+        role("intendedRecipient") = new RoleDSL {
+          player("informationRecipient") = new PersonDSL {
+            name = new Name {
+              prefix = "Dr. med."
+              given = "Kai"
+              family = "Heitmann"
+            }
+          }
+          scoper("receivedOrganization") = new OrganizationDSL {
+            name = new Name() {
+              orgName = "Gemeinschaftspraxis Dr. Heitmann"
+            }
+            telecom = new Tel {
+              number = ("fax:02473.54637.2938", WorkPlaceAddressUse)
+            }
+            addr = new Address {
+              streetName = "Mühlenweg 1a"
+              postalCode = "52152"
+              city = "Simmerath"
             }
           }
         }
