@@ -86,9 +86,11 @@ class Name(name: BAG[EN], change: Name => Unit) {
     change(this)
   }
 
-  def orgName = "not impl."
+  def orgName = wrapper.get(root)
 
   def orgName_=(n: String) {
+    wrapper.set(root, n)
+    change(this)
   }
 
   override def toString = {

@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.hl7.types.DatatypeTool.EntityNameTool.*;
 import static org.hl7.types.enums.AddressPartType.*;
+import static org.hl7.types.enums.ActStatus.*;
 
 public class CDAVHitGEx1 {
 
@@ -20,7 +21,9 @@ public class CDAVHitGEx1 {
     clinicalDocument.setCloneCode(CSimpl.valueOf("clinicalDocument", "1.22.333.4444"));
 
     clinicalDocument.setTypeId(IIimpl.valueOf("2.16.840.1.113883.1.3", "POCD_HD000040"));
-    clinicalDocument.setId(makeId("6014161089", "1.2.276.0.76.3645.239"));
+    clinicalDocument.setId(makeId("1.2.276.0.76.3645.239", "6014161089"));
+    clinicalDocument.setTitle(STjlStringAdapter.
+            valueOf("Arztbrief auf der Basis von CDA Release 2"));
 
     TS effectiveTime = TSjuDateAdapter.valueOf("20050829");
     ValueFactory valueFactory = new ValueFactoryImpl();
@@ -37,7 +40,7 @@ public class CDAVHitGEx1 {
     SETjuSetAdapter.valueOf(setConf);
     clinicalDocument.setConfidentialityCode(SETjuSetAdapter.valueOf(setConf));
 
-    clinicalDocument.setLanguageCode(CEimpl.valueOf("de-DE", "", ""));
+    clinicalDocument.setLanguageCode(CEimpl.valueOf("de-DE", "1.22.333.4444", " "));
 
     // recordTarget
     Participation recordTarget = (Participation) RimObjectFactory
@@ -47,19 +50,18 @@ public class CDAVHitGEx1 {
     Role patientRole = (Patient) RimObjectFactory.getInstance()
             .createRimObject("Patient");
     patientRole.setCloneCode(CSimpl.valueOf("patientRole", "1.22.333.444"));
+    // TODO 2x
+    SET<II> mrnset = makeId("6245", "2.16.840.1.113883.3.933");
+    patientRole.setId(mrnset);
 
     Person patient = (Person) RimObjectFactory.getInstance().createRimObject("Person");
     patient.setCloneCode(CSimpl.valueOf("patient", "1.22.333.444"));
-
-    // TODO 2x
-    SET<II> mrnset = makeId("123433", "123.234.345");
-    patient.setId(mrnset);
 
     BAG<EN> patName = null;    // Strange, isn't it?
     patName = setGivenName(patName, "Paul");
     patName = setFamilyName(patName, "Pappel");
     patient.setName(patName);
-    patient.setAdministrativeGenderCode(CEimpl.valueOf("2.16.840.1.113883.5.1", "M", ""));
+    patient.setAdministrativeGenderCode(CEimpl.valueOf("M", "2.16.840.1.113883.5.1", ""));
     patient.setBirthTime(TSjuDateAdapter.valueOf("19551217"));
     // TODO birthplace
 
@@ -71,7 +73,7 @@ public class CDAVHitGEx1 {
     address = setMunicipality(address, "Berlin");
     */
     List<ADXP> patAddrElemList = new ArrayList<ADXP>();
-    patAddrElemList.add(ADXPimpl.valueOf("Riedmannweg", StreetType));
+    patAddrElemList.add(ADXPimpl.valueOf("Riedemannweg 59", StreetAddressLine));
     patAddrElemList.add(ADXPimpl.valueOf("13627", PostalCode));
     patAddrElemList.add(ADXPimpl.valueOf("Berlin", Municipality));
     AD patAddr = ADimpl.valueOf(patAddrElemList);
@@ -89,7 +91,7 @@ public class CDAVHitGEx1 {
             .createRimObject("Organization");
     provOrg.setCloneCode(CSimpl.valueOf("providerOrganziation", "1.22.333.444"));
     List<ADXP> provOrgAddrElemList = new ArrayList<ADXP>();
-    provOrgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetType));
+    provOrgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetName));
     provOrgAddrElemList.add(ADXPimpl.valueOf("51371", PostalCode));
     provOrgAddrElemList.add(ADXPimpl.valueOf("Leverkusen", Municipality));
     AD provOrgAddr = ADimpl.valueOf(provOrgAddrElemList);
@@ -111,6 +113,7 @@ public class CDAVHitGEx1 {
     Role assignedAuthor = (Role) RimObjectFactory.getInstance().createRimObject("Role");
     assignedAuthor.setCloneCode(CSimpl.valueOf("assignedAuthor", "1.22.333.4444"));
     author.setRole(assignedAuthor);
+    assignedAuthor.setId(makeId("2.16.840.1.113883.3.67.933", "ied8984938"));
 
     Person assignedPerson = (Person) RimObjectFactory.
             getInstance().createRimObject("Person");
@@ -143,7 +146,7 @@ public class CDAVHitGEx1 {
     authOrg.setTelecom(authOrgTelBag);
 
     List<ADXP> authOrgAddrElemList = new ArrayList<ADXP>();
-    authOrgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetType));
+    authOrgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetName));
     authOrgAddrElemList.add(ADXPimpl.valueOf("51371", PostalCode));
     authOrgAddrElemList.add(ADXPimpl.valueOf("Leverkusen", Municipality));
     AD authOrgAddr = ADimpl.valueOf(authOrgAddrElemList);
@@ -170,7 +173,7 @@ public class CDAVHitGEx1 {
             .getInstance().createRimObject("Organization");
     representedCustodianOrganization.setCloneCode(CSimpl.valueOf(
             "representedCustodianOrganization", "1.22.333.4444"));
-    representedCustodianOrganization.setId(makeId("M345", "1.2.276.0.58"));
+    representedCustodianOrganization.setId(makeId("1.2.276.0.58", "M345"));
 
     List<ENXP> orgNameParts = new ArrayList<ENXP>();
     orgNameParts.add(ENXPimpl.valueOf("Praxis Dr. med. Phyllin", null));
@@ -180,25 +183,82 @@ public class CDAVHitGEx1 {
     BAG<EN> orgNameBag = BAGjuCollectionAdapter.valueOf(orgNameList);
 
     List<ADXP> orgAddrElemList = new ArrayList<ADXP>();
-    orgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetType));
+    orgAddrElemList.add(ADXPimpl.valueOf("Krankenhausstraße", StreetName));
     // TODO housenumber
     orgAddrElemList.add(ADXPimpl.valueOf("51371", PostalCode));
     orgAddrElemList.add(ADXPimpl.valueOf("Leverkusen", Municipality));
     AD orgAddr = ADimpl.valueOf(orgAddrElemList);
     List<AD> orgAddrList = new ArrayList<AD>();
     orgAddrList.add(orgAddr);
-    BAG<AD> orgAddrBag = BAGjuListAdapter.valueOf(patAddrList);
+    BAG<AD> orgAddrBag = BAGjuListAdapter.valueOf(orgAddrList);
 
     representedCustodianOrganization.setName(orgNameBag);
     representedCustodianOrganization.setAddr(orgAddrBag);
     assignedCustodian.setScoper(representedCustodianOrganization);
     clinicalDocument.addParticipation(custodian);
 
+    // informationRecipient
+    Participation informationRecipient = (Participation) RimObjectFactory
+            .getInstance().createRimObject("Participation");
+    informationRecipient.setCloneCode(CSimpl.valueOf("informationRecipient",
+            "1.22.333.4444"));
+
+    Role intendedRecipient = (Role) RimObjectFactory.
+            getInstance().createRimObject("Role");
+    intendedRecipient.setCloneCode(CSimpl.valueOf("intendedRecipient", "1.22.333.4444"));
+    informationRecipient.setRole(intendedRecipient);
+
+
+    Person infRecPerson = (Person) RimObjectFactory.
+            getInstance().createRimObject("Person");
+    infRecPerson.setCloneCode(CSimpl.valueOf(
+            "informationRecipient", "1.22.333.4444"));
+    BAG<EN> infRecPersonName = null;
+    infRecPersonName = setPrefixName(infRecPersonName, "Dr. med.");
+    infRecPersonName = setGivenName(infRecPersonName, "Kai");
+    infRecPersonName = setFamilyName(infRecPersonName, "Heitmann");
+    infRecPerson.setName(infRecPersonName);
+
+    intendedRecipient.setPlayer(infRecPerson);
+
+    Organization receivedOrganization = (Organization) RimObjectFactory
+            .getInstance().createRimObject("Organization");
+    receivedOrganization.setCloneCode(CSimpl.valueOf(
+            "receivedOrganization", "1.22.333.4444"));
+    // receivedOrganization.setId(makeId("1.2.276.0.58", "M345"));
+
+    List<ENXP> recOrgNameParts = new ArrayList<ENXP>();
+    recOrgNameParts.add(ENXPimpl.valueOf("Gemeinschaftspraxis Dr. Heitmann", null));
+    EN recOrgName = ENimpl.valueOf(recOrgNameParts);
+    List<EN> recOrgNameList = new ArrayList<EN>();
+    recOrgNameList.add(recOrgName);
+    BAG<EN> recOrgNameBag = BAGjuCollectionAdapter.valueOf(recOrgNameList);
+
+    List<ADXP> recOrgAddrElemList = new ArrayList<ADXP>();
+    recOrgAddrElemList.add(ADXPimpl.valueOf("Mühlenweg 1a", StreetAddressLine));
+    recOrgAddrElemList.add(ADXPimpl.valueOf("52152", PostalCode));
+    recOrgAddrElemList.add(ADXPimpl.valueOf("Simmerath", Municipality));
+    AD recOrgAddr = ADimpl.valueOf(recOrgAddrElemList);
+    List<AD> recOrgAddrList = new ArrayList<AD>();
+    recOrgAddrList.add(recOrgAddr);
+    BAG<AD> recOrgAddrBag = BAGjuListAdapter.valueOf(recOrgAddrList);
+
+    List<TEL> recOrgTelList = new ArrayList<TEL>();
+    recOrgTelList.add(TELimpl.valueOf("fax:02473.54637.2938"));
+    BAG recOrgTelBag = BAGjuListAdapter.valueOf(recOrgTelList);
+
+    receivedOrganization.setTelecom(recOrgTelBag);
+    receivedOrganization.setName(recOrgNameBag);
+    receivedOrganization.setAddr(recOrgAddrBag);
+    
+    intendedRecipient.setScoper(receivedOrganization);
+    clinicalDocument.addParticipation(informationRecipient);
+
     // related documents:
     ActRelationship relatedDocument = (ActRelationship) RimObjectFactory
             .getInstance().createRimObject("ActRelationship");
     relatedDocument.setCloneCode(CSimpl.valueOf("relatedDocument", "1.22.333.4444"));
-    relatedDocument.setType(ActRelationshipType.IsAppendage);
+    relatedDocument.setTypeCode(ActRelationshipType.IsAppendage);
     Document parentDocument = (Document) RimObjectFactory
             .getInstance().createRimObject("Document");
     parentDocument.setCloneCode(CSimpl.valueOf("parentDocument", "clinicalDocument"));
@@ -216,6 +276,7 @@ public class CDAVHitGEx1 {
     consent.setId(makeId("1.2.276.0.76.3645.239", "cs856727-298784"));
     consent.setCode(CDimpl.valueOf("1.2.276.0.76.5.310", "3-00d"));
     authorization.setTarget(consent);
+    consent.setStatusCode(Completed);
     clinicalDocument.addOutboundRelationship(authorization);
 
     // Sections:
@@ -235,6 +296,8 @@ public class CDAVHitGEx1 {
     Act section = (Act) RimObjectFactory.getInstance().createRimObject("Act");
     section.setCloneCode(CSimpl.valueOf("section", "1.22.333.4444"));
 
+    section.setCode(CDimpl.valueOf("10164-2", "2.16.840.1.113883.6.1"));
+
     ST title = STjlStringAdapter.valueOf("29.08.2005: Anamnese");
 
     ST text = STjlStringAdapter
@@ -250,7 +313,7 @@ public class CDAVHitGEx1 {
     structuredBody.addOutboundRelationship(subcomponent);
     clinicalDocument.addOutboundRelationship(component);
 
-    Util.buildMessage(clinicalDocument, "POCD_HD000040");
+    Util.buildMessage(clinicalDocument, "POCD_HD000040", "VHitG01-Java.xml");
   }
 
   public static SET<II> makeId(String ext, String root) {

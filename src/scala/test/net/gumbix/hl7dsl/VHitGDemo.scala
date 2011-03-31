@@ -11,6 +11,8 @@ import org.hl7.types.impl.{SETjuSetAdapter, CEimpl}
 import org.hl7.types.enums.TelecommunicationAddressUse._
 import org.hl7.types.enums.ActStatus._
 import org.hl7.types.enums.ActRelationshipType._
+import tools.nsc.io.Path
+import java.io.{FileWriter, File}
 
 /**
  * This demo is used to have a reference CDA.
@@ -22,7 +24,7 @@ class VHitGDemo extends TestCase {
   def testPOCD_EX000001() {
     val clinicalDocument = new DocumentDSL {
       typeId = ("POCD_HD000040", "2.16.840.1.113883.1.3")
-      id = ("6014161089", "1.2.276.0.76.3645.239")
+      id = ("1.2.276.0.76.3645.239", "6014161089")
       title = "Arztbrief auf der Basis von CDA Release 2"
       effectiveTime = "20050829"
       code = new Code {
@@ -34,11 +36,11 @@ class VHitGDemo extends TestCase {
       languageCode = ("de-DE", "1.22.333.4444")
 
       participation("recordTarget") = new ParticipationDSL {
-        id = List(
-          ("6245", "2.16.840.1.113883.3.933"),
-          ("1543627549", "1.2.276.0.76.4.1")
-          )
         role("patientRole") = new PatientDSL {
+          id = List(
+            ("6245", "2.16.840.1.113883.3.933"),
+            ("1543627549", "1.2.276.0.76.4.1")
+            )
           player("patient") = new PersonDSL {
             name = new Name {
               given = "Paul"
@@ -55,7 +57,7 @@ class VHitGDemo extends TestCase {
             }
           }
           addr = new Address {
-            streetName = "Riedemannweg 59"
+            streetAddressLine = "Riedemannweg 59"
             postalCode = "13627"
             city = "Berlin"
           }
@@ -72,10 +74,9 @@ class VHitGDemo extends TestCase {
         }
       }
       participation("author") = new ParticipationDSL {
-        id = ("2.16.840.1.113883.3.67.933", "ied8984938")
         time = "20050829"
         role("assignedAuthor") = new RoleDSL {
-          id = ("2.16.840.1.113883.3.933", "2112345")
+          id = ("2.16.840.1.113883.3.67.933", "ied8984938")
           player("assignedPerson") = new PersonDSL {
             name = new Name {
               prefix = "Dr. med."
@@ -136,7 +137,7 @@ class VHitGDemo extends TestCase {
               number = ("fax:02473.54637.2938", WorkPlaceAddressUse)
             }
             addr = new Address {
-              streetName = "Mühlenweg 1a"
+              streetAddressLine = "Mühlenweg 1a"
               postalCode = "52152"
               city = "Simmerath"
             }
@@ -147,14 +148,14 @@ class VHitGDemo extends TestCase {
       outboundRelationship("relatedDocument") = new ActRelationshipDSL {
         typeCode = IsAppendage // "APND"
         target("parentDocument") = new DocumentDSL {
-          id = ("463957847", "1.2.276.0.58")
+          id = ("1.2.276.0.58", "463957847")
         }
       }
 
       outboundRelationship("authorization") = new ActRelationshipDSL {
         target("consent") = new ActDSL {
-          id = ("cs856727-298784", "1.2.276.0.76.3645.239")
-          code = ("3-00d", "1.2.276.0.76.5.310")
+          id = ("1.2.276.0.76.3645.239", "cs856727-298784")
+          code = ("1.2.276.0.76.5.310", "3-00d")
           statusCode = Completed
         }
       }
@@ -179,6 +180,10 @@ class VHitGDemo extends TestCase {
         }
       }
     }
-    println(BuildMessage.toXML(clinicalDocument, "POCD_HD000040"))
+    val msg = BuildMessage.toXML(clinicalDocument, "POCD_HD000040")
+    println(msg)
+    val fw = new FileWriter("VHitG01-Scala.xml")
+    fw.write(msg)
+    fw.close()
   }
 }
