@@ -17,7 +17,10 @@ package net.gumbix.hl7dsl.DSL
 
 import org.hl7.rim.{RimObjectFactory, Place}
 import org.hl7.types._
+import impl.BAGjuListAdapter
+import java.util.ArrayList
 import net.gumbix.hl7dsl.helper.ImplicitDef._
+import net.gumbix.hl7dsl.helper.Address
 
 /**
  * Wrapper Class for RIM Class "Place"
@@ -39,12 +42,22 @@ class PlaceDSL(place: Place) extends EntityDSL(place) {
   }
 
   /**
-   * @return AD
+   * @return BAG[AD]
    */
-  def addr: AD = place.getAddr
+  def addr: Address = {
+    def addressChanged(a: Address) {
+      place.setAddr(a.toRS)
+    }
+    // TODO change constructor in Address
+    val rsList = new ArrayList[AD]()
+    rsList.add(place.getAddr)
+    val a = new Address(BAGjuListAdapter.valueOf(rsList), addressChanged)
+    a
+  }
 
-  def addr_=(v: AD) {
-    place.setAddr(v)
+  def addr_=(a: Address) {
+    // TODO Somehow remember that here was an assignment:
+    place.setAddr(a.toRS)
   }
 
   /**

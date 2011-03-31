@@ -15,7 +15,7 @@ import org.hl7.types.enums.ActRelationshipType._
 /**
  * This demo is used to have a reference CDA.
  * TODO confidentialityCode: codeSystem is not displayed
- *
+ * TODO birthPlace is not marshalled
  * @author Markus Gumbel (m.gumbel@hs-mannheim.de)
  */
 class VHitGDemo extends TestCase {
@@ -46,7 +46,13 @@ class VHitGDemo extends TestCase {
             }
             administrativeGenderCode = ("M", "2.16.840.1.113883.5.1")
             birthTime = "19551217"
-            // birthPlace = TODO
+            scopedRole("birthplace") = new RoleDSL {
+              player("place") = new PlaceDSL {
+                addr = new Address {
+                  city = "Sassnitz"
+                }
+              }
+            }
           }
           addr = new Address {
             streetName = "Riedemannweg 59"
@@ -161,6 +167,7 @@ class VHitGDemo extends TestCase {
                 code = "10164-2"
                 codeSystem = "2.16.840.1.113883.6.1"
                 codeSystemName = "LOINC"
+                // translation = TODO 
               }
               title = "29.08.2005: Anamnese"
               text = """Sei Jahren wiederholt

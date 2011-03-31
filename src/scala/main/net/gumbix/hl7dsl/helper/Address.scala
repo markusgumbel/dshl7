@@ -52,6 +52,8 @@ class Address(addr: BAG[AD], change: Address => Unit) {
     BAGjuListAdapter.valueOf(rsList)
   }
 
+  def toRS = wrapper.currentRimValue
+
   def country = wrapper.get(Country)
 
   def country_=(v: String) {
