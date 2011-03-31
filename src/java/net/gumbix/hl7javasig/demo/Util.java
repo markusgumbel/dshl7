@@ -18,7 +18,7 @@ import java.io.FileOutputStream;
  */
 public class Util {
 
-    public static void buildMessage(RimObject rim, String mif) {
+    public static void buildMessage(RimObject rim, String mif, String filename) {
         try {
             final RimGraphXMLSpeaker speaker = new RimGraphXMLSpeaker();
             final MessageTypeLoaderAdapter jmtl = MessageTypeLoaderAdapter
@@ -27,7 +27,7 @@ public class Util {
             // final MessageType messageType = jmtl.loadMessageType("POCD_HD000040");
             // Unknown domain...:
             final MessageType messageType = jmtl.loadMessageType(mif);
-            final FileOutputStream fos = new FileOutputStream("makeCDA.xml");
+            final FileOutputStream fos = new FileOutputStream(filename);
 
             final Transformer transformer = TransformerFactory.newInstance()
                     .newTransformer();
