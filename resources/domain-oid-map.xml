@@ -1,0 +1,1948 @@
+<?xml version="1.0" encoding="ASCII"?>
+<domainMap>
+   <domain name="ABCcodes"/>
+   <domain name="AcknowledgementCondition" codeSystem="2.16.840.1.113883.5.1050"/>
+   <domain name="AcknowledgementDetailCode" codeSystem="2.16.840.1.113883.5.1100">
+      <domain name="AcknowledgementDetailNotSupportedCode" codeSystem="2.16.840.1.113883.5.1100"/>
+      <domain name="AcknowledgementDetailSyntaxErrorCode" codeSystem="2.16.840.1.113883.5.1100"/>
+   </domain>
+   <domain name="AcknowledgementDetailType" codeSystem="2.16.840.1.113883.5.1082"/>
+   <domain name="AcknowledgementMessageCode"/>
+   <domain name="AcknowledgementType" codeSystem="2.16.840.1.113883.5.18"/>
+   <domain name="AcknowledgmentMessageType"/>
+   <domain name="ActClass" codeSystem="2.16.840.1.113883.5.6">
+      <domain name="ActClassRoot" codeSystem="2.16.840.1.113883.5.6">
+         <domain name="ActClassContainer" codeSystem="2.16.840.1.113883.5.6">
+            <domain name="ActClassComposition" codeSystem="2.16.840.1.113883.5.6">
+               <domain name="ActClassDocument" codeSystem="2.16.840.1.113883.5.6">
+                  <domain name="ActClassClinicalDocument" codeSystem="2.16.840.1.113883.5.6"/>
+               </domain>
+            </domain>
+            <domain name="ActClassEntry" codeSystem="2.16.840.1.113883.5.6"/>
+            <domain name="ActClassExtract" codeSystem="2.16.840.1.113883.5.6"/>
+            <domain name="ActClassOrganizer" codeSystem="2.16.840.1.113883.5.6"/>
+         </domain>
+         <domain name="ActClassContract" codeSystem="2.16.840.1.113883.5.6">
+            <domain name="ActClassFinancialContract" codeSystem="2.16.840.1.113883.5.6"/>
+         </domain>
+         <domain name="ActClassControlAct" codeSystem="2.16.840.1.113883.5.6"/>
+         <domain name="ActClassObservation" codeSystem="2.16.840.1.113883.5.6">
+            <domain name="ActClassCondition" codeSystem="2.16.840.1.113883.5.6">
+               <domain name="ActClassPublicHealthCase" codeSystem="2.16.840.1.113883.5.6"/>
+            </domain>
+            <domain name="ActClassObservationSeries" codeSystem="2.16.840.1.113883.5.6"/>
+            <domain name="ActClassROI" codeSystem="2.16.840.1.113883.5.6"/>
+         </domain>
+         <domain name="ActClassProcedure" codeSystem="2.16.840.1.113883.5.6">
+            <domain name="ActClassSpecimenCollection" codeSystem="2.16.840.1.113883.5.6"/>
+         </domain>
+         <domain name="ActClassStorage" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActClassSupply" codeSystem="2.16.840.1.113883.5.6"/>
+         <domain name="x_ActClassDocumentEntryAct" codeSystem="2.16.840.1.113883.5.6"/>
+         <domain name="x_ActClassDocumentEntryOrganizer" codeSystem="2.16.840.1.113883.5.6"/>
+         <domain name="x_LabProcessClassCodes" codeSystem="2.16.840.1.113883.5.6"/>
+      </domain>
+   </domain>
+   <domain name="ActCode" codeSystem="2.16.840.1.113883.5.4">
+      <domain name="ActClaimAttachmentCode" codeSystem="2.16.840.1.113883.5.4"/>
+      <domain name="ActCognitiveProfessionalServiceCode" codeSystem="2.16.840.1.113883.5.4"/>
+      <domain name="ActInjuryCode" codeSystem="2.16.840.1.113883.5.4"/>
+      <domain name="ActInvoicePaymentCode" codeSystem="2.16.840.1.113883.5.4"/>
+      <domain name="ActTransportationModeCode" codeSystem="2.16.840.1.113883.5.4">
+         <domain name="ActPatientTransportationModeCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="Ambulance" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+      </domain>
+      <domain name="ExternallyDefinedActCodes" codeSystem="2.16.840.1.113883.5.4">
+         <domain name="DocumentSectionType" codeSystem="2.16.840.1.113883.6.1"/>
+         <domain name="DocumentType" codeSystem="2.16.840.1.113883.6.1">
+            <domain name="ActMedicationDocumentCode" codeSystem="2.16.840.1.113883.6.1"/>
+         </domain>
+      </domain>
+      <domain name="HL7DefinedActCodes" codeSystem="2.16.840.1.113883.5.4">
+         <domain name="ActAccountCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="CreditCard" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActAdjudicationCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="AdjudicatedWithAdjustments" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActAdjudicationGroupCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActAdjudicationInformationCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActAdjudicationResultActionCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActBillableTreatmentPlanCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActBillingArrangementCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActBoundedROICode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActContainerRegistrationCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActControlVariable" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ECGControlVariable" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ECGControlVariableMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            </domain>
+         </domain>
+         <domain name="ActCoverageConfirmationCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActCoverageAuthorizationConfirmationCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActCoverageEligibilityConfirmationCode" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActCoverageLimitCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActAdministrativeDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ActAdministrativeAuthorizationDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActAdministrativeRuleDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+            <domain name="ActFinancialDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActSuppliedItemDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="AdministrationDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                  <domain name="AppropriatenessDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                     <domain name="InteractionDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                        <domain name="TherapeuticProductDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     </domain>
+                     <domain name="ObservationDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                        <domain name="AgeDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                        <domain name="ConditionDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                           <domain name="HeightSurfaceAreaAlert" codeSystem="2.16.840.1.113883.5.4"/>
+                           <domain name="WeightAlert" codeSystem="2.16.840.1.113883.5.4"/>
+                        </domain>
+                        <domain name="ReactionDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                        <domain name="RelatedReactionDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     </domain>
+                  </domain>
+                  <domain name="ComplianceDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="DosageProblemDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                     <domain name="DoseDurationDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4">
+                        <domain name="DoseDurationHighDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                        <domain name="DoseDurationLowDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     </domain>
+                     <domain name="DoseHighDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     <domain name="DoseIntervalDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     <domain name="DoseLowDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  </domain>
+                  <domain name="DrugActionDetectedIssueCode"/>
+                  <domain name="TimingDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+               </domain>
+               <domain name="SupplyDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+            <domain name="ClinicalActionDetectedIssueCode" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActDetectedIssueManagementCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActAdministrativeDetectedIssueManagementCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="AuthorizationIssueManagementCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+            <domain name="ActFinancialDetectedIssueManagementCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="OtherActionTakenManagementCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="SupplyAppropriateManagementCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="TherapyAppropriateManagementCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ConsultedPrescriberManagementCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+         </domain>
+         <domain name="ActDietCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActDisciplinaryActionCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActEncounterAccommodationCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActEncounterCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActInpatientEncounterCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActMedicalServiceCode" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActFinancialTransactionCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActIncidentCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActInsurancePolicyCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActInvoiceElementCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActInvoiceAdjudicationPaymentCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ActInvoiceAdjudicationPaymentGroupCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActInvoiceAdjudicationPaymentSummaryCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+            <domain name="ActInvoiceDetailCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ActInvoiceDetailClinicalProductCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActInvoiceDetailClinicalServiceCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActInvoiceDetailDrugProductCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActInvoiceDetailGenericCode" codeSystem="2.16.840.1.113883.5.4">
+                  <domain name="ActInvoiceDetailGenericAdjudicatorCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailGenericModifierCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailGenericProviderCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailTaxCode" codeSystem="2.16.840.1.113883.5.4"/>
+               </domain>
+               <domain name="ActInvoiceDetailPreferredAccommodationCode" codeSystem="2.16.840.1.113883.5.4">
+                  <domain name="ActEncounterAccommodationCode" codeSystem="2.16.840.1.113883.5.4"/>
+               </domain>
+               <domain name="CanadianActInvoiceDetailClinicalProductCode" codeSystem="2.16.840.1.113883.6.14"/>
+               <domain name="CanadianActInvoiceDetailClinicalServiceCode"/>
+               <domain name="x_ActInvoiceDetailPharmacyCode" codeSystem="2.16.840.1.113883.5.4">
+                  <domain name="ActInvoiceDetailClinicalProductCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailClinicalServiceCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailDrugProductCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  <domain name="ActInvoiceDetailGenericCode" codeSystem="2.16.840.1.113883.5.4">
+                     <domain name="ActInvoiceDetailGenericAdjudicatorCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     <domain name="ActInvoiceDetailGenericModifierCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     <domain name="ActInvoiceDetailGenericProviderCode" codeSystem="2.16.840.1.113883.5.4"/>
+                     <domain name="ActInvoiceDetailTaxCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  </domain>
+               </domain>
+               <domain name="x_ActInvoiceDetailPreferredAccommodationCode" codeSystem="2.16.840.1.113883.5.4">
+                  <domain name="ActInvoiceDetailPreferredAccommodationCode" codeSystem="2.16.840.1.113883.5.4">
+                     <domain name="ActEncounterAccommodationCode" codeSystem="2.16.840.1.113883.5.4"/>
+                  </domain>
+               </domain>
+            </domain>
+            <domain name="ActInvoiceGroupCode" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ActInvoiceInterGroupCode" codeSystem="2.16.840.1.113883.5.4"/>
+               <domain name="ActInvoiceRootGroupCode" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+         </domain>
+         <domain name="ActInvoiceElementSummaryCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="InvoiceElementAdjudicated" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="InvoiceElementPaid" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="InvoiceElementSubmitted" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActInvoiceOverrideCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActListCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActMedicationList" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActObservationList" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ActConditionList" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+            <domain name="ActTherapyDurationWorkingListCode" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActMonitoringProtocolCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ControlledSubstanceMonitoringProtocol" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="DEADrugSchedule" codeSystem="2.16.840.1.113883.5.4"/>
+            </domain>
+         </domain>
+         <domain name="ActOrderCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActPaymentCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActPharmacySupplyType" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="EmergencyPharmacySupplyType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="FirstFillPharmacySupplyType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="RefillPharmacySupplyType" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActPrivilegeCategorization" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActProcedureCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActProductAcquisitionCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="Loan" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="Transfer" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActSpecObsCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActSpecObsDilutionCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActSpecObsInterferenceCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ActSpecObsVolumeCode" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ActSpecimenTreatmentCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActSubstanceAdminSubstitutionCode" codeSystem="2.16.840.1.113883.5.1070">
+            <domain name="SubstanceAdminGenericSubstitution" codeSystem="2.16.840.1.113883.5.1070"/>
+         </domain>
+         <domain name="ActSubstanceAdministrationCode" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ActSubstanceAdministrationImmunizationCode" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="x_MedicationOrImmunization" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="CanadianActProcedureCode" codeSystem="2.16.840.1.113883.6.87"/>
+         <domain name="HL7TriggerEventCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ROIOverlayShape" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="x_ActFinancialProductAcquisitionCode" codeSystem="2.16.840.1.113883.5.4"/>
+      </domain>
+      <domain name="ObservationType" codeSystem="2.16.840.1.113883.5.4">
+         <domain name="AnnotationType" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ECGAnnotationType" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ECGAnnotationTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            </domain>
+         </domain>
+         <domain name="CommonClinicalObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="DiagnosticImageCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="FDALabelData"/>
+         <domain name="IndividualCaseSafetyReportType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="LogicalObservationIdentifierNamesAndCodes" codeSystem="2.16.840.1.113883.6.1"/>
+         <domain name="ObservationAllergyTestType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ObservationDiagnosisTypes" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ObservationIndicationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ObservationIntoleranceType" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ObservationAllergyType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ObservationDrugIntoleranceType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ObservationEnvironmentalIntoleranceType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ObservationFoodIntoleranceType" codeSystem="2.16.840.1.113883.5.4"/>
+            <domain name="ObservationNonAllergyIntoleranceType" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="ObservationIssueTriggerCodedObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ObservationIssueTriggerMeasuredObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ObservationSequenceType" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ECGObservationSequenceType" codeSystem="2.16.840.1.113883.5.4">
+               <domain name="ECGLeadTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            </domain>
+         </domain>
+         <domain name="ObservationSeriesType" codeSystem="2.16.840.1.113883.5.4">
+            <domain name="ECGObservationSeriesType" codeSystem="2.16.840.1.113883.5.4"/>
+         </domain>
+         <domain name="PatientCharacteristicObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="PrescriptionObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="SimpleMeasurableClinicalObservationType" codeSystem="2.16.840.1.113883.5.4"/>
+      </domain>
+      <domain name="x_LabProcessCodes" codeSystem="2.16.840.1.113883.5.4">
+         <domain name="ActInfoPersistCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActObservationVerificationCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActSpecimenAccessionCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActSpecimenLabelCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActSpecimenManifestCode" codeSystem="2.16.840.1.113883.5.4"/>
+         <domain name="ActSpecimenTransportCode" codeSystem="2.16.840.1.113883.5.4"/>
+      </domain>
+   </domain>
+   <domain name="ActInjuryCode" codeSystem="2.16.840.1.113883.5.4"/>
+   <domain name="ActInvoiceElementModifier" codeSystem="2.16.840.1.113883.5.1051"/>
+   <domain name="ActMood" codeSystem="2.16.840.1.113883.5.1001">
+      <domain name="ActMoodCompletionTrack" codeSystem="2.16.840.1.113883.5.1001">
+         <domain name="ActMoodIntent" codeSystem="2.16.840.1.113883.5.1001"/>
+      </domain>
+      <domain name="ActMoodPredicate" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodDefEvn" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodDefEvnRqoPrmsPrp" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodDocumentObservation" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodEvnOrdPrmsPrp" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodIntentEvent" codeSystem="2.16.840.1.113883.5.1001">
+         <domain name="ActMoodIntent" codeSystem="2.16.840.1.113883.5.1001"/>
+      </domain>
+      <domain name="x_ActMoodOrdPrms" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodOrdPrmsEvn" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodPermPermrq" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ActMoodRqoPrpAptArq" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ClinicalStatementActMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ClinicalStatementEncounterMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ClinicalStatementObservationMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ClinicalStatementProcedureMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_ClinicalStatementSubstanceMood"/>
+      <domain name="x_ClinicalStatementSupplyMood"/>
+      <domain name="x_DocumentActMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_DocumentEncounterMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_DocumentProcedureMood" codeSystem="2.16.840.1.113883.5.1001"/>
+      <domain name="x_DocumentSubstanceMood" codeSystem="2.16.840.1.113883.5.1001"/>
+   </domain>
+   <domain name="ActPatientTransportationModeCode" codeSystem="2.16.840.1.113883.5.4"/>
+   <domain name="ActPaymentReason"/>
+   <domain name="ActPriority" codeSystem="2.16.840.1.113883.5.7">
+      <domain name="ActPriorityCallback" codeSystem="2.16.840.1.113883.5.7"/>
+      <domain name="x_EncounterAdmissionUrgency" codeSystem="2.16.840.1.113883.5.7"/>
+   </domain>
+   <domain name="ActProcedureCode" codeSystem="2.16.840.1.113883.5.4"/>
+   <domain name="ActReason" codeSystem="2.16.840.1.113883.5.8">
+      <domain name="ActAccommodationReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ActAdjudicationReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ActBillableClinicalServiceReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ActIneligibilityReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ActNoImmunizationReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ActSupplyFulfillmentRefusalReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ControlActReason" codeSystem="2.16.840.1.113883.5.8">
+         <domain name="ControlActReasonConditionNullify" codeSystem="2.16.840.1.113883.5.8"/>
+      </domain>
+      <domain name="EligibilityActReasonCode" codeSystem="2.16.840.1.113883.5.8">
+         <domain name="CoverageEligibilityReason" codeSystem="2.16.840.1.113883.5.8"/>
+      </domain>
+      <domain name="NonPerformanceReasonCode" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ReasonForNotEvaluatingDevice" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="ReferralReasonCode" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="SchedulingActReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="SubstanceAdminSubstitutionNotAllowedReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="SubstanceAdminSubstitutionReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="TransferActReason" codeSystem="2.16.840.1.113883.5.8"/>
+      <domain name="x_ActEncounterReason" codeSystem="2.16.840.1.113883.5.8"/>
+   </domain>
+   <domain name="ActRelationshipCheckpoint" codeSystem="2.16.840.1.113883.5.10"/>
+   <domain name="ActRelationshipJoin" codeSystem="2.16.840.1.113883.5.12"/>
+   <domain name="ActRelationshipRelatedOrder"/>
+   <domain name="ActRelationshipSplit" codeSystem="2.16.840.1.113883.5.13"/>
+   <domain name="ActRelationshipSubset" codeSystem="2.16.840.1.113883.5.1097">
+      <domain name="ExpectedSubset" codeSystem="2.16.840.1.113883.5.1097"/>
+      <domain name="ParticipationSubset" codeSystem="2.16.840.1.113883.5.1097">
+         <domain name="ExpectedSubset" codeSystem="2.16.840.1.113883.5.1097"/>
+         <domain name="PastSubset" codeSystem="2.16.840.1.113883.5.1097"/>
+      </domain>
+      <domain name="PastSubset" codeSystem="2.16.840.1.113883.5.1097"/>
+   </domain>
+   <domain name="ActRelationshipType" codeSystem="2.16.840.1.113883.5.1002">
+      <domain name="ActRelationshipConditional" codeSystem="2.16.840.1.113883.5.1002">
+         <domain name="ActRelationshipReason" codeSystem="2.16.840.1.113883.5.1002"/>
+      </domain>
+      <domain name="ActRelationshipHasComponent" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="ActRelationshipOutcome" codeSystem="2.16.840.1.113883.5.1002">
+         <domain name="ActRelationshipObjective" codeSystem="2.16.840.1.113883.5.1002"/>
+      </domain>
+      <domain name="ActRelationshipPertains" codeSystem="2.16.840.1.113883.5.1002">
+         <domain name="ActRelationshipAccounting" codeSystem="2.16.840.1.113883.5.1002">
+            <domain name="ActRelationshipCostTracking" codeSystem="2.16.840.1.113883.5.1002"/>
+            <domain name="ActRelationshipPosting" codeSystem="2.16.840.1.113883.5.1002"/>
+         </domain>
+         <domain name="ActRelationshipHasSupport" codeSystem="2.16.840.1.113883.5.1002"/>
+         <domain name="ActRelationshipTemporallyPertains" codeSystem="2.16.840.1.113883.5.1002"/>
+      </domain>
+      <domain name="ActRelationshipSequel" codeSystem="2.16.840.1.113883.5.1002">
+         <domain name="ActRelationshipExcerpt" codeSystem="2.16.840.1.113883.5.1002"/>
+         <domain name="ActRelationshipFulfills" codeSystem="2.16.840.1.113883.5.1002"/>
+         <domain name="ActRelationshipReplacement" codeSystem="2.16.840.1.113883.5.1002"/>
+      </domain>
+      <domain name="x_ActRelationshipDocument" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="x_ActRelationshipEntry" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="x_ActRelationshipEntryRelationship" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="x_ActRelationshipExternalReference" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="x_ActRelationshipPatientTransport" codeSystem="2.16.840.1.113883.5.1002"/>
+      <domain name="x_ActRelationshipPertinentInfo" codeSystem="2.16.840.1.113883.5.1002"/>
+   </domain>
+   <domain name="ActSite" codeSystem="2.16.840.1.113883.5.1052">
+      <domain name="AnimalActSite" codeSystem="2.16.840.1.113883.5.1052"/>
+      <domain name="HumanActSite" codeSystem="2.16.840.1.113883.5.1052">
+         <domain name="CanadianActInjurySite" codeSystem="2.16.840.1.113883.6.86"/>
+         <domain name="Dentition" codeSystem="2.16.840.1.113883.5.1080">
+            <domain name="ArtificialDentition" codeSystem="2.16.840.1.113883.5.1080"/>
+            <domain name="PermanentDentition" codeSystem="2.16.840.1.113883.5.1080"/>
+            <domain name="PrimaryDentition" codeSystem="2.16.840.1.113883.5.1080"/>
+            <domain name="SupernumeraryTooth" codeSystem="2.16.840.1.113883.5.1080"/>
+         </domain>
+         <domain name="HumanSubstanceAdministrationSite" codeSystem="2.16.840.1.113883.5.1052"/>
+         <domain name="InjuryActSite" codeSystem="2.16.840.1.113883.5.1052"/>
+      </domain>
+   </domain>
+   <domain name="ActStatus" codeSystem="2.16.840.1.113883.5.14">
+      <domain name="ActStatusNormal" codeSystem="2.16.840.1.113883.5.14"/>
+      <domain name="x_DocumentStatus" codeSystem="2.16.840.1.113883.5.14"/>
+   </domain>
+   <domain name="ActTherapyDurationWorkingListCode" codeSystem="2.16.840.1.113883.5.4"/>
+   <domain name="ActUncertainty" codeSystem="2.16.840.1.113883.5.1053"/>
+   <domain name="AddressPartType" codeSystem="2.16.840.1.113883.5.16">
+      <domain name="AdditionalLocator" codeSystem="2.16.840.1.113883.5.16"/>
+      <domain name="DeliveryAddressLine" codeSystem="2.16.840.1.113883.5.16"/>
+      <domain name="StreetAddressLine" codeSystem="2.16.840.1.113883.5.16">
+         <domain name="BuildingNumber" codeSystem="2.16.840.1.113883.5.16"/>
+         <domain name="StreetName" codeSystem="2.16.840.1.113883.5.16"/>
+      </domain>
+   </domain>
+   <domain name="AdministrativeGender" codeSystem="2.16.840.1.113883.5.1"/>
+   <domain name="AmericanIndianAlaskaNativeLanguages" codeSystem="2.16.840.1.113883.5.1054">
+      <domain name="Algic" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Algonquian" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Arapahoan" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="ArapahoGrosVentre" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+            <domain name="CreeMontagnais" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="Cree" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+            <domain name="EasternAlgonquin" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="Abenakian" codeSystem="2.16.840.1.113883.5.1054"/>
+               <domain name="Delawaran" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+            <domain name="Ojibwayan" codeSystem="2.16.840.1.113883.5.1054"/>
+            <domain name="SaukFoxKickapoo" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Ritwan" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Caddoan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="NorthernCaddoan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="SouthernCaddoan" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Chimakuan" codeSystem="2.16.840.1.113883.5.1054"/>
+      <domain name="EskimoAleut" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Aleut" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Eskimoan" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="InuitInupiaq" codeSystem="2.16.840.1.113883.5.1054"/>
+            <domain name="SirenikskiYupik" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+      </domain>
+      <domain name="Hokan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="CochimiYuman" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Yuman" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="DeltaCalifornia" codeSystem="2.16.840.1.113883.5.1054">
+                  <domain name="Diegueno" codeSystem="2.16.840.1.113883.5.1054"/>
+               </domain>
+               <domain name="Pai" codeSystem="2.16.840.1.113883.5.1054"/>
+               <domain name="River" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+         </domain>
+         <domain name="Palaihnihan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Pomoan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Shasta" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Iroquoian" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="NorthernIroquoian" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Keresan" codeSystem="2.16.840.1.113883.5.1054"/>
+      <domain name="KiowaTanoan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Tiwa" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Muskogean" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="CentralMuskogean" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="WesternMuskogean" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Nadene" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="AthapaskanEyak" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Athapaskan" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="Apachean" codeSystem="2.16.840.1.113883.5.1054">
+                  <domain name="EasternApachean" codeSystem="2.16.840.1.113883.5.1054"/>
+                  <domain name="WesternApachean" codeSystem="2.16.840.1.113883.5.1054"/>
+               </domain>
+               <domain name="CentralAlaskaYukon" codeSystem="2.16.840.1.113883.5.1054">
+                  <domain name="KoyukonIngalik" codeSystem="2.16.840.1.113883.5.1054"/>
+                  <domain name="KutchinHan" codeSystem="2.16.840.1.113883.5.1054"/>
+                  <domain name="TananaTutchone" codeSystem="2.16.840.1.113883.5.1054">
+                     <domain name="Tanana" codeSystem="2.16.840.1.113883.5.1054"/>
+                  </domain>
+               </domain>
+               <domain name="PacificCoastAthapaskan" codeSystem="2.16.840.1.113883.5.1054">
+                  <domain name="CaliforniaAthapaskan" codeSystem="2.16.840.1.113883.5.1054"/>
+                  <domain name="OregonAthapaskan" codeSystem="2.16.840.1.113883.5.1054"/>
+               </domain>
+               <domain name="SouthernAlaska" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+         </domain>
+      </domain>
+      <domain name="Penutian" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Chinookan" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="UpperChinook" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Coosan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Maiduan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="PlateauPenutian" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Sahaptian" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Takelman" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Kalapuyan" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Tsimshianic" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Utian" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Miwokan" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="EasternMiwok" codeSystem="2.16.840.1.113883.5.1054"/>
+               <domain name="WesternMiwok" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+         </domain>
+         <domain name="Wintuan" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Yokutsan" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Pidgin" codeSystem="2.16.840.1.113883.5.1054"/>
+      <domain name="Salishan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="CentralSalish" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="InteriorSalish" codeSystem="2.16.840.1.113883.5.1054"/>
+         <domain name="Tsamosan" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="SiouanCatawba" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Siouan" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="MississippiValley" codeSystem="2.16.840.1.113883.5.1054">
+               <domain name="ChiwereWinnebago" codeSystem="2.16.840.1.113883.5.1054"/>
+               <domain name="Dakotan" codeSystem="2.16.840.1.113883.5.1054"/>
+               <domain name="Dhegiha" codeSystem="2.16.840.1.113883.5.1054"/>
+            </domain>
+            <domain name="MissouriRiver" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+      </domain>
+      <domain name="UtoAztecan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Numic" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="CentralNumic" codeSystem="2.16.840.1.113883.5.1054"/>
+            <domain name="SouthernNumic" codeSystem="2.16.840.1.113883.5.1054"/>
+            <domain name="WesternNumic" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Takic" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Cupan" codeSystem="2.16.840.1.113883.5.1054"/>
+            <domain name="SerranoGabrielino" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Taracahitan" codeSystem="2.16.840.1.113883.5.1054">
+            <domain name="Cahitan" codeSystem="2.16.840.1.113883.5.1054"/>
+         </domain>
+         <domain name="Tepiman" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Wakashan" codeSystem="2.16.840.1.113883.5.1054">
+         <domain name="Nootkan" codeSystem="2.16.840.1.113883.5.1054"/>
+      </domain>
+      <domain name="Yukian" codeSystem="2.16.840.1.113883.5.1054"/>
+   </domain>
+   <domain name="AttentionKeyword"/>
+   <domain name="BatchName"/>
+   <domain name="CCI"/>
+   <domain name="CSAID"/>
+   <domain name="Calendar" codeSystem="2.16.840.1.113883.5.1055"/>
+   <domain name="CalendarCycle" codeSystem="2.16.840.1.113883.5.9">
+      <domain name="CalendarCycleOneLetter" codeSystem="2.16.840.1.113883.5.9"/>
+      <domain name="CalendarCycleTwoLetter" codeSystem="2.16.840.1.113883.5.9">
+         <domain name="GregorianCalendarCycle" codeSystem="2.16.840.1.113883.5.9"/>
+      </domain>
+   </domain>
+   <domain name="CalendarType" codeSystem="2.16.840.1.113883.5.1017"/>
+   <domain name="CaseDetectionMethod"/>
+   <domain name="CaseDiseaseImported"/>
+   <domain name="CaseTransmissionMode" codeSystem="2.16.840.1.113883.5.4"/>
+   <domain name="Charset" codeSystem="2.16.840.1.113883.5.21"/>
+   <domain name="CodeSystem" codeSystem="2.16.840.1.113883.5.22"/>
+   <domain name="CodeSystemType" codeSystem="2.16.840.1.113883.5.1085"/>
+   <domain name="CodingRationale" codeSystem="2.16.840.1.113883.5.1074"/>
+   <domain name="CommunicationFunctionType" codeSystem="2.16.840.1.113883.5.1056"/>
+   <domain name="CompressionAlgorithm" codeSystem="2.16.840.1.113883.5.1009"/>
+   <domain name="ConceptCodeRelationship" codeSystem="2.16.840.1.113883.5.1088"/>
+   <domain name="ConceptGenerality" codeSystem="2.16.840.1.113883.5.24"/>
+   <domain name="ConceptPropertyId" codeSystem="2.16.840.1.113883.5.1087"/>
+   <domain name="ConceptStatus" codeSystem="2.16.840.1.113883.5.1086"/>
+   <domain name="Confidentiality" codeSystem="2.16.840.1.113883.5.25">
+      <domain name="ConfidentialityByAccessKind" codeSystem="2.16.840.1.113883.5.25"/>
+      <domain name="ConfidentialityByInfoType" codeSystem="2.16.840.1.113883.5.25"/>
+      <domain name="ConfidentialityModifiers" codeSystem="2.16.840.1.113883.5.25"/>
+      <domain name="x_BasicConfidentialityKind" codeSystem="2.16.840.1.113883.5.25"/>
+      <domain name="x_VeryBasicConfidentialityKind" codeSystem="2.16.840.1.113883.5.25"/>
+   </domain>
+   <domain name="ContainerCap" codeSystem="2.16.840.1.113883.5.26">
+      <domain name="MedicationCap" codeSystem="2.16.840.1.113883.5.26"/>
+   </domain>
+   <domain name="ContainerSeparator" codeSystem="2.16.840.1.113883.5.27"/>
+   <domain name="ContextControl" codeSystem="2.16.840.1.113883.5.1057">
+      <domain name="ContextControlAdditive" codeSystem="2.16.840.1.113883.5.1057"/>
+      <domain name="ContextControlNonPropagating" codeSystem="2.16.840.1.113883.5.1057"/>
+      <domain name="ContextControlOverriding" codeSystem="2.16.840.1.113883.5.1057"/>
+      <domain name="ContextControlPropagating" codeSystem="2.16.840.1.113883.5.1057"/>
+   </domain>
+   <domain name="Country" codeSystem="2.16.2"/>
+   <domain name="CoverageEligibilityReason" codeSystem="2.16.840.1.113883.5.8"/>
+   <domain name="Currency" codeSystem="2.16.840.1.113883.5.1058"/>
+   <domain name="DataType" codeSystem="2.16.840.1.113883.5.1007">
+      <domain name="DataTypeDataValue" codeSystem="2.16.840.1.113883.5.1007">
+         <domain name="DataTypeAnnotated" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeAnnotatedConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeAnnotatedPhysicalQuantity" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeBag" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeBagOfConceptDescriptors" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeBagOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeBoolean" codeSystem="2.16.840.1.113883.5.1007"/>
+         <domain name="DataTypeConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeCodedSimpleValue" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeCodedValue" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeCodedWithEquivalents" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeConceptRole" codeSystem="2.16.840.1.113883.5.1007"/>
+         <domain name="DataTypeHistorical" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeHistoricalAddress" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeInstanceIdentifier" codeSystem="2.16.840.1.113883.5.1007"/>
+         <domain name="DataTypeInterval" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeIntervalOfIntegerNumbers" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeIntervalOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeUncertainProbabilisticIntervalOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypeIntervalOfPointsInTime" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeSetOfPointsInTime" codeSystem="2.16.840.1.113883.5.1007">
+                  <domain name="DataTypeEventRelatedInterval" codeSystem="2.16.840.1.113883.5.1007"/>
+                  <domain name="DataTypeGeneralTimingSpecification" codeSystem="2.16.840.1.113883.5.1007"/>
+                  <domain name="DataTypePeriodicIntervalOfTime" codeSystem="2.16.840.1.113883.5.1007"/>
+               </domain>
+            </domain>
+            <domain name="DataTypeIntervalOfRealNumbers" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeObjectIdentifier" codeSystem="2.16.840.1.113883.5.1007"/>
+         <domain name="DataTypeQuantity" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeIntegerNumber" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeMonetaryAmount" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeParametricProbabilityDistribution" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypePhysicalQuantity" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeParametricProbabilityDistributionOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypePointInTime" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeRatio" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeRealNumber" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeParametricProbabilityDistributionOfRealNumbers" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+         </domain>
+         <domain name="DataTypeSequence" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeSequenceOfBooleans" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeBinaryData" codeSystem="2.16.840.1.113883.5.1007">
+                  <domain name="DataTypeEncodedData" codeSystem="2.16.840.1.113883.5.1007">
+                     <domain name="DataTypeCharacterString" codeSystem="2.16.840.1.113883.5.1007">
+                        <domain name="DataTypeAddressPart" codeSystem="2.16.840.1.113883.5.1007"/>
+                        <domain name="DataTypeOrganizationName" codeSystem="2.16.840.1.113883.5.1007"/>
+                        <domain name="DataTypePersonNamePart" codeSystem="2.16.840.1.113883.5.1007"/>
+                     </domain>
+                  </domain>
+               </domain>
+            </domain>
+            <domain name="DataTypeSequenceOfSequencesOfDataValues" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeSequenceOfSequenceOfBooleans" codeSystem="2.16.840.1.113883.5.1007">
+                  <domain name="DataTypeSequenceOfBinaryData" codeSystem="2.16.840.1.113883.5.1007">
+                     <domain name="DataTypeSequenceOfEncodedData" codeSystem="2.16.840.1.113883.5.1007">
+                        <domain name="DataTypeSequenceOfCharacterStrings" codeSystem="2.16.840.1.113883.5.1007">
+                           <domain name="DataTypeSequenceOfPersonNameParts" codeSystem="2.16.840.1.113883.5.1007">
+                              <domain name="DataTypePersonNameType" codeSystem="2.16.840.1.113883.5.1007"/>
+                           </domain>
+                           <domain name="DataTypeSequenceOfPostalAddressParts" codeSystem="2.16.840.1.113883.5.1007">
+                              <domain name="DataTypePostalAndResidentialAddress" codeSystem="2.16.840.1.113883.5.1007"/>
+                           </domain>
+                        </domain>
+                     </domain>
+                  </domain>
+               </domain>
+            </domain>
+         </domain>
+         <domain name="DataTypeSet" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeSetOfCharacterStrings" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeSetOfConceptDescriptors" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeSetOfCodedSimpleValue" codeSystem="2.16.840.1.113883.5.1007"/>
+               <domain name="DataTypeSetOfCodedValue" codeSystem="2.16.840.1.113883.5.1007"/>
+               <domain name="DataTypeSetOfCodedWithEquivalents" codeSystem="2.16.840.1.113883.5.1007"/>
+               <domain name="DataTypeSetOfConceptDescriptors" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypeSetOfIntegerNumbers" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeSetOfIntervalsOfPhysicalQuantitiy" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeSetOfIntervalsOfPhysicalQuantitiy" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypeSetOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeSetOfRealNumbers" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeSetOfSequencesOfCharacterStrings" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeSetOfAddresses" codeSystem="2.16.840.1.113883.5.1007">
+                  <domain name="DataTypeSetOfHistoricalAddresses" codeSystem="2.16.840.1.113883.5.1007">
+                     <domain name="DataTypeHistoryOfAddress" codeSystem="2.16.840.1.113883.5.1007"/>
+                  </domain>
+               </domain>
+            </domain>
+            <domain name="DataTypeSetOfUncertainProbabilisticConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeNonParametricProbabilityDistributionOfConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypeSetOfUncertainProbabilisticIntervalOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeNonParametricProbabilityDistributionOfIntervalOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+            <domain name="DataTypeSetOfUncertainValueProbabilistic" codeSystem="2.16.840.1.113883.5.1007">
+               <domain name="DataTypeNonParametricProbabilityDistribution" codeSystem="2.16.840.1.113883.5.1007"/>
+            </domain>
+         </domain>
+         <domain name="DataTypeUncertainValueNarrative" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeUncertainNarrativeConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeUncertainValueProbabilistic" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeUncertainProbabilisticConceptDescriptor" codeSystem="2.16.840.1.113883.5.1007"/>
+            <domain name="DataTypeUncertainProbabilisticIntervalOfPhysicalQuantities" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+         <domain name="DataTypeUniversalResourceLocator" codeSystem="2.16.840.1.113883.5.1007">
+            <domain name="DataTypeTelecommunicationAddress" codeSystem="2.16.840.1.113883.5.1007"/>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="DeviceAlertLevel" codeSystem="2.16.840.1.113883.5.31"/>
+   <domain name="Diagnosis"/>
+   <domain name="DocumentCompletion" codeSystem="2.16.840.1.113883.5.33"/>
+   <domain name="DocumentStorage" codeSystem="2.16.840.1.113883.5.34">
+      <domain name="DocumentStorageActive" codeSystem="2.16.840.1.113883.5.34"/>
+   </domain>
+   <domain name="EditStatus" codeSystem="2.16.840.1.113883.5.35">
+      <domain name="ActiveEditStatus" codeSystem="2.16.840.1.113883.5.35"/>
+      <domain name="InactiveEditStatus" codeSystem="2.16.840.1.113883.5.35"/>
+      <domain name="ObsoleteEditStatus" codeSystem="2.16.840.1.113883.5.35"/>
+      <domain name="RejectedEditStatus" codeSystem="2.16.840.1.113883.5.35"/>
+   </domain>
+   <domain name="EducationLevel" codeSystem="2.16.840.1.113883.5.1077"/>
+   <domain name="ElementName"/>
+   <domain name="EmployeeJob"/>
+   <domain name="EmployeeJobClass" codeSystem="2.16.840.1.113883.5.1059">
+      <domain name="EmployeeOccupationCode" codeSystem="2.16.840.1.113883.5.1059"/>
+   </domain>
+   <domain name="EmployeeSalaryType"/>
+   <domain name="EmploymentStatus"/>
+   <domain name="EncounterAccident" codeSystem="2.16.840.1.113883.5.36"/>
+   <domain name="EncounterAcuity"/>
+   <domain name="EncounterAdmissionSource" codeSystem="2.16.840.1.113883.5.37"/>
+   <domain name="EncounterDischargeDisposition"/>
+   <domain name="EncounterReferralSource"/>
+   <domain name="EncounterReferralSource"/>
+   <domain name="EncounterSpecialCourtesy" codeSystem="2.16.840.1.113883.5.40"/>
+   <domain name="EntityClass" codeSystem="2.16.840.1.113883.5.41">
+      <domain name="EntityClassRoot" codeSystem="2.16.840.1.113883.5.41">
+         <domain name="EntityClassLivingSubject" codeSystem="2.16.840.1.113883.5.41">
+            <domain name="EntityClassNonPersonLivingSubject" codeSystem="2.16.840.1.113883.5.41"/>
+         </domain>
+         <domain name="EntityClassMaterial" codeSystem="2.16.840.1.113883.5.41">
+            <domain name="EntityClassManufacturedMaterial" codeSystem="2.16.840.1.113883.5.41">
+               <domain name="EntityClassContainer" codeSystem="2.16.840.1.113883.5.41"/>
+               <domain name="EntityClassDevice" codeSystem="2.16.840.1.113883.5.41"/>
+            </domain>
+         </domain>
+         <domain name="EntityClassOrganization" codeSystem="2.16.840.1.113883.5.41">
+            <domain name="State" codeSystem="2.16.840.1.113883.5.41"/>
+         </domain>
+         <domain name="EntityClassPlace" codeSystem="2.16.840.1.113883.5.41"/>
+      </domain>
+      <domain name="x_EntityClassDocumentReceiving" codeSystem="2.16.840.1.113883.5.41">
+         <domain name="EntityClassOrganization" codeSystem="2.16.840.1.113883.5.41">
+            <domain name="State" codeSystem="2.16.840.1.113883.5.41"/>
+         </domain>
+      </domain>
+      <domain name="x_EntityClassPersonOrOrgReceiving" codeSystem="2.16.840.1.113883.5.41">
+         <domain name="EntityClassOrganization" codeSystem="2.16.840.1.113883.5.41">
+            <domain name="State" codeSystem="2.16.840.1.113883.5.41"/>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="EntityCode" codeSystem="2.16.840.1.113883.5.1060">
+      <domain name="MaterialEntityClassType" codeSystem="2.16.840.1.113883.5.1060">
+         <domain name="CanadianProductEntityType" codeSystem="2.16.840.1.113883.6.14"/>
+         <domain name="ContainerEntityType" codeSystem="2.16.840.1.113883.5.1060">
+            <domain name="PackageEntityType" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="CompliancePackageEntityType" codeSystem="2.16.840.1.113883.5.1060">
+                  <domain name="BlisterPackEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+               </domain>
+               <domain name="KitEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+               <domain name="NonRigidContainerEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+               <domain name="RigidContainerEntityType" codeSystem="2.16.840.1.113883.5.1060">
+                  <domain name="BlisterPackEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+                  <domain name="IndividualPackageEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+                  <domain name="MultiUseContainerEntityType" codeSystem="2.16.840.1.113883.5.1060">
+                     <domain name="BottleEntityType" codeSystem="2.16.840.1.113883.5.1060">
+                        <domain name="PlasticBottleEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+                     </domain>
+                  </domain>
+               </domain>
+            </domain>
+         </domain>
+         <domain name="DeviceGenericType" codeSystem="2.16.840.1.113883.5.1060"/>
+         <domain name="DrugEntity" codeSystem="2.16.840.1.113883.5.1060">
+            <domain name="ClinicalDrug" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="ActiveIngredientDrugEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+               <domain name="ManufacturedDrug" codeSystem="2.16.840.1.113883.5.1060">
+                  <domain name="PackagedDrugProductEntity" codeSystem="2.16.840.1.113883.5.1060"/>
+               </domain>
+            </domain>
+         </domain>
+         <domain name="ExposureAgentEntityType" codeSystem="2.16.840.1.113883.5.1060">
+            <domain name="ClinicalDrug" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="ActiveIngredientDrugEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+               <domain name="ManufacturedDrug" codeSystem="2.16.840.1.113883.5.1060">
+                  <domain name="PackagedDrugProductEntity" codeSystem="2.16.840.1.113883.5.1060"/>
+               </domain>
+            </domain>
+            <domain name="NonDrugAgentEntity" codeSystem="2.16.840.1.113883.5.1060"/>
+         </domain>
+         <domain name="MaterialEntityAdditive" codeSystem="2.16.840.1.113883.5.1060"/>
+         <domain name="MedicalDevice" codeSystem="2.16.840.1.113883.5.1060">
+            <domain name="AccessMedicalDevice" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="LineAccessMedicalDevice" codeSystem="2.16.840.1.113883.5.1060"/>
+            </domain>
+            <domain name="AdministrationMedicalDevice" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="InhalerMedicalDevice" codeSystem="2.16.840.1.113883.5.1060"/>
+               <domain name="InjectionMedicalDevice" codeSystem="2.16.840.1.113883.5.1060"/>
+            </domain>
+         </domain>
+         <domain name="ProductEntityType" codeSystem="2.16.840.1.113883.6.14">
+            <domain name="HealthCareCommonProcedureCodingSystem" codeSystem="2.16.840.1.113883.6.14"/>
+         </domain>
+         <domain name="SpecimenEntityType" codeSystem="2.16.840.1.113883.5.129"/>
+      </domain>
+      <domain name="OrganizationEntityType" codeSystem="2.16.840.1.113883.5.1060">
+         <domain name="IndividualCaseSafetyReportSenderType" codeSystem="2.16.840.1.113883.5.1060"/>
+      </domain>
+      <domain name="PlaceEntityType" codeSystem="2.16.840.1.113883.5.1060">
+         <domain name="CountryEntityType" codeSystem="2.16.840.1.113883.5.28"/>
+      </domain>
+      <domain name="ResourceGroupEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+      <domain name="x_AdministeredSubstance" codeSystem="2.16.840.1.113883.5.1060">
+         <domain name="x_Medicine" codeSystem="2.16.840.1.113883.5.1060">
+            <domain name="DrugEntity" codeSystem="2.16.840.1.113883.5.1060">
+               <domain name="ClinicalDrug" codeSystem="2.16.840.1.113883.5.1060">
+                  <domain name="ActiveIngredientDrugEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+                  <domain name="ManufacturedDrug" codeSystem="2.16.840.1.113883.5.1060">
+                     <domain name="PackagedDrugProductEntity" codeSystem="2.16.840.1.113883.5.1060"/>
+                  </domain>
+               </domain>
+            </domain>
+            <domain name="VaccineEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="EntityDeterminer" codeSystem="2.16.840.1.113883.5.30">
+      <domain name="EntityDeterminerDetermined" codeSystem="2.16.840.1.113883.5.30"/>
+      <domain name="x_DeterminerInstanceKind" codeSystem="2.16.840.1.113883.5.30"/>
+   </domain>
+   <domain name="EntityHandling" codeSystem="2.16.840.1.113883.5.42"/>
+   <domain name="EntityNamePartQualifier" codeSystem="2.16.840.1.113883.5.43">
+      <domain name="OrganizationNamePartQualifier" codeSystem="2.16.840.1.113883.5.43"/>
+      <domain name="PersonNamePartQualifier" codeSystem="2.16.840.1.113883.5.43">
+         <domain name="PersonNamePartAffixTypes" codeSystem="2.16.840.1.113883.5.43"/>
+         <domain name="PersonNamePartChangeQualifier" codeSystem="2.16.840.1.113883.5.43"/>
+         <domain name="PersonNamePartMiscQualifier" codeSystem="2.16.840.1.113883.5.43"/>
+      </domain>
+   </domain>
+   <domain name="EntityNamePartType" codeSystem="2.16.840.1.113883.5.44">
+      <domain name="x_OrganizationNamePartType" codeSystem="2.16.840.1.113883.5.44"/>
+      <domain name="x_PersonNamePartType" codeSystem="2.16.840.1.113883.5.44"/>
+   </domain>
+   <domain name="EntityNameUse" codeSystem="2.16.840.1.113883.5.45">
+      <domain name="EntityNameSearchUse" codeSystem="2.16.840.1.113883.5.45"/>
+      <domain name="NameRepresentationUse" codeSystem="2.16.840.1.113883.5.45"/>
+      <domain name="OrganizationNameUse" codeSystem="2.16.840.1.113883.5.45">
+         <domain name="EntityNameSearchUse" codeSystem="2.16.840.1.113883.5.45"/>
+         <domain name="NameRepresentationUse" codeSystem="2.16.840.1.113883.5.45"/>
+      </domain>
+      <domain name="PersonNameUse" codeSystem="2.16.840.1.113883.5.45">
+         <domain name="EntityNameSearchUse" codeSystem="2.16.840.1.113883.5.45"/>
+         <domain name="NameRepresentationUse" codeSystem="2.16.840.1.113883.5.45"/>
+         <domain name="Pseudonym"/>
+      </domain>
+   </domain>
+   <domain name="EntityRisk" codeSystem="2.16.840.1.113883.5.46">
+      <domain name="MaterialDangerInfectious" codeSystem="2.16.840.1.113883.5.46"/>
+      <domain name="MaterialDangerInflammable" codeSystem="2.16.840.1.113883.5.46"/>
+   </domain>
+   <domain name="EntityStatus" codeSystem="2.16.840.1.113883.5.1061">
+      <domain name="EntityStatusNormal" codeSystem="2.16.840.1.113883.5.1061"/>
+   </domain>
+   <domain name="EquipmentAlertLevel" codeSystem="2.16.840.1.113883.5.49"/>
+   <domain name="Ethnicity" codeSystem="2.16.840.1.113883.5.50">
+      <domain name="EthnicityHispanic" codeSystem="2.16.840.1.113883.5.50">
+         <domain name="EthnicityHispanicCentralAmerican" codeSystem="2.16.840.1.113883.5.50"/>
+         <domain name="EthnicityHispanicMexican" codeSystem="2.16.840.1.113883.5.50"/>
+         <domain name="EthnicityHispanicSouthAmerican" codeSystem="2.16.840.1.113883.5.50"/>
+         <domain name="EthnicityHispanicSpaniard" codeSystem="2.16.840.1.113883.5.50"/>
+      </domain>
+   </domain>
+   <domain name="ExposureAgentEntityType" codeSystem="2.16.840.1.113883.5.1060"/>
+   <domain name="GTSAbbreviation" codeSystem="2.16.840.1.113883.5.1022">
+      <domain name="GTSAbbreviationHolidays" codeSystem="2.16.840.1.113883.5.1022">
+         <domain name="GTSAbbreviationHolidaysChristianRoman" codeSystem="2.16.840.1.113883.5.1022"/>
+         <domain name="GTSAbbreviationHolidaysUSNational" codeSystem="2.16.840.1.113883.5.1022"/>
+      </domain>
+   </domain>
+   <domain name="GenderStatus" codeSystem="2.16.840.1.113883.5.51"/>
+   <domain name="HL7CommitteeIDInRIM" codeSystem="2.16.840.1.113883.5.54"/>
+   <domain name="HL7ConformanceInclusion" codeSystem="2.16.840.1.113883.5.55">
+      <domain name="InclusionNotMandatory" codeSystem="2.16.840.1.113883.5.55">
+         <domain name="InclusionNotRequired" codeSystem="2.16.840.1.113883.5.55"/>
+      </domain>
+   </domain>
+   <domain name="HL7DefinedRoseProperty" codeSystem="2.16.840.1.113883.5.56"/>
+   <domain name="HL7ITSVersionCode" codeSystem="2.16.840.1.113883.5.1091"/>
+   <domain name="HL7StandardVersionCode" codeSystem="2.16.840.1.113883.5.1097"/>
+   <domain name="HL7UpdateMode" codeSystem="2.16.840.1.113883.5.57">
+      <domain name="SetUpdateMode" codeSystem="2.16.840.1.113883.5.57"/>
+   </domain>
+   <domain name="HPC"/>
+   <domain name="HealthcareProviderTaxonomyHIPAA" codeSystem="2.16.840.1.113883.5.53">
+      <domain name="IndividualHealthcareProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+         <domain name="AbstractChiropractersHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="ChiropractersHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="BehavioralHealthAndOrSocialServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="BehavioralHealthAndOrSocialServiceCounselorHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="NeuropsychologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PsychoanalystHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PsychologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="SocialWorkerHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="DentalServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="DentistHIPAA" codeSystem="2.16.840.1.113883.5.53">
+               <domain name="Prosthodontics" codeSystem="2.16.840.1.113883.5.53"/>
+            </domain>
+         </domain>
+         <domain name="DietaryAndOrNutritionalServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="DietaryManagerHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="NutritionistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="RegisteredDieticianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="EmergencyMedicalServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         <domain name="EyeAndVisionServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="EyeAndVisionServiceProviderTechnicianAndOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="OptometristHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="NursingServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="RegisteredNurseHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="NursingServiceRelatedProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="NursingServiceRelatedProviderTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="OtherPhysicianProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="OtherPhysicianOsteopathHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="OtherServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="OtherServiceProviderContractorHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="OtherServiceProviderSpecialistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="VeterinarianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="OtherTechnologistAndOrTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="CardiologySpecialistOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="HealthInformationSpecialistOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="HealthInformationTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="OtherTechnologistOrTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="OtherTechnologistOrTechnicianProviderHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PathologySpecialistOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PathologyTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="RadiologicTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="PharmacyServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="PharmacistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PharmacyServiceProviderTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="PhysicianAssistantsAndOrAdvancedPracticeNursingProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="ClinicalNurseSpecialistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="NursePractitionerHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PhysicianAssistantHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="PhysicianHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="PhysicianAndOrOsteopathHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="PodiatricMedicineAndOrSurgeryServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="PodiatristHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="RespiratoryAndOrRehabilitativeAndOrRestorativeProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="OccupationalTherapistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="PhysicalTherapistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="RehabilitationCounselorHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="RespiratoryAndOrRehabilitativeAndOrRestorativeSpecialistOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+            <domain name="RespiratoryTherapistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="SpeechAndOrLanguageAndOrHearingServiceProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="AudiologistHIPAA" codeSystem="2.16.840.1.113883.5.53">
+               <domain name="Audiologist" codeSystem="2.16.840.1.113883.5.53">
+                  <domain name="CardiologyTechnicianHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+               </domain>
+            </domain>
+            <domain name="SpeechAndOrLanguageAndOrHearingServiceSpecialistOrTechnologistHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+      </domain>
+      <domain name="OrganizationalHealthcareProviderHIPAA" codeSystem="2.16.840.1.113883.5.53">
+         <domain name="AbstractHealthcareProviderAgencyHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="HealthcareProviderAgencyHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="AmbulatoryHealthCareFacilityHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="AmbulatoryClinicOrCenterHIPAA" codeSystem="2.16.840.1.113883.5.53">
+               <domain name="CardClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="RadDiagTherPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+         </domain>
+         <domain name="HospitalPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+            <domain name="ChronicCareFacility" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="GeneralAcuteCareHospital" codeSystem="2.16.840.1.113883.5.53">
+               <domain name="GeneralAcuteCareHospital" codeSystem="2.16.840.1.113883.5.53"/>
+            </domain>
+            <domain name="MilitaryHospital" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="RehabilitationHospital" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="HospitalUnitPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+            <domain name="ERPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="ICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="PedsICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+            <domain name="PedsPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="PedsICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+         </domain>
+         <domain name="LaboratoryHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         <domain name="ManagedCareOrganizationHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         <domain name="NursingOrCustodialCarePracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+         <domain name="ResidentialTreatmentPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+         <domain name="SupplierHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="DurableMedicalEquipmentAndOrMedicalSupplySupplierHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+         <domain name="TransportationServiceHIPAA" codeSystem="2.16.840.1.113883.5.53">
+            <domain name="AmbulanceHIPAA" codeSystem="2.16.840.1.113883.5.53"/>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="HtmlLinkType" codeSystem="2.16.840.1.113883.5.58"/>
+   <domain name="HumanActSite" codeSystem="2.16.840.1.113883.5.1052"/>
+   <domain name="HumanLanguage" codeSystem="2.16.840.1.113883.6.121"/>
+   <domain name="I9C"/>
+   <domain name="ICD-10-CA"/>
+   <domain name="IETF3066"/>
+   <domain name="ISO3166-2"/>
+   <domain name="ImagingSubjectOrientation" codeSystem="2.16.840.1.113883.5.6"/>
+   <domain name="IndustryClassificationSystem" codeSystem="2.16.840.1.113883.6.85"/>
+   <domain name="IntegrityCheckAlgorithm" codeSystem="2.16.840.1.113883.5.1010"/>
+   <domain name="InvoiceElementModifier"/>
+   <domain name="JobTitleName"/>
+   <domain name="LN"/>
+   <domain name="LanguageAbilityMode" codeSystem="2.16.840.1.113883.5.60"/>
+   <domain name="LanguageAbilityProficiency" codeSystem="2.16.840.1.113883.5.61"/>
+   <domain name="ListOwnershipLevel"/>
+   <domain name="LivingArrangement" codeSystem="2.16.840.1.113883.5.63">
+      <domain name="Institution" codeSystem="2.16.840.1.113883.5.63"/>
+   </domain>
+   <domain name="LocalMarkupIgnore" codeSystem="2.16.840.1.113883.5.65"/>
+   <domain name="LocalRemoteControlState" codeSystem="2.16.840.1.113883.5.66"/>
+   <domain name="MDC"/>
+   <domain name="MDFAttributeType" codeSystem="2.16.840.1.113883.5.74"/>
+   <domain name="MDFSubjectAreaPrefix" codeSystem="2.16.840.1.113883.5.78"/>
+   <domain name="MEDCIN"/>
+   <domain name="ManagedParticipationStatus" codeSystem="2.16.840.1.113883.5.1062">
+      <domain name="ManagedParticipationStatusNormal" codeSystem="2.16.840.1.113883.5.1062"/>
+   </domain>
+   <domain name="ManufacturerModelName"/>
+   <domain name="MapRelationship" codeSystem="2.16.840.1.113883.5.67"/>
+   <domain name="MaritalStatus" codeSystem="2.16.840.1.113883.5.2">
+      <domain name="MaritalStatusUB92" codeSystem="2.16.840.1.113883.6.21"/>
+   </domain>
+   <domain name="MaterialForm" codeSystem="2.16.840.1.113883.19.5.3">
+      <domain name="OrderableDrugForm" codeSystem="2.16.840.1.113883.5.85">
+         <domain name="AdministrableDrugForm" codeSystem="2.16.840.1.113883.5.85">
+            <domain name="DropsDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+         </domain>
+         <domain name="DispensableDrugForm" codeSystem="2.16.840.1.113883.5.85">
+            <domain name="GasDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+            <domain name="GasLiquidMixture" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="AerosolDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="FoamDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="VaginalFoam" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+            </domain>
+            <domain name="GasSolidSpray" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="InhalantDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+            </domain>
+            <domain name="Liquid" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="LiquidCleanser" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="OilDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="SolutionDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="DropsDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+                  <domain name="IrrigationSolution" codeSystem="2.16.840.1.113883.5.85"/>
+                  <domain name="OralSolution" codeSystem="2.16.840.1.113883.5.85"/>
+                  <domain name="TopicalSolution" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+            </domain>
+            <domain name="LiquidLiquidEmulsion" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="CreamDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="VaginalCream" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+               <domain name="LotionDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="OintmentDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="VaginalOintment" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+            </domain>
+            <domain name="LiquidSolidSuspension" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="GelDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="VaginalGel" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+               <domain name="PasteDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="SuspensionDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="OralSuspension" codeSystem="2.16.840.1.113883.5.85">
+                     <domain name="ExtendedReleaseSuspension" codeSystem="2.16.840.1.113883.5.85"/>
+                  </domain>
+               </domain>
+            </domain>
+            <domain name="SolidDrugForm" codeSystem="2.16.840.1.113883.5.85">
+               <domain name="BarDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="BarSoapDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+               <domain name="PadDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="PatchDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="TransdermalPatch" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+               <domain name="PillDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="CapsuleDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                     <domain name="OralCapsule" codeSystem="2.16.840.1.113883.5.85">
+                        <domain name="EntericCoatedCapsule" codeSystem="2.16.840.1.113883.5.85"/>
+                        <domain name="ExtendedReleaseCapsule" codeSystem="2.16.840.1.113883.5.85"/>
+                     </domain>
+                  </domain>
+                  <domain name="TabletDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                     <domain name="OralTablet" codeSystem="2.16.840.1.113883.5.85">
+                        <domain name="BuccalTablet" codeSystem="2.16.840.1.113883.5.85"/>
+                        <domain name="EntericCoatedTablet" codeSystem="2.16.840.1.113883.5.85"/>
+                        <domain name="ExtendedReleaseTablet" codeSystem="2.16.840.1.113883.5.85"/>
+                     </domain>
+                  </domain>
+               </domain>
+               <domain name="PowderDrugForm" codeSystem="2.16.840.1.113883.5.85">
+                  <domain name="TopicalPowder" codeSystem="2.16.840.1.113883.5.85"/>
+               </domain>
+               <domain name="SuppositoryDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+               <domain name="SwabDrugForm" codeSystem="2.16.840.1.113883.5.85"/>
+            </domain>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="MaterialType" codeSystem="2.16.840.1.113883.5.73"/>
+   <domain name="MdfHmdMetSourceType" codeSystem="2.16.840.1.113883.5.75"/>
+   <domain name="MdfHmdRowType" codeSystem="2.16.840.1.113883.5.76"/>
+   <domain name="MdfRmimRowType" codeSystem="2.16.840.1.113883.5.77"/>
+   <domain name="MediaType" codeSystem="2.16.840.1.113883.5.79">
+      <domain name="ApplicationMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="AudioMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="ImageMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="ModelMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="MultipartMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="TextMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+      <domain name="VideoMediaType" codeSystem="2.16.840.1.113883.5.79"/>
+   </domain>
+   <domain name="MessageCondition" codeSystem="2.16.840.1.113883.5.80"/>
+   <domain name="MessageWaitingPriority" codeSystem="2.16.840.1.113883.5.1083"/>
+   <domain name="ModifyIndicator" codeSystem="2.16.840.1.113883.5.81"/>
+   <domain name="NAICS"/>
+   <domain name="NDA"/>
+   <domain name="NMMDS"/>
+   <domain name="NUBC-UB92"/>
+   <domain name="NullFlavor" codeSystem="2.16.840.1.113883.5.1008">
+      <domain name="NoInformation" codeSystem="2.16.840.1.113883.5.1008">
+         <domain name="Other" codeSystem="2.16.840.1.113883.5.1008"/>
+         <domain name="Unknown" codeSystem="2.16.840.1.113883.5.1008">
+            <domain name="AskedButUnknown" codeSystem="2.16.840.1.113883.5.1008"/>
+         </domain>
+      </domain>
+   </domain>
+   <domain name="ObservationInterpretation" codeSystem="2.16.840.1.113883.5.83">
+      <domain name="ObservationInterpretationChange" codeSystem="2.16.840.1.113883.5.83"/>
+      <domain name="ObservationInterpretationExceptions" codeSystem="2.16.840.1.113883.5.83"/>
+      <domain name="ObservationInterpretationNormality" codeSystem="2.16.840.1.113883.5.83">
+         <domain name="ObservationInterpretationNormalityAbnormal" codeSystem="2.16.840.1.113883.5.83">
+            <domain name="ObservationInterpretationNormalityAlert" codeSystem="2.16.840.1.113883.5.83"/>
+            <domain name="ObservationInterpretationNormalityHigh" codeSystem="2.16.840.1.113883.5.83"/>
+            <domain name="ObservationInterpretationNormalityLow" codeSystem="2.16.840.1.113883.5.83"/>
+         </domain>
+      </domain>
+      <domain name="ObservationInterpretationSusceptibility" codeSystem="2.16.840.1.113883.5.83"/>
+   </domain>
+   <domain name="ObservationMethod" codeSystem="2.16.840.1.113883.5.84">
+      <domain name="DecisionObservationMethod" codeSystem="2.16.840.1.113883.5.84">
+         <domain name="AlgorithmicDecisionObservationMethod" codeSystem="2.16.840.1.113883.5.84"/>
+      </domain>
+      <domain name="VerificationMethod" codeSystem="2.16.840.1.113883.5.84"/>
+      <domain name="_0272" codeSystem="2.16.840.1.113883.5.84"/>
+      <domain name="_0275a" codeSystem="2.16.840.1.113883.5.84"/>
+      <domain name="_0280" codeSystem="2.16.840.1.113883.5.84"/>
+      <domain name="x_AdverseEventCausalityAssessmentMethods" codeSystem="2.16.840.1.113883.5.84"/>
+   </domain>
+   <domain name="ObservationValue" codeSystem="2.16.840.1.113883.5.1063">
+      <domain name="AllergyTestValue" codeSystem="2.16.840.1.113883.5.1063"/>
+      <domain name="AnnotationValue" codeSystem="2.16.840.1.113883.5.1063">
+         <domain name="ECGAnnotationValue" codeSystem="2.16.840.1.113883.5.1063">
+            <domain name="ECGBeatTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            <domain name="ECGContourObservationTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            <domain name="ECGNoiseTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            <domain name="ECGRhythmTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+            <domain name="ECGWaveComponentTypeMDC" codeSystem="2.16.840.1.113883.6.24"/>
+         </domain>
+      </domain>
+      <domain name="CanadianDiagnosisCode" codeSystem="2.16.840.1.113883.6.94"/>
+      <domain name="CanadianWorkInjuryOrDiseaseCode" codeSystem="2.16.840.1.113883.6.86"/>
+      <domain name="IndicationValue" codeSystem="2.16.840.1.113883.5.1063">
+         <domain name="DiagnosisValue" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="OtherIndicationValue" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="SymptomValue" codeSystem="2.16.840.1.113883.5.1063"/>
+      </domain>
+      <domain name="IndividualCaseSafetyReportValueDomains" codeSystem="2.16.840.1.113883.5.1063">
+         <domain name="CaseSeriousnessCriteria" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="DeviceManufacturerEvaluationInterpretation" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="DeviceManufacturerEvaluationMethod" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="DeviceManufacturerEvaluationResult" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="PertinentReactionRelatedness" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="ProductCharacterization" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="ReactionActionTaken" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="SubjectReaction" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="SubjectReactionEmphasis" codeSystem="2.16.840.1.113883.5.1063"/>
+         <domain name="SubjectReactionOutcome" codeSystem="2.16.840.1.113883.5.1063"/>
+      </domain>
+      <domain name="InjuryObservationValue" codeSystem="2.16.840.1.113883.5.1063"/>
+      <domain name="IntoleranceValue" codeSystem="2.16.840.1.113883.5.1063"/>
+      <domain name="IssueTriggerObservationValue" codeSystem="2.16.840.1.113883.5.1063"/>
+      <domain name="PartialCompletionScale" codeSystem="2.16.840.1.113883.5.1063"/>
+      <domain name="SeverityObservation" codeSystem="2.16.840.1.113883.5.1063"/>
+   </domain>
+   <domain name="OrganizationIndustryClass"/>
+   <domain name="OrganizationNameType" codeSystem="2.16.840.1.113883.5.1016"/>
+   <domain name="OtherIndicationValue" codeSystem="2.16.840.1.113883.5.1063"/>
+   <domain name="PNDS"/>
+   <domain name="ParameterizedDataType" codeSystem="2.16.840.1.113883.5.87">
+      <domain name="ParameterizedDataTypeBag" codeSystem="2.16.840.1.113883.5.87"/>
+      <domain name="ParameterizedDataTypeSequence" codeSystem="2.16.840.1.113883.5.87"/>
+      <domain name="ParameterizedDataTypeSet" codeSystem="2.16.840.1.113883.5.87">
+         <domain name="ParameterizedDataTypeEventRelatedInterval" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeInterval" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypePeriodicInterval" codeSystem="2.16.840.1.113883.5.87"/>
+      </domain>
+      <domain name="ParameterizedDataTypeType" codeSystem="2.16.840.1.113883.5.87">
+         <domain name="ParameterizedDataTypeAnnotated" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeHistorical" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeNonParametricProbabilityDistribution" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeParametricProbabilityDistribution" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeUncertainValueNarrative" codeSystem="2.16.840.1.113883.5.87"/>
+         <domain name="ParameterizedDataTypeUncertainValueProbabilistic" codeSystem="2.16.840.1.113883.5.87"/>
+      </domain>
+   </domain>
+   <domain name="ParticipationFunction" codeSystem="2.16.840.1.113883.5.88"/>
+   <domain name="ParticipationMode" codeSystem="2.16.840.1.113883.5.1064">
+      <domain name="ParticipationModeElectronicData" codeSystem="2.16.840.1.113883.5.1064"/>
+      <domain name="ParticipationModeVerbal" codeSystem="2.16.840.1.113883.5.1064"/>
+      <domain name="ParticipationModeWritten" codeSystem="2.16.840.1.113883.5.1064"/>
+      <domain name="x_PhysicalVerbalParticipationMode" codeSystem="2.16.840.1.113883.5.1064"/>
+   </domain>
+   <domain name="ParticipationSignature" codeSystem="2.16.840.1.113883.5.89"/>
+   <domain name="ParticipationType" codeSystem="2.16.840.1.113883.5.90">
+      <domain name="ParticipationAncillary" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="ParticipationIndirectTarget" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="ParticipationInformationGenerator" codeSystem="2.16.840.1.113883.5.90">
+         <domain name="ParticipationInformationTranscriber" codeSystem="2.16.840.1.113883.5.90"/>
+      </domain>
+      <domain name="ParticipationInformationRecipient" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="ParticipationPhysicalPerformer" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="ParticipationTargetDirect" codeSystem="2.16.840.1.113883.5.90">
+         <domain name="ParticipationTargetDevice" codeSystem="2.16.840.1.113883.5.90"/>
+         <domain name="ParticipationTargetSubject" codeSystem="2.16.840.1.113883.5.90"/>
+      </domain>
+      <domain name="ParticipationTargetLocation" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="ParticipationVerifier" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_EncounterParticipant" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_EncounterPerformerParticipation" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_InformationRecipient" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_ParticipationAuthorPerformer" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_ParticipationEntVrf" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_ParticipationPrfEntVrf" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_ParticipationVrfRespSprfWit" codeSystem="2.16.840.1.113883.5.90"/>
+      <domain name="x_ServiceEventPerformer" codeSystem="2.16.840.1.113883.5.90"/>
+   </domain>
+   <domain name="PatientImportance" codeSystem="2.16.840.1.113883.5.1075"/>
+   <domain name="PaymentTerms" codeSystem="2.16.840.1.113883.5.91"/>
+   <domain name="PeriodicIntervalOfTimeAbbreviation"/>
+   <domain name="PersonDisabilityType" codeSystem="2.16.840.1.113883.5.93">
+      <domain name="MobilityImpaired" codeSystem="2.16.840.1.113883.5.93"/>
+   </domain>
+   <domain name="PostalAddressUse" codeSystem="2.16.840.1.113883.5.1012">
+      <domain name="AddressUse" codeSystem="2.16.840.1.113883.5.1012">
+         <domain name="HomeAddressUse" codeSystem="2.16.840.1.113883.5.1012"/>
+         <domain name="WorkPlaceAddressUse" codeSystem="2.16.840.1.113883.5.1012"/>
+      </domain>
+      <domain name="NameRepresentationUse" codeSystem="2.16.840.1.113883.5.45"/>
+   </domain>
+   <domain name="PrescriptionDispenseFilterCode" codeSystem="2.16.840.1.113883.5.1096"/>
+   <domain name="ProbabilityDistributionType" codeSystem="2.16.840.1.113883.5.1020"/>
+   <domain name="ProcedureMethod" codeSystem="2.16.840.1.113883.5.1065"/>
+   <domain name="ProcessingID" codeSystem="2.16.840.1.113883.5.100"/>
+   <domain name="ProcessingMode" codeSystem="2.16.840.1.113883.5.101"/>
+   <domain name="ProviderCodes">
+      <domain name="AgenciesProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="AllopathicandOsteopathicPhysiciansProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="AllergyandImmunologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="AnesthesiologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="DermatologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="EmergencyMedicineProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="FamilyPracticeProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="InternalMedicineProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="MedicalGeneticsProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="NuclearMedicineProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="ObstetricsGynecologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="OrthopaedicSurgeryProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="OtolaryngologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PainMedicineProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PathologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PediatricsProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PhysicalMedicineandRehabilitationProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PlasticSurgeryProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PreventiveMedicineProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PsychiatryandNeurologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="RadiologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SurgeryProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="AmbulatoryHealthCareFacilitiesProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="ClinicCenterProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="BehavioralHealthandSocialServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="CounselorProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="NeuropsychologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PsychologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SocialWorkerProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="ChiropracticProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="ChiropractorProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="DentalProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="DentistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="DietaryandNutritionalServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="DietitianRegisteredProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="NutritionistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="EmergencyMedicalServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="EyeandVisionServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="OptometristProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="TechnicianTechnologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="GroupProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="HospitalUnitsProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="HospitalsProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="ChronicDiseaseHospitalProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="GeneralAcuteCareHospitalProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="MilitaryHospitalProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="RehabilitationHospitalProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="LaboratoriesProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="ManagedCareOrganizationsProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      <domain name="NursingServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="RegisteredNurseProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="NursingServiceRelatedProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="TechnicianProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="NursingandCustodialCareFacilitiesProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="AssistedLivingFacilityProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="CustodialCareFacilityProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SkilledNursingFacilityProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="OtherServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="ContractorProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+            <domain name="VeterinarianProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         </domain>
+      </domain>
+      <domain name="PharmacyServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="PharmacistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="PhysicianAssistantsandAdvancedPracticeNursingProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="ClinicalNurseSpecialistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="NursePractitionerProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+            <domain name="PhysicianAssistantProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         </domain>
+      </domain>
+      <domain name="PodiatricMedicineandSurgeryProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="PodiatristProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="ResidentialTreatmentFacilitiesProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="SubstanceAbuseDisorderRehabilitationFacilityProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="RespiratoryRehabilitativeandRestorativeServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="OccupationalTherapistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="PhysicalTherapistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="RehabilitationCounselorProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="RespiratoryTherapistCertifiedProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="RespiratoryTherapistRegisteredProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistTechnologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="RespiteCareFacilityProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="RespiteCareProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="SpeechLanguageandHearingProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="AudiologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpeechLanguageTechnologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="SuppliersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="DurableMedicalEquipmentandMedicalSuppliesProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="TechnologistTechnicianandOtherTechnicalServiceProvidersProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="RadiologicTechnologistProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistTechnologistCardiovascularProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistTechnologistHealthInformationProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistTechnologistOtherProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="SpecialistTechnologistPathologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="TechnicianHealthInformationProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="TechnicianOtherProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+         <domain name="TechnicianPathologyProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+      <domain name="TransportationServicesProviderCodes" codeSystem="2.16.840.1.113883.6.101">
+         <domain name="AmbulanceProviderCodes" codeSystem="2.16.840.1.113883.6.101"/>
+      </domain>
+   </domain>
+   <domain name="QueryParameterValue" codeSystem="2.16.840.1.113883.5.1096">
+      <domain name="PrescriptionDispenseFilterCode" codeSystem="2.16.840.1.113883.5.1096"/>
+   </domain>
+   <domain name="QueryPriority" codeSystem="2.16.840.1.113883.5.102"/>
+   <domain name="QueryQuantityUnit" codeSystem="2.16.840.1.113883.5.1066"/>
+   <domain name="QueryRequestLimit"/>
+   <domain name="QueryResponse" codeSystem="2.16.840.1.113883.5.1067"/>
+   <domain name="QueryStatusCode" codeSystem="2.16.840.1.113883.5.103"/>
+   <domain name="RC"/>
+   <domain name="RCFB"/>
+   <domain name="RCV2"/>
+   <domain name="Race" codeSystem="2.16.840.1.113883.5.104">
+      <domain name="RaceAsian" codeSystem="2.16.840.1.113883.5.104"/>
+      <domain name="RaceBlackOrAfricanAmerican" codeSystem="2.16.840.1.113883.5.104">
+         <domain name="RaceAfricanAmericanAfrican" codeSystem="2.16.840.1.113883.5.104"/>
+      </domain>
+      <domain name="RaceHawaiianOrPacificIsland" codeSystem="2.16.840.1.113883.5.104">
+         <domain name="RacePacificIslandMelanesian" codeSystem="2.16.840.1.113883.5.104"/>
+         <domain name="RacePacificIslandMicronesian" codeSystem="2.16.840.1.113883.5.104"/>
+         <domain name="RacePacificIslandPolynesian" codeSystem="2.16.840.1.113883.5.104"/>
+      </domain>
+      <domain name="RaceNativeAmerican" codeSystem="2.16.840.1.113883.5.104">
+         <domain name="RaceAlaskanNative" codeSystem="2.16.840.1.113883.5.104">
+            <domain name="RaceAlaskanIndian" codeSystem="2.16.840.1.113883.5.104">
+               <domain name="RaceAlaskanIndianAthabascan" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceSoutheastAlaskanIndian" codeSystem="2.16.840.1.113883.5.104">
+                  <domain name="RaceSoutheastAlaskanIndianTlingit" codeSystem="2.16.840.1.113883.5.104"/>
+                  <domain name="RaceSoutheastAlaskanIndianTsimshian" codeSystem="2.16.840.1.113883.5.104"/>
+               </domain>
+            </domain>
+            <domain name="RaceAlaskanNativeAleut" codeSystem="2.16.840.1.113883.5.104">
+               <domain name="RaceAlaskanNativeAleutAlutiiq" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeAleutBristolBay" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeAleutChugach" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeAleutKoniag" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeAleutUnangan" codeSystem="2.16.840.1.113883.5.104"/>
+            </domain>
+            <domain name="RaceAlaskanNativeEskimo" codeSystem="2.16.840.1.113883.5.104">
+               <domain name="RaceAlaskanNativeInupiatEskimo" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeSiberianEskimo" codeSystem="2.16.840.1.113883.5.104"/>
+               <domain name="RaceAlaskanNativeYupikEskimo" codeSystem="2.16.840.1.113883.5.104"/>
+            </domain>
+         </domain>
+         <domain name="RaceAmericanIndian" codeSystem="2.16.840.1.113883.5.104">
+            <domain name="Catawba" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianApache" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianArapaho" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianAssiniboineSioux" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCaddo" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCahuilla" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCalifornia" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChemakuan" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCherokee" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCheyenne" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChickahominy" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChinook" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChippewa" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChippewaCree" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChoctaw" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianChumash" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianComanche" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCoushatta" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCreek" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianCupeno" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianDelaware" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianDiegueno" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianEasternTribes" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianGrosVentres" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianHoopa" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianIowa" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianIroquois" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianKickapoo" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianKiowa" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianKlallam" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianLongIsland" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianLuiseno" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianMaidu" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianMiami" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianMicmac" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianNavajo" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianNorthwestTribes" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianOttawa" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPaiute" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPassamaquoddy" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPawnee" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPeoria" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPequot" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPima" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPomo" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPonca" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPotawatomi" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPueblo" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianPugetSoundSalish" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianSacFox" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianSeminole" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianSerrano" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianShawnee" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianShoshone" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianShoshonePaiute" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianSioux" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianTohonoOOdham" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianUmpqua" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianUte" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianWampanoag" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianWashoe" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianWinnebago" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianYuman" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceAmericanIndianYurok" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="RaceCanadianLatinIndian" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="Wiyot" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="Yaqui" codeSystem="2.16.840.1.113883.5.104"/>
+            <domain name="Yokuts" codeSystem="2.16.840.1.113883.5.104"/>
+         </domain>
+      </domain>
+      <domain name="RaceWhite" codeSystem="2.16.840.1.113883.5.104">
+         <domain name="RaceWhiteArab" codeSystem="2.16.840.1.113883.5.104"/>
+         <domain name="RaceWhiteEuropean" codeSystem="2.16.840.1.113883.5.104"/>
+         <domain name="RaceWhiteMiddleEast" codeSystem="2.16.840.1.113883.5.104"/>
+      </domain>
+   </domain>
+   <domain name="Realm"/>
+   <domain name="RelationalName"/>
+   <domain name="RelationalOperator" codeSystem="2.16.840.1.113883.5.105"/>
+   <domain name="RelationshipConjunction" codeSystem="2.16.840.1.113883.5.106"/>
+   <domain name="ReligiousAffiliation" codeSystem="2.16.840.1.113883.5.1076"/>
+   <domain name="ResponseLevel" codeSystem="2.16.840.1.113883.5.108"/>
+   <domain name="ResponseModality" codeSystem="2.16.840.1.113883.5.109"/>
+   <domain name="ResponseMode" codeSystem="2.16.840.1.113883.19.5.1"/>
+   <domain name="RoleClass" codeSystem="2.16.840.1.113883.5.110">
+      <domain name="RoleClassRoot" codeSystem="2.16.840.1.113883.5.110">
+         <domain name="RoleClassAssociative" codeSystem="2.16.840.1.113883.5.110">
+            <domain name="RoleClassMutualRelationship" codeSystem="2.16.840.1.113883.5.110">
+               <domain name="RoleClassRelationshipFormal" codeSystem="2.16.840.1.113883.5.110">
+                  <domain name="LicensedEntityRole" codeSystem="2.16.840.1.113883.5.110"/>
+                  <domain name="RoleClassAgent" codeSystem="2.16.840.1.113883.5.110">
+                     <domain name="RoleClassAssignedEntity" codeSystem="2.16.840.1.113883.5.110">
+                        <domain name="RoleClassContact" codeSystem="2.16.840.1.113883.5.110"/>
+                     </domain>
+                  </domain>
+                  <domain name="RoleClassEmployee" codeSystem="2.16.840.1.113883.5.110"/>
+                  <domain name="RoleClassInvestigationSubject" codeSystem="2.16.840.1.113883.5.110"/>
+               </domain>
+            </domain>
+            <domain name="RoleClassPassive" codeSystem="2.16.840.1.113883.5.110">
+               <domain name="RoleClassDistributedMaterial" codeSystem="2.16.840.1.113883.5.110"/>
+               <domain name="RoleClassManufacturedProduct" codeSystem="2.16.840.1.113883.5.110"/>
+               <domain name="RoleClassServiceDeliveryLocation" codeSystem="2.16.840.1.113883.5.110"/>
+            </domain>
+         </domain>
+         <domain name="RoleClassOntological" codeSystem="2.16.840.1.113883.5.110">
+            <domain name="RoleClassIsSpeciesEntity" codeSystem="2.16.840.1.113883.5.110"/>
+         </domain>
+         <domain name="RoleClassPartitive" codeSystem="2.16.840.1.113883.5.110">
+            <domain name="RoleClassIngredientEntity" codeSystem="2.16.840.1.113883.5.110">
+               <domain name="RoleClassInactiveIngredient" codeSystem="2.16.840.1.113883.5.110"/>
+            </domain>
+            <domain name="RoleClassLocatedEntity" codeSystem="2.16.840.1.113883.5.110"/>
+            <domain name="RoleClassSpecimen" codeSystem="2.16.840.1.113883.5.110"/>
+         </domain>
+         <domain name="x_AccommodationRequestorRole" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_DocumentEntrySubject" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_DocumentSubject" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_InformationRecipientRole" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_RoleClassAccommodationRequestor" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_RoleClassCoverage" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_RoleClassCoverageInvoice" codeSystem="2.16.840.1.113883.5.110"/>
+         <domain name="x_RoleClassCredentialedEntity" codeSystem="2.16.840.1.113883.5.110">
+            <domain name="LicensedEntityRole" codeSystem="2.16.840.1.113883.5.110"/>
+         </domain>
+         <domain name="x_RoleClassPayeePolicyRelationship" codeSystem="2.16.840.1.113883.5.110"/>
+      </domain>
+   </domain>
+   <domain name="RoleCode" codeSystem="2.16.840.1.113883.5.111">
+      <domain name="AdmistrativeLocationRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="AffiliationRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="AssignedRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="ClinicalOrganizationRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="CommissioningPartyRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="ContactRoleType" codeSystem="2.16.840.1.113883.5.111">
+         <domain name="AdministrativeContactRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      </domain>
+      <domain name="CoverageRoleType" codeSystem="2.16.840.1.113883.5.111">
+         <domain name="StudentRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      </domain>
+      <domain name="DeviceOperatorType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="EmployeeRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="HealthcareProviderRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="LicensedRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="LivingSubjectProductionClass" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="MedicationGeneralizationRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="MemberRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="NDCRelatedDrugEntityType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="OrganizationPartRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="PersonalRelationshipRoleType" codeSystem="2.16.840.1.113883.5.111">
+         <domain name="FamilyMember" codeSystem="2.16.840.1.113883.5.111">
+            <domain name="Child" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="AdoptedChild" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="ChildInLaw" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="FosterChild" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="NaturalChild" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="StepChild" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+            <domain name="FamilyMember" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="GrandChild" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="Grandparent" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="GreatGrandparent" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="NieceNephew" codeSystem="2.16.840.1.113883.5.111"/>
+            <domain name="Parent" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="NaturalParent" codeSystem="2.16.840.1.113883.5.111">
+                  <domain name="NaturalParent" codeSystem="2.16.840.1.113883.5.111"/>
+               </domain>
+               <domain name="ParentInLaw" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="StepParent" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+            <domain name="Sibling" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="HalfSibling" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="NaturalSibling" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="SiblingInLaw" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="StepSibling" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+            <domain name="SignificantOtherRoleType" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="Spouse" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+         </domain>
+      </domain>
+      <domain name="QualifiedRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="ResearchSubjectRoleBasis" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="ServiceDeliveryLocationRoleType" codeSystem="2.16.840.1.113883.5.111">
+         <domain name="DedicatedServiceDeliveryLocationRoleType" codeSystem="2.16.840.1.113883.5.111">
+            <domain name="DedicatedClinicalLocationRoleType" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="DiagTherPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                  <domain name="CVDiagTherPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="GIDiagTherPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="RadDiagTherPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+               </domain>
+               <domain name="HospitalPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                  <domain name="ChronicCareFacility" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="GeneralAcuteCareHospital" codeSystem="2.16.840.1.113883.5.53">
+                     <domain name="GeneralAcuteCareHospital" codeSystem="2.16.840.1.113883.5.53"/>
+                  </domain>
+                  <domain name="MilitaryHospital" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="RehabilitationHospital" codeSystem="2.16.840.1.113883.5.53"/>
+               </domain>
+               <domain name="HospitalUnitPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                  <domain name="ERPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="ICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                     <domain name="PedsICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  </domain>
+                  <domain name="PedsPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                     <domain name="PedsICUPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  </domain>
+               </domain>
+               <domain name="NursingOrCustodialCarePracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+               <domain name="OutpatientFacilityPracticeSetting" codeSystem="2.16.840.1.113883.5.111">
+                  <domain name="CardClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="EndocrinologyClinic" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="GIClinicPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="HemClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="IDClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="MedOncClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="NephClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="OrthoClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="PedsClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="RheumClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+                  <domain name="SurgClinPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+               </domain>
+               <domain name="ResidentialTreatmentPracticeSetting" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+            <domain name="DedicatedNonClinicalLocationRoleType" codeSystem="2.16.840.1.113883.5.111">
+               <domain name="MobileUnit" codeSystem="2.16.840.1.113883.5.111"/>
+            </domain>
+         </domain>
+         <domain name="IncidentalServiceDeliveryLocationRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      </domain>
+      <domain name="SpecimenRoleType" codeSystem="2.16.840.1.113883.5.111">
+         <domain name="QualitySpecimenRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+      </domain>
+      <domain name="x_AdverseEventReporterQualificationRoleCode" codeSystem="2.16.840.1.113883.5.111"/>
+      <domain name="x_PayeeRelationshipRoleType" codeSystem="2.16.840.1.113883.5.111"/>
+   </domain>
+   <domain name="RoleLinkType" codeSystem="2.16.840.1.113883.5.107">
+      <domain name="RelatedLinkType" codeSystem="2.16.840.1.113883.5.107"/>
+   </domain>
+   <domain name="RoleStatus" codeSystem="2.16.840.1.113883.5.1068">
+      <domain name="RoleStatusNormal" codeSystem="2.16.840.1.113883.5.1068"/>
+   </domain>
+   <domain name="RouteOfAdministration" codeSystem="2.16.840.1.113883.5.112">
+      <domain name="RouteByMethod" codeSystem="2.16.840.1.113883.5.112">
+         <domain name="Chew" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Diffusion" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Dissolve" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Douche" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ElectroOsmosisRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Enema" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Flush" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Implantation" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="InfiltrationRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Infusion" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntravenousInfusion" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="Inhalation" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="NasalInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="NebulizationInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="OralInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="Injection" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntraarterialInjection" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="IntracardiacInjection" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="IntracoronaryInjection" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="IntramuscularInjection" codeSystem="2.16.840.1.113883.5.112"/>
+            <domain name="IntravenousInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="Insertion" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Instillation" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="RectalInstillation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IontophoresisRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Irrigation" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="UrinaryBladderIrrigation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="LavageRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="MucosalAbsorptionRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Nebulization" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Rinse" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SuppositoryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Swish" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TopicalAbsorptionRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TopicalApplication" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Transdermal" codeSystem="2.16.840.1.113883.5.112"/>
+      </domain>
+      <domain name="RouteBySite" codeSystem="2.16.840.1.113883.5.112">
+         <domain name="AmnioticFluidSacRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="BiliaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="BodySurfaceRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="BuccalMucosaRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="CecostomyRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="CervicalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="DentalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="EndocervicalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="EnteralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="EpiduralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ExtraAmnioticRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ExtracorporealCirculationRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="GastricRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="GenitourinaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="GingivalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="HairRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="InterameningealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="InterstitialRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraabdominalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraarterialRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntraarterialInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IntraarticularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrabronchialRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrabursalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracardiacRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntracardiacInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IntracartilaginousRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracaudalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracavernosalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracavitaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracerebralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracervicalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracisternalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracornealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracoronalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntracoronaryRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntracoronaryInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IntracorpusCavernosumRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntradermalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntradiscalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraductalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraduodenalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraduralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraepidermalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraepithelialRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraesophagealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntragastricRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrailealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntralesionalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraluminalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntralymphaticRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntramedullaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntramuscularRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntramuscularInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IntraocularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraosseousRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraovarianRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrapericardialRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraperitonealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrapleuralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraprostaticRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrapulmonaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrasinalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntraspinalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrasternalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrasynovialRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratendinousRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratesticularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrathecalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrathoracicRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratrachealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratubularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratumorRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntratympanicRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntrauterineRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntravascularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntravenousRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="IntravenousInjection" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="IntraventricularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntravesicleRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="IntravitrealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="JejunumRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="LacrimalPunctaRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="LaryngealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="LingualRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="MucousMembraneRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="NailRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="NasalRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="NasalInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="OphthalmicRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="OralRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="OralInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="OromucosalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="OropharyngealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="OticRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ParanasalSinusesRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ParenteralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PerianalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PeriarticularRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PeriduralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PerinealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PerineuralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PeriodontalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="PulmonaryRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="RectalRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="RectalInstillation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="RespiratoryTractRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="OralInhalation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="RetrobulbarRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="ScalpRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SinusUnspecifiedRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SkinRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SoftTissueRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SubarachnoidRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SubconjunctivalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SubcutaneousRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SublesionalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SublingualRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="SubmucosalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TracheostomyRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="Transdermal" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TransmucosalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TransplacentalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TranstrachealRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="TranstympanicRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="UreteralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="UrethralRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="UrinaryBladderRoute" codeSystem="2.16.840.1.113883.5.112">
+            <domain name="UrinaryBladderIrrigation" codeSystem="2.16.840.1.113883.5.112"/>
+         </domain>
+         <domain name="UrinaryTractRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="VaginalRoute" codeSystem="2.16.840.1.113883.5.112"/>
+         <domain name="VitreousHumourRoute" codeSystem="2.16.840.1.113883.5.112"/>
+      </domain>
+   </domain>
+   <domain name="SQLConjunction"/>
+   <domain name="Sequencing" codeSystem="2.16.840.1.113883.5.113"/>
+   <domain name="SetOperator" codeSystem="2.16.840.1.113883.5.1069"/>
+   <domain name="SoftwareName"/>
+   <domain name="SpecialAccommodation"/>
+   <domain name="StyleType" codeSystem="2.16.840.1.113883.5.1095">
+      <domain name="FontStyle"/>
+      <domain name="ListStyle" codeSystem="2.16.840.1.113883.5.1095">
+         <domain name="OrderedListStyle" codeSystem="2.16.840.1.113883.5.1095"/>
+         <domain name="UnorderedListStyle" codeSystem="2.16.840.1.113883.5.1095"/>
+      </domain>
+      <domain name="TableRuleStyle" codeSystem="2.16.840.1.113883.5.1095"/>
+   </domain>
+   <domain name="SubstitutionCondition" codeSystem="2.16.840.1.113883.5.1071">
+      <domain name="Conditional" codeSystem="2.16.840.1.113883.5.1071"/>
+      <domain name="x_SubstitutionConditionNoneOrUnconditional" codeSystem="2.16.840.1.113883.5.1071"/>
+   </domain>
+   <domain name="TableCellHorizontalAlign" codeSystem="2.16.840.1.113883.5.131"/>
+   <domain name="TableCellScope" codeSystem="2.16.840.1.113883.5.132"/>
+   <domain name="TableCellVerticalAlign" codeSystem="2.16.840.1.113883.5.133"/>
+   <domain name="TableFrame" codeSystem="2.16.840.1.113883.5.134"/>
+   <domain name="TableRules" codeSystem="2.16.840.1.113883.5.136"/>
+   <domain name="TargetAwareness" codeSystem="2.16.840.1.113883.5.137"/>
+   <domain name="TelecommunicationAddressUse" codeSystem="2.16.840.1.113883.5.1011">
+      <domain name="AddressUse" codeSystem="2.16.840.1.113883.5.1012">
+         <domain name="HomeAddressUse" codeSystem="2.16.840.1.113883.5.1012"/>
+         <domain name="WorkPlaceAddressUse" codeSystem="2.16.840.1.113883.5.1012"/>
+      </domain>
+   </domain>
+   <domain name="TimingEvent" codeSystem="2.16.840.1.113883.5.139"/>
+   <domain name="TribalEntityUS" codeSystem="2.16.840.1.113883.5.140">
+      <domain name="NativeEntityAlaska" codeSystem="2.16.840.1.113883.5.140"/>
+      <domain name="NativeEntityContiguous" codeSystem="2.16.840.1.113883.5.140"/>
+   </domain>
+   <domain name="URLScheme" codeSystem="2.16.840.1.113883.5.143">
+      <domain name="x_PhoneOrEmailURLScheme" codeSystem="2.16.840.1.113883.5.143"/>
+      <domain name="x_PhoneURLScheme" codeSystem="2.16.840.1.113883.5.143"/>
+   </domain>
+   <domain name="UnitsOfMeasureCaseInsensitive" codeSystem="2.16.840.1.113883.5.141">
+      <domain name="UnitOfMeasureAtomBaseUnitInsens" codeSystem="2.16.840.1.113883.5.141"/>
+      <domain name="UnitOfMeasureAtomInsens" codeSystem="2.16.840.1.113883.5.141"/>
+      <domain name="UnitOfMeasurePrefixInsens" codeSystem="2.16.840.1.113883.5.1072"/>
+   </domain>
+   <domain name="UnitsOfMeasureCaseSensitive" codeSystem="2.16.840.1.113883.5.141">
+      <domain name="UnitOfMeasureAtomBaseUnitSens" codeSystem="2.16.840.1.113883.5.141"/>
+      <domain name="UnitOfMeasureAtomSens" codeSystem="2.16.840.1.113883.5.141"/>
+      <domain name="UnitOfMeasurePrefixSens" codeSystem="2.16.840.1.113883.5.1072"/>
+   </domain>
+   <domain name="VaccineManufacturer" codeSystem="2.16.840.1.113883.5.144"/>
+   <domain name="VaccineType" codeSystem="2.16.840.1.113883.5.145"/>
+   <domain name="ValueSetOperator" codeSystem="2.16.840.1.113883.5.1069"/>
+   <domain name="ValueSetPropertyId" codeSystem="2.16.840.1.113883.5.1087"/>
+   <domain name="ValueSetStatus"/>
+   <domain name="VerificationMethod" codeSystem="2.16.840.1.113883.5.84"/>
+   <domain name="VocabularyDomainQualifier" codeSystem="2.16.840.1.113883.5.147">
+      <domain name="Extensibility" codeSystem="2.16.840.1.113883.5.147"/>
+      <domain name="RealmOfUse" codeSystem="2.16.840.1.113883.5.147"/>
+   </domain>
+</domainMap>

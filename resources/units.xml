@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="ASCII"?>
+<units codeSystem="2.16.840.1.113883.6.8" codeSystemName="UCUM">
+   <base max="7"/>
+   <base-unit code="m" dimension="L"/>
+   <base-unit code="s" dimension="T"/>
+   <base-unit code="g" dimension="M"/>
+   <base-unit code="rad" dimension="A"/>
+   <base-unit code="K" dimension="C"/>
+   <base-unit code="C" dimension="Q"/>
+   <base-unit code="cd" dimension="F"/>
+   <prefix code="Y" value="1000000000000000000000000"/>
+   <prefix code="Z" value="1000000000000000000000"/>
+   <prefix code="E" value="1000000000000000000"/>
+   <prefix code="P" value="1000000000000000"/>
+   <prefix code="T" value="1000000000000"/>
+   <prefix code="G" value="1000000000"/>
+   <prefix code="M" value="1000000"/>
+   <prefix code="k" value="1000"/>
+   <prefix code="h" value="100"/>
+   <prefix code="da" value="10"/>
+   <prefix code="d" value="1e-1"/>
+   <prefix code="c" value="1e-2"/>
+   <prefix code="m" value="1e-3"/>
+   <prefix code="u" value="1e-6"/>
+   <prefix code="n" value="1e-9"/>
+   <prefix code="p" value="1e-12"/>
+   <prefix code="f" value="1e-15"/>
+   <prefix code="a" value="1e-18"/>
+   <prefix code="z" value="1e-21"/>
+   <prefix code="y" value="1e-24"/>
+   <prefix code="Ki" value="1024"/>
+   <prefix code="Mi" value="1048576"/>
+   <prefix code="Gi" value="1073741824"/>
+   <prefix code="Ti" value="1099511627776"/>
+   <function-pair code="Cel" class="org.regenstrief.ucum.functions.Cel"/>
+   <function-pair code="degF" class="org.regenstrief.ucum.functions.degF"/>
+   <function-pair code="ln" class="org.regenstrief.ucum.functions.ln"/>
+   <function-pair code="ld" class="org.regenstrief.ucum.functions.ld"/>
+   <function-pair code="lg" class="org.regenstrief.ucum.functions.lg"/>
+   <function-pair code="2ln" class="org.regenstrief.ucum.functions.lnTimes2"/>
+   <function-pair code="2lg" class="org.regenstrief.ucum.functions.lgTimes2"/>
+   <function-pair code="10lg" class="org.regenstrief.ucum.functions.lgTimes10"/>
+   <function-pair code="20lg" class="org.regenstrief.ucum.functions.lgTimes20"/>
+   <function-pair code="inv" class="org.regenstrief.ucum.functions.inv"/>
+   <function-pair code="pH" class="org.regenstrief.ucum.functions.pH"/>
+   <function-pair code="hpX" class="org.regenstrief.ucum.functions.hpX"/>
+   <function-pair code="hpC" class="org.regenstrief.ucum.functions.hpC"/>
+   <function-pair code="100tan" class="org.regenstrief.ucum.functions.tanTimes100"/>
+   <unit code="10*" magnitude="10" canonical="1" metric="no"/>
+   <unit code="10^" magnitude="10" canonical="1" metric="no"/>
+   <unit code="%" magnitude="1e-2" canonical="1" metric="no"/>
+   <unit code="[pi]" magnitude="3.14159265358979" canonical="1" metric="no"/>
+   <unit code="sr" magnitude="1" canonical="rad2" metric="yes"/>
+   <unit code="Hz" magnitude="1" canonical="s-1" metric="yes"/>
+   <unit code="N" magnitude="1000" canonical="m.s-2.g" metric="yes"/>
+   <unit code="Pa" magnitude="1000" canonical="m-1.s-2.g" metric="yes"/>
+   <unit code="J" magnitude="1000" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="W" magnitude="1000" canonical="m2.s-3.g" metric="yes"/>
+   <unit code="A" magnitude="1" canonical="s-1.C" metric="yes"/>
+   <unit code="V" magnitude="1000" canonical="m2.s-2.g.C-1" metric="yes"/>
+   <unit code="F" magnitude="1e-3" canonical="m-2.s2.g-1.C2" metric="yes"/>
+   <unit code="Ohm" magnitude="1000" canonical="m2.s-1.g.C-2" metric="yes"/>
+   <unit code="S" magnitude="1e-3" canonical="m-2.s.g-1.C2" metric="yes"/>
+   <unit code="Wb" magnitude="1000" canonical="m2.s-1.g.C-1" metric="yes"/>
+   <special-unit code="Cel" magnitude="1" canonical="K" function-pair="cel" metric="yes"/>
+   <unit code="T" magnitude="1000" canonical="s-1.g.C-1" metric="yes"/>
+   <unit code="H" magnitude="1000" canonical="m2.g.C-2" metric="yes"/>
+   <unit code="lm" magnitude="1" canonical="rad2.cd" metric="yes"/>
+   <unit code="lx" magnitude="1" canonical="m-2.rad2.cd" metric="yes"/>
+   <unit code="Bq" magnitude="1" canonical="s-1" metric="yes"/>
+   <unit code="Gy" magnitude="1" canonical="m2.s-2" metric="yes"/>
+   <unit code="Sv" magnitude="1" canonical="m2.s-2" metric="yes"/>
+   <unit code="deg" magnitude="0.0174532925199433" canonical="rad" metric="no"/>
+   <unit code="'" magnitude="0.000290888208665722" canonical="rad" metric="no"/>
+   <unit code="''" magnitude="4.84813681109536e-6" canonical="rad" metric="no"/>
+   <unit code="gon" magnitude="0.01" canonical="rad" metric="no"/>
+   <unit code="l" magnitude="1e-3" canonical="m3" metric="yes"/>
+   <unit code="L" magnitude="1e-3" canonical="m3" metric="yes"/>
+   <unit code="ar" magnitude="100" canonical="m2" metric="yes"/>
+   <unit code="min" magnitude="60" canonical="s" metric="no"/>
+   <unit code="h" magnitude="3600" canonical="s" metric="no"/>
+   <unit code="d" magnitude="86400" canonical="s" metric="no"/>
+   <unit code="a_t" magnitude="31556925." canonical="s" metric="no"/>
+   <unit code="a_j" magnitude="31558.e3" canonical="s" metric="no"/>
+   <unit code="a_g" magnitude="3155695.e1" canonical="s" metric="no"/>
+   <unit code="a" magnitude="31558.e3" canonical="s" metric="no"/>
+   <unit code="wk" magnitude="604800" canonical="s" metric="no"/>
+   <unit code="mo_s" magnitude="2551443." canonical="s" metric="no"/>
+   <unit code="mo_j" magnitude="26298.e2" canonical="s" metric="no"/>
+   <unit code="mo_g" magnitude="2629746." canonical="s" metric="no"/>
+   <unit code="mo" magnitude="26298.e2" canonical="s" metric="no"/>
+   <unit code="t" magnitude="1000000" canonical="g" metric="yes"/>
+   <unit code="bar" magnitude="100000000" canonical="m-1.s-2.g" metric="yes"/>
+   <unit code="[e]" magnitude="1.60217733e-19" canonical="C" metric="yes"/>
+   <unit code="eV" magnitude="1.60217733e-16" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="u" magnitude="1.6605402e-24" canonical="g" metric="yes"/>
+   <unit code="AU" magnitude="149597870.e3" canonical="m" metric="no"/>
+   <unit code="pc" magnitude="3085678.e10" canonical="m" metric="yes"/>
+   <unit code="[c]" magnitude="299792458" canonical="m.s-1" metric="yes"/>
+   <unit code="[h]" magnitude="6.6260755e-21" canonical="m2.s-1.g" metric="yes"/>
+   <unit code="[k]" magnitude="1.380658e-20" canonical="m2.s-2.g.K-1" metric="yes"/>
+   <unit code="[eps_0]" magnitude="8.854187817e-15" canonical="m-3.s2.g-1.C2" metric="yes"/>
+   <unit code="[m_e]" magnitude="9.1093897e-28" canonical="g" metric="yes"/>
+   <unit code="[mu_0]" magnitude="0.00125663706143592" canonical="m.g.C-2" metric="yes"/>
+   <unit code="[m_p]" magnitude="1.6726231e-24" canonical="g" metric="yes"/>
+   <unit code="[G]" magnitude="6.67259e-14" canonical="m3.s-2.g-1" metric="yes"/>
+   <unit code="[g]" magnitude="9.80665" canonical="m.s-2" metric="yes"/>
+   <unit code="[ly]" magnitude="94607.e11" canonical="m" metric="yes"/>
+   <unit code="Ky" magnitude="100" canonical="m-1" metric="yes"/>
+   <unit code="Gal" magnitude="1e-2" canonical="m.s-2" metric="yes"/>
+   <unit code="dyn" magnitude="1e-2" canonical="m.s-2.g" metric="yes"/>
+   <unit code="erg" magnitude="1e-4" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="P" magnitude="100" canonical="m-1.s-1.g" metric="yes"/>
+   <unit code="St" magnitude="1e-4" canonical="m2.s-1" metric="yes"/>
+   <unit code="Mx" magnitude="1e-5" canonical="m2.s-1.g.C-1" metric="yes"/>
+   <unit code="G" magnitude="1e-1" canonical="s-1.g.C-1" metric="yes"/>
+   <unit code="Oe" magnitude="79.5774715459477" canonical="m-1.s-1.C" metric="yes"/>
+   <unit code="Gb" magnitude="0.795774715459477" canonical="s-1.C" metric="yes"/>
+   <unit code="sb" magnitude="10000" canonical="m-2.cd" metric="yes"/>
+   <unit code="Lmb" magnitude="3183.09886183791" canonical="m-2.cd" metric="yes"/>
+   <unit code="ph" magnitude="1e-4" canonical="m-2.rad2.cd" metric="yes"/>
+   <unit code="Ci" magnitude="37.e9" canonical="s-1" metric="yes"/>
+   <unit code="R" magnitude="2.58e-7" canonical="g-1.C" metric="yes"/>
+   <unit code="Bi" magnitude="10" canonical="s-1.C" metric="yes"/>
+   <unit code="RAD" magnitude="1e-2" canonical="m2.s-2" metric="yes"/>
+   <unit code="REM" magnitude="1e-2" canonical="m2.s-2" metric="yes"/>
+   <unit code="[in_i]" magnitude="254e-4" canonical="m" metric="no"/>
+   <unit code="[mesh_i]" magnitude="393700787401575e-13" canonical="m-1" metric="no"/>
+   <unit code="[hd_i]" magnitude="1016e-4" canonical="m" metric="no"/>
+   <unit code="[ft_i]" magnitude="3048e-4" canonical="m" metric="no"/>
+   <unit code="[yd_i]" magnitude="9144e-4" canonical="m" metric="no"/>
+   <unit code="[mi_i]" magnitude="1609344e-3" canonical="m" metric="no"/>
+   <unit code="[mil_i]" magnitude="254e-7" canonical="m" metric="no"/>
+   <unit code="[fth_i]" magnitude="18288e-4" canonical="m" metric="no"/>
+   <unit code="[nmi_i]" magnitude="1852" canonical="m" metric="no"/>
+   <unit code="[kn_i]" magnitude="514444444444444e-15" canonical="m.s-1" metric="no"/>
+   <unit code="[sin_i]" magnitude="64516e-8" canonical="m2" metric="no"/>
+   <unit code="[sft_i]" magnitude="9290304e-8" canonical="m2" metric="no"/>
+   <unit code="[syd_i]" magnitude="83612736e-8" canonical="m2" metric="no"/>
+   <unit code="[cin_i]" magnitude="16387064e-12" canonical="m3" metric="no"/>
+   <unit code="[cft_i]" magnitude="28316846592e-12" canonical="m3" metric="no"/>
+   <unit code="[bf_i]" magnitude="2359737216e-12" canonical="m3" metric="no"/>
+   <unit code="[cr_i]" magnitude="3624556363776e-12" canonical="m3" metric="no"/>
+   <unit code="[cyd_i]" magnitude="764554857984e-12" canonical="m3" metric="no"/>
+   <unit code="[cml_i]" magnitude="5.06707479097498e-10" canonical="m2" metric="no"/>
+   <unit code="[ft_us]" magnitude="304800609601219e-15" canonical="m" metric="no"/>
+   <unit code="[yd_us]" magnitude="914401828803658e-15" canonical="m" metric="no"/>
+   <unit code="[in_us]" magnitude="254000508001016e-16" canonical="m" metric="no"/>
+   <unit code="[rd_us]" magnitude="5.03" canonical="m" metric="no"/>
+   <unit code="[ch_us]" magnitude="20.1" canonical="m" metric="no"/>
+   <unit code="[lk_us]" magnitude="0.201" canonical="m" metric="no"/>
+   <unit code="[rch_us]" magnitude="304800609601219e-13" canonical="m" metric="no"/>
+   <unit code="[rlk_us]" magnitude="304800609601219e-15" canonical="m" metric="no"/>
+   <unit code="[fth_us]" magnitude="182880365760732e-14" canonical="m" metric="no"/>
+   <unit code="[fur_us]" magnitude="201." canonical="m" metric="no"/>
+   <unit code="[mi_us]" magnitude="161.e1" canonical="m" metric="no"/>
+   <unit code="[acr_us]" magnitude="405.e1" canonical="m2" metric="no"/>
+   <unit code="[srd_us]" magnitude="25.3" canonical="m2" metric="no"/>
+   <unit code="[smi_us]" magnitude="259.e4" canonical="m2" metric="no"/>
+   <unit code="[mil_us]" magnitude="254000508001016e-19" canonical="m" metric="no"/>
+   <unit code="[sct]" magnitude="259.e4" canonical="m2" metric="no"/>
+   <unit code="[twp]" magnitude="932.e5" canonical="m2" metric="no"/>
+   <unit code="[in_br]" magnitude="0.02539998" canonical="m" metric="no"/>
+   <unit code="[ft_br]" magnitude="0.3047998" canonical="m" metric="no"/>
+   <unit code="[rd_br]" magnitude="5.03" canonical="m" metric="no"/>
+   <unit code="[ch_br]" magnitude="20.1" canonical="m" metric="no"/>
+   <unit code="[lk_br]" magnitude="0.201" canonical="m" metric="no"/>
+   <unit code="[fth_br]" magnitude="1.828799" canonical="m" metric="no"/>
+   <unit code="[pc_br]" magnitude="0.76" canonical="m" metric="no"/>
+   <unit code="[yd_br]" magnitude="0.9143993" canonical="m" metric="no"/>
+   <unit code="[mi_br]" magnitude="1609.343" canonical="m" metric="no"/>
+   <unit code="[nmi_br]" magnitude="1853.183" canonical="m" metric="no"/>
+   <unit code="[kn_br]" magnitude="0.5147729" canonical="m.s-1" metric="no"/>
+   <unit code="[acr_br]" magnitude="4046.850" canonical="m2" metric="no"/>
+   <unit code="[gal_us]" magnitude="3785411784e-12" canonical="m3" metric="no"/>
+   <unit code="[bbl_us]" magnitude="158987294928e-12" canonical="m3" metric="no"/>
+   <unit code="[qt_us]" magnitude="946352946e-12" canonical="m3" metric="no"/>
+   <unit code="[pt_us]" magnitude="473176473e-12" canonical="m3" metric="no"/>
+   <unit code="[gil_us]" magnitude="11829411825e-14" canonical="m3" metric="no"/>
+   <unit code="[foz_us]" magnitude="295735295625e-16" canonical="m3" metric="no"/>
+   <unit code="[fdr_us]" magnitude="36966911953125e-19" canonical="m3" metric="no"/>
+   <unit code="[min_us]" magnitude="61611519921875e-21" canonical="m3" metric="no"/>
+   <unit code="[crd_us]" magnitude="3624556363776e-12" canonical="m3" metric="no"/>
+   <unit code="[bu_us]" magnitude="0.0352391" canonical="m3" metric="no"/>
+   <unit code="[pk_us]" magnitude="0.00880977" canonical="m3" metric="no"/>
+   <unit code="[dqt_us]" magnitude="0.00110122" canonical="m3" metric="no"/>
+   <unit code="[dpt_us]" magnitude="0.000550610" canonical="m3" metric="no"/>
+   <unit code="[gal_wi]" magnitude="0.00440488" canonical="m3" metric="no"/>
+   <unit code="[gal_br]" magnitude="0.00454609" canonical="m3" metric="no"/>
+   <unit code="[pk_br]" magnitude="0.00909218" canonical="m3" metric="no"/>
+   <unit code="[bu_br]" magnitude="0.0363687" canonical="m3" metric="no"/>
+   <unit code="[qt_br]" magnitude="0.00113652" canonical="m3" metric="no"/>
+   <unit code="[pt_br]" magnitude="0.000568261" canonical="m3" metric="no"/>
+   <unit code="[gil_br]" magnitude="0.000142065" canonical="m3" metric="no"/>
+   <unit code="[foz_br]" magnitude="2.84131e-5" canonical="m3" metric="no"/>
+   <unit code="[fdr_br]" magnitude="3.55163e-6" canonical="m3" metric="no"/>
+   <unit code="[min_br]" magnitude="5.91939e-8" canonical="m3" metric="no"/>
+   <unit code="[tbs_us]" magnitude="1478676478125e-17" canonical="m3" metric="no"/>
+   <unit code="[tsp_us]" magnitude="492892159375e-17" canonical="m3" metric="no"/>
+   <unit code="[cup_us]" magnitude="2365882365e-13" canonical="m3" metric="no"/>
+   <unit code="[gr]" magnitude="0.06479891" canonical="g" metric="no"/>
+   <unit code="[lb_av]" magnitude="453.5924" canonical="g" metric="no"/>
+   <unit code="[oz_av]" magnitude="28.34952" canonical="g" metric="no"/>
+   <unit code="[dr_av]" magnitude="1.771845" canonical="g" metric="no"/>
+   <unit code="[scwt_av]" magnitude="45359.24" canonical="g" metric="no"/>
+   <unit code="[lcwt_av]" magnitude="50802.35" canonical="g" metric="no"/>
+   <unit code="[ston_av]" magnitude="907184.7" canonical="g" metric="no"/>
+   <unit code="[lton_av]" magnitude="1016047." canonical="g" metric="no"/>
+   <unit code="[stone_av]" magnitude="6350.293" canonical="g" metric="no"/>
+   <unit code="[lbf_av]" magnitude="4448.22" canonical="m.s-2.g" metric="no"/>
+   <unit code="[pwt_tr]" magnitude="1.555174" canonical="g" metric="no"/>
+   <unit code="[oz_tr]" magnitude="31.10348" canonical="g" metric="no"/>
+   <unit code="[lb_tr]" magnitude="373.2417" canonical="g" metric="no"/>
+   <unit code="[sc_ap]" magnitude="1.295978" canonical="g" metric="no"/>
+   <unit code="[dr_ap]" magnitude="3.887935" canonical="g" metric="no"/>
+   <unit code="[oz_ap]" magnitude="31.10348" canonical="g" metric="no"/>
+   <unit code="[lb_ap]" magnitude="373.2417" canonical="g" metric="no"/>
+   <unit code="circ" magnitude="6.28318530717959" canonical="rad" metric="no"/>
+   <unit code="sph" magnitude="12.5663706143592" canonical="rad2" metric="no"/>
+   <special-unit code="[degF]" magnitude="555555555555556e-15" canonical="K" function-pair="degf" metric="no"/>
+   <special-unit code="Np" magnitude="1" canonical="1" function-pair="ln" metric="yes"/>
+   <special-unit code="B" magnitude="1" canonical="1" function-pair="lg" metric="yes"/>
+   <special-unit code="B[SPL]" magnitude="2e-2" canonical="m-1.s-2.g" function-pair="2lg" metric="yes"/>
+   <special-unit code="B[V]" magnitude="1000" canonical="m2.s-2.g.C-1" function-pair="2lg" metric="yes"/>
+   <special-unit code="B[mV]" magnitude="1" canonical="m2.s-2.g.C-1" function-pair="2lg" metric="yes"/>
+   <special-unit code="B[uV]" magnitude="1e-3" canonical="m2.s-2.g.C-1" function-pair="2lg" metric="yes"/>
+   <special-unit code="B[W]" magnitude="1000" canonical="m2.s-3.g" function-pair="lg" metric="yes"/>
+   <special-unit code="B[kW]" magnitude="1000000" canonical="m2.s-3.g" function-pair="lg" metric="yes"/>
+   <unit code="mol" magnitude="60221367.e16" canonical="1" metric="yes"/>
+   <unit code="eq" magnitude="60221367.e16" canonical="1" metric="yes"/>
+   <special-unit code="[pH]" magnitude="60221367.e19" canonical="m-3" function-pair="pH" metric="no"/>
+   <unit code="kat" magnitude="60221367.e16" canonical="s-1" metric="yes"/>
+   <unit code="U" magnitude="10036895.e9" canonical="s-1" metric="yes"/>
+   <unit code="osm" magnitude="60221367.e16" canonical="1" metric="yes"/>
+   <unit code="g%" magnitude="10000" canonical="m-3.g" metric="yes"/>
+   <unit code="[drp]" magnitude="833333333333334e-22" canonical="m3" metric="no"/>
+   <unit code="[diop]" magnitude="1" canonical="m-1" metric="no"/>
+   <special-unit code="[p'diop]" magnitude="1" canonical="rad" function-pair="100tan" metric="no"/>
+   <special-unit code="%[slope]" magnitude="1" canonical="rad" function-pair="100tan" metric="no"/>
+   <unit code="[Ch]" magnitude="0.000318309886183791" canonical="m" metric="no"/>
+   <unit code="[lne]" magnitude="211666666666667e-17" canonical="m" metric="no"/>
+   <unit code="[pnt]" magnitude="352777777777778e-18" canonical="m" metric="no"/>
+   <unit code="[pca]" magnitude="423333333333333e-17" canonical="m" metric="no"/>
+   <unit code="[pnt_pr]" magnitude="0.00035146" canonical="m" metric="no"/>
+   <unit code="[pca_pr]" magnitude="0.0042175" canonical="m" metric="no"/>
+   <unit code="[pied]" magnitude="0.3248" canonical="m" metric="no"/>
+   <unit code="[pouce]" magnitude="0.02707" canonical="m" metric="no"/>
+   <unit code="[ligne]" magnitude="0.002255" canonical="m" metric="no"/>
+   <unit code="[didot]" magnitude="0.0003759" canonical="m" metric="no"/>
+   <unit code="[cicero]" magnitude="0.004511" canonical="m" metric="no"/>
+   <unit code="st" magnitude="1" canonical="m3" metric="yes"/>
+   <unit code="Ao" magnitude="1.e-10" canonical="m" metric="no"/>
+   <unit code="b" magnitude="1e-28" canonical="m2" metric="no"/>
+   <unit code="atm" magnitude="101325000" canonical="m-1.s-2.g" metric="no"/>
+   <unit code="gf" magnitude="9.80665" canonical="m.s-2.g" metric="yes"/>
+   <unit code="mho" magnitude="1e-3" canonical="m-2.s.g-1.C2" metric="yes"/>
+   <unit code="att" magnitude="980665.e2" canonical="m-1.s-2.g" metric="no"/>
+   <unit code="[psi]" magnitude="689476.e1" canonical="m-1.s-2.g" metric="no"/>
+   <unit code="[S]" magnitude="1e-13" canonical="s" metric="no"/>
+   <unit code="m[H2O]" magnitude="980665.e1" canonical="m-1.s-2.g" metric="yes"/>
+   <unit code="m[Hg]" magnitude="1333220.e2" canonical="m-1.s-2.g" metric="yes"/>
+   <unit code="[in_i'H2O]" magnitude="249089." canonical="m-1.s-2.g" metric="no"/>
+   <unit code="[in_i'Hg]" magnitude="3386379." canonical="m-1.s-2.g" metric="no"/>
+   <unit code="[car_m]" magnitude="0.2" canonical="g" metric="no"/>
+   <unit code="[car_Au]" magnitude="416666666666667e-16" canonical="1" metric="no"/>
+   <unit code="[smoot]" magnitude="17018e-4" canonical="m" metric="no"/>
+   <unit code="[HPF]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[LPF]" magnitude="100" canonical="1" metric="no"/>
+   <unit code="[hnsf'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[MET]" magnitude="5.8e-11" canonical="m3.s-1.g-1" metric="no"/>
+   <special-unit code="[hp_X]" magnitude="1" canonical="1" function-pair="hpX" metric="no"/>
+   <special-unit code="[hp_C]" magnitude="1" canonical="1" function-pair="hpC" metric="no"/>
+   <unit code="[PRU]" magnitude="1333220.e5" canonical="m-4.s-1.g" metric="no"/>
+   <unit code="[iU]" magnitude="1" canonical="1" metric="yes"/>
+   <unit code="[arb'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[USP'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[GPL'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[MPL'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[APL'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[beth'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[todd'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[dye'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[smgy'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[bdsk'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[ka'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[knk'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[mclg'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[tb'U]" magnitude="1" canonical="1" metric="no"/>
+   <unit code="[ppb]" magnitude="1e-9" canonical="1" metric="no"/>
+   <unit code="[ppm]" magnitude="1e-6" canonical="1" metric="no"/>
+   <unit code="[ppth]" magnitude="1e-3" canonical="1" metric="no"/>
+   <unit code="[pptr]" magnitude="1e-12" canonical="1" metric="no"/>
+   <unit code="cal_[15]" magnitude="4185.80" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="cal_[20]" magnitude="4181.90" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="cal_m" magnitude="4190.02" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="cal_IT" magnitude="4186.8" canonical="m2.s-2.g" metric="yes"/>
+   <unit code="cal_th" magnitude="4184." canonical="m2.s-2.g" metric="yes"/>
+   <unit code="cal" magnitude="4184." canonical="m2.s-2.g" metric="yes"/>
+   <unit code="[Cal]" magnitude="4184.e3" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_39]" magnitude="105967.e1" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_59]" magnitude="105480.e1" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_60]" magnitude="105468.e1" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_m]" magnitude="105587.e1" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_IT]" magnitude="1055055.85262" canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu_th]" magnitude="1054350." canonical="m2.s-2.g" metric="no"/>
+   <unit code="[Btu]" magnitude="1054350." canonical="m2.s-2.g" metric="no"/>
+   <unit code="[HP]" magnitude="745700." canonical="m2.s-3.g" metric="no"/>
+   <special-unit code="bit_s" magnitude="1" canonical="1" function-pair="ld" metric="no"/>
+   <unit code="bit" magnitude="1" canonical="1" metric="yes"/>
+   <unit code="By" magnitude="8" canonical="1" metric="yes"/>
+   <unit code="Bd" magnitude="1" canonical="s-1" metric="yes"/>
+</units>

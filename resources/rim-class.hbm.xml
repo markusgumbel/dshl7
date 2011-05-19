@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping><!--THIS FILE IS GENERATED AUTOMATICALLY - DO NOT MODIFY.
+
+The contents of this file are subject to the Health Level-7 Public
+License Version 1.0 (the "License"); you may not use this file except
+in compliance with the License. You may obtain a copy of the License
+at http://www.hl7.org/HPL/
+
+Software distributed under the License is distributed on an "AS IS"
+basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
+the License for the specific language governing rights and limitations
+under the License.
+
+The Original Code is all this file.
+
+The Initial Developer of the Original Code is automatically generated
+from HL7 copyrighted standards specification which may be subject to
+different license. Portions created by Initial Developer are Copyright
+(C) 2002-2004 Health Level Seven, Inc. All Rights Reserved.
+
+THIS FILE IS GENERATED AUTOMATICALLY - DO NOT MODIFY.-->
+   <class discriminator-value="Act" name="org.hl7.rim.BasicAct" table="act" lazy="false">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicActImpl" abstract="true">
+         <property name="classCode">
+            <column name="classCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.6</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <property name="moodCode">
+            <column name="moodCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.1001</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.Act" abstract="true">
+            <subclass name="org.hl7.rim.impl.ActImpl" discriminator-value="ActImpl"><!-- lazy true doesn't handle polymorphism right -->
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <bag name="outboundRelationship" cascade="all" inverse="true">
+                  <key column="sourceInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicActRelationship"/>
+               </bag>
+               <bag name="inboundRelationship" cascade="all" inverse="true">
+                  <key column="targetInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicActRelationship"/>
+               </bag>
+               <bag name="participation" cascade="all" inverse="true">
+                  <key column="actInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicParticipation"/>
+               </bag>
+               <set name="id" mutable="false" table="Act_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="actInternalId"/>
+                  <element type="II">
+                     <column name="root" sql-type="VARCHAR(555)" length="555" index="Act_id_IDX"/>
+                     <column name="extension" sql-type="VARCHAR(555)" length="555" index="Act_id_IDX"/>
+                  </element>
+               </set>
+               <property name="code" type="CD" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="code_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_xml"/>
+               </property>
+               <property name="negationInd" type="BL"/>
+               <property name="derivationExpr" type="ST"/>
+               <property name="title" type="ED"/>
+               <property name="text" type="ED"/>
+               <property name="statusCode" type="CS">
+                  <column name="statusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="statusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="effectiveTime" type="SET&lt;TS&gt;" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="effectiveTime_low" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="effectiveTime_high" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="effectiveTime_xml"/>
+               </property>
+               <property name="activityTime" type="SET&lt;TS&gt;" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="activityTime_low" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="activityTime_high" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="activityTime_xml"/>
+               </property>
+               <property name="availabilityTime" type="TS"/>
+               <set name="priorityCode" mutable="false" table="Act_priorityCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="ActInternalId"/>
+                  <element type="CE">
+                     <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="xml"/>
+                  </element>
+               </set>
+               <set name="confidentialityCode" mutable="false" table="Act_confidentialityCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="ActInternalId"/>
+                  <element type="CE">
+                     <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="xml"/>
+                  </element>
+               </set>
+               <property name="repeatNumber" type="IVL&lt;INT&gt;"/>
+               <property name="interruptibleInd" type="BL"/>
+               <property name="levelCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="levelCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="levelCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="levelCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="levelCode_xml"/>
+               </property>
+               <property name="independentInd" type="BL"/>
+               <property name="uncertaintyCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="uncertaintyCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_xml"/>
+               </property>
+               <set name="reasonCode" mutable="false" table="Act_reasonCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="ActInternalId"/>
+                  <element type="CE">
+                     <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="xml"/>
+                  </element>
+               </set>
+               <property name="languageCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="languageCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="languageCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="languageCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="languageCode_xml"/>
+               </property>
+               <subclass name="org.hl7.rim.impl.AccountImpl" discriminator-value="Account">
+                  <property name="balanceAmt" type="MO"/>
+                  <property name="currencyCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="currencyCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="currencyCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="currencyCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="currencyCode_xml"/>
+                  </property>
+                  <property name="interestRateQuantity" type="RTO" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="interestRateQuantity_numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="interestRateQuantity_numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="interestRateQuantity_denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="interestRateQuantity_denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="interestRateQuantity_xml"/>
+                  </property>
+                  <property name="allowedBalanceQuantity" type="IVL&lt;MO&gt;"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.ControlActImpl" discriminator-value="ControlAct"/>
+               <subclass name="org.hl7.rim.impl.DeviceTaskImpl" discriminator-value="DeviceTask">
+                  <property name="parameterValue" type="LIST&lt;ANY&gt;"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.FinancialContractImpl" discriminator-value="FinancialContract">
+                  <property name="paymentTermsCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="paymentTermsCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="paymentTermsCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="paymentTermsCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="paymentTermsCode_xml"/>
+                  </property>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.FinancialTransactionImpl" discriminator-value="FinancialTransaction">
+                  <property name="amt" type="MO"/>
+                  <property name="creditExchangeRateQuantity" type="REAL"/>
+                  <property name="debitExchangeRateQuantity" type="REAL"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.InvoiceElementImpl" discriminator-value="InvoiceElement">
+                  <set name="modifierCode" mutable="false" table="InvoiceElement_modifierCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="InvoiceElementInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <property name="unitQuantity" type="RTO" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="unitQuantity_numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitQuantity_numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitQuantity_denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitQuantity_denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitQuantity_xml"/>
+                  </property>
+                  <property name="unitPriceAmt" type="RTO" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="unitPriceAmt_numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitPriceAmt_numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitPriceAmt_denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitPriceAmt_denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="unitPriceAmt_xml"/>
+                  </property>
+                  <property name="netAmt" type="MO"/>
+                  <property name="factorNumber" type="REAL"/>
+                  <property name="pointsNumber" type="REAL"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.ObservationImpl" discriminator-value="Observation">
+                  <property name="value" type="ANY" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="value_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="value_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="value_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="value_number" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="value_unit" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="value_xml"/>
+                  </property>
+                  <set name="interpretationCode" mutable="false" table="Observation_interpretationCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ObservationInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="methodCode" mutable="false" table="Observation_methodCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ObservationInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="targetSiteCode" mutable="false" table="Observation_targetSiteCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ObservationInternalId"/>
+                     <element type="CD">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <subclass name="org.hl7.rim.impl.DiagnosticImageImpl" discriminator-value="DiagnosticImage">
+                     <property name="subjectOrientationCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="subjectOrientationCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="subjectOrientationCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="subjectOrientationCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="subjectOrientationCode_xml"/>
+                     </property>
+                  </subclass>
+                  <subclass name="org.hl7.rim.impl.PublicHealthCaseImpl" discriminator-value="PublicHealthCase">
+                     <property name="detectionMethodCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="detectionMethodCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="detectionMethodCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="detectionMethodCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="detectionMethodCode_xml"/>
+                     </property>
+                     <property name="transmissionModeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="transmissionModeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="transmissionModeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="transmissionModeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="transmissionModeCode_xml"/>
+                     </property>
+                     <property name="diseaseImportedCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="diseaseImportedCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="diseaseImportedCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="diseaseImportedCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="diseaseImportedCode_xml"/>
+                     </property>
+                  </subclass>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.PatientEncounterImpl" discriminator-value="PatientEncounter">
+                  <property name="admissionReferralSourceCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="admissionReferralSourceCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="admissionReferralSourceCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="admissionReferralSourceCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="admissionReferralSourceCode_xml"/>
+                  </property>
+                  <property name="lengthOfStayQuantity" type="PQ"/>
+                  <property name="dischargeDispositionCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="dischargeDispositionCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="dischargeDispositionCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="dischargeDispositionCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="dischargeDispositionCode_xml"/>
+                  </property>
+                  <property name="preAdmitTestInd" type="BL"/>
+                  <set name="specialCourtesiesCode" mutable="false" table="PatientEncounter_specialCourtesiesCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="PatientEncounterInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="specialArrangementCode" mutable="false" table="PatientEncounter_specialArrangementCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="PatientEncounterInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.ProcedureImpl" discriminator-value="Procedure">
+                  <set name="methodCode" mutable="false" table="Procedure_methodCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ProcedureInternalId"/>
+                     <element type="CE">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="approachSiteCode" mutable="false" table="Procedure_approachSiteCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ProcedureInternalId"/>
+                     <element type="CD">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="targetSiteCode" mutable="false" table="Procedure_targetSiteCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ProcedureInternalId"/>
+                     <element type="CD">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.SubstanceAdministrationImpl" discriminator-value="SubstanceAdministration">
+                  <property name="routeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="routeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="routeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="routeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="routeCode_xml"/>
+                  </property>
+                  <set name="approachSiteCode" mutable="false" table="SubstanceAdministration_approachSiteCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="SubstanceAdministrationInternalId"/>
+                     <element type="CD">
+                        <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <property name="doseQuantity" type="IVL&lt;PQ&gt;"/>
+                  <property name="rateQuantity" type="IVL&lt;PQ&gt;"/>
+                  <set name="doseCheckQuantity" mutable="false" table="SubstanceAdministration_doseCheckQuantity" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="SubstanceAdministrationInternalId"/>
+                     <element type="RTO">
+                        <column name="numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <set name="maxDoseQuantity" mutable="false" table="SubstanceAdministration_maxDoseQuantity" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="SubstanceAdministrationInternalId"/>
+                     <element type="RTO">
+                        <column name="numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="xml"/>
+                     </element>
+                  </set>
+                  <property name="administrationUnitCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="administrationUnitCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrationUnitCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrationUnitCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrationUnitCode_xml"/>
+                  </property>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.SupplyImpl" discriminator-value="Supply">
+                  <property name="quantity" type="PQ"/>
+                  <property name="expectedUseTime" type="IVL&lt;TS&gt;"/>
+                  <subclass name="org.hl7.rim.impl.DietImpl" discriminator-value="Diet">
+                     <property name="energyQuantity" type="PQ"/>
+                     <property name="carbohydrateQuantity" type="PQ"/>
+                  </subclass>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.WorkingListImpl" discriminator-value="WorkingList">
+                  <property name="ownershipLevelCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="ownershipLevelCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="ownershipLevelCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="ownershipLevelCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="ownershipLevelCode_xml"/>
+                  </property>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.ContextStructureImpl" discriminator-value="ContextStructure">
+                  <property name="setId" type="II">
+                     <column name="setId_root" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="setId_extension" sql-type="VARCHAR(555)" length="555"/>
+                  </property>
+                  <property name="versionNumber" type="INT"/>
+                  <subclass name="org.hl7.rim.impl.DocumentImpl" discriminator-value="Document">
+                     <property name="completionCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="completionCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="completionCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="completionCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="completionCode_xml"/>
+                     </property>
+                     <property name="storageCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="storageCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="storageCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="storageCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="storageCode_xml"/>
+                     </property>
+                     <property name="copyTime" type="TS"/>
+                     <property name="bibliographicDesignationText" type="SET&lt;ED&gt;"/>
+                  </subclass>
+               </subclass>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+   <class discriminator-value="ActRelationship" name="org.hl7.rim.BasicActRelationship" table="actrelationship" lazy="true">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicActRelationshipImpl" abstract="true">
+         <property name="typeCode">
+            <column name="typeCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.1002</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.ActRelationship" abstract="true">
+            <subclass name="org.hl7.rim.impl.ActRelationshipImpl" discriminator-value="ActRelationshipImpl">
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <many-to-one name="source" column="SourceInternalId" class="org.hl7.rim.BasicAct" access="property" cascade="save-update,refresh"/>
+               <many-to-one name="target" column="TargetInternalId" class="org.hl7.rim.BasicAct" access="property" cascade="save-update,refresh"/>
+               <property name="inversionInd" type="BL"/>
+               <property name="contextControlCode" type="CS">
+                  <column name="contextControlCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="contextControlCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="contextConductionInd" type="BL"/>
+               <property name="sequenceNumber" type="INT"/>
+               <property name="priorityNumber" type="INT"/>
+               <property name="pauseQuantity" type="PQ"/>
+               <property name="checkpointCode" type="CS">
+                  <column name="checkpointCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="checkpointCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="splitCode" type="CS">
+                  <column name="splitCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="splitCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="joinCode" type="CS">
+                  <column name="joinCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="joinCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="negationInd" type="BL"/>
+               <property name="conjunctionCode" type="CS">
+                  <column name="conjunctionCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="conjunctionCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="localVariableName" type="ST"/>
+               <property name="seperatableInd" type="BL"/>
+               <property name="subsetCode" type="CS">
+                  <column name="subsetCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="subsetCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="uncertaintyCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="uncertaintyCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="uncertaintyCode_xml"/>
+               </property>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+   <class discriminator-value="Participation" name="org.hl7.rim.BasicParticipation" table="participation" lazy="true">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicParticipationImpl" abstract="true">
+         <property name="typeCode">
+            <column name="typeCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.90</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.Participation" abstract="true">
+            <subclass name="org.hl7.rim.impl.ParticipationImpl" discriminator-value="ParticipationImpl">
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <many-to-one name="act" column="ActInternalId" class="org.hl7.rim.BasicAct" cascade="save-update" access="property"/>
+               <many-to-one name="role" column="RoleInternalId" class="org.hl7.rim.BasicRole" cascade="save-update" access="property"/>
+               <property name="functionCode" type="CD" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="functionCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="functionCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="functionCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="functionCode_xml"/>
+               </property>
+               <property name="contextControlCode" type="CS">
+                  <column name="contextControlCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="contextControlCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="sequenceNumber" type="INT"/>
+               <property name="negationInd" type="BL"/>
+               <property name="noteText" type="ED"/>
+               <property name="time" type="IVL&lt;TS&gt;"/>
+               <property name="modeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="modeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="modeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="modeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="modeCode_xml"/>
+               </property>
+               <property name="awarenessCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="awarenessCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="awarenessCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="awarenessCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="awarenessCode_xml"/>
+               </property>
+               <property name="signatureCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="signatureCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="signatureCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="signatureCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="signatureCode_xml"/>
+               </property>
+               <property name="signatureText" type="ED"/>
+               <property name="performInd" type="BL"/>
+               <property name="substitutionConditionCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="substitutionConditionCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="substitutionConditionCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="substitutionConditionCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="substitutionConditionCode_xml"/>
+               </property>
+               <property name="subsetCode" type="CS">
+                  <column name="subsetCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="subsetCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <subclass name="org.hl7.rim.impl.ManagedParticipationImpl" discriminator-value="ManagedParticipation">
+                  <set name="id" mutable="false" table="ManagedParticipation_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                     <key column="ManagedParticipationInternalId"/>
+                     <element type="II">
+                        <column name="root" sql-type="VARCHAR(555)" length="555" index="ManagedParticipation_id_IDX"/>
+                        <column name="extension" sql-type="VARCHAR(555)" length="555" index="ManagedParticipation_id_IDX"/>
+                     </element>
+                  </set>
+                  <property name="statusCode" type="CS">
+                     <column name="statusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="statusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  </property>
+               </subclass>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+   <class discriminator-value="Entity" name="org.hl7.rim.BasicEntity" table="entity" lazy="false">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicEntityImpl" abstract="true">
+         <property name="classCode">
+            <column name="classCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.41</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <property name="determinerCode">
+            <column name="determinerCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.30</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.Entity" abstract="true">
+            <subclass name="org.hl7.rim.impl.EntityImpl" discriminator-value="EntityImpl">
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <bag name="playedRole" cascade="all" inverse="true">
+                  <key column="playerInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicRole"/>
+               </bag>
+               <bag name="scopedRole" cascade="all" inverse="true">
+                  <key column="scoperInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicRole"/>
+               </bag><!-- 
+        <property name="determinerCode">
+            <column name="determinerCode" sql-type="VARCHAR(32)" length="32" index="Entity_code_idx" />
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+                <param name="type">CS</param>
+                <param name="interface">org.hl7.types.CS</param>
+                <param name="class">org.hl7.types.impl.CSimpl</param>
+                <param name="staticFactoryMethod">valueOf</param>
+                <param name="properties">2</param>
+                <param name="property.0.name">code</param>
+                <param name="property.0.class">org.hl7.types.ST</param>
+                <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+                <param name="property.0.type.params">1</param>
+                <param name="property.0.type.param.0.type">ST</param>
+                <param name="property.1.const">2.16.840.1.113883.5.30</param>
+                <param name="property.1.typeSpec">UID</param>
+                <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+        </property>
+        -->
+               <property name="code" type="CE">
+                  <column name="code_code" sql-type="VARCHAR(555)" length="555" index="Entity_code_idx"/>
+                  <column name="code_codeSystem" sql-type="VARCHAR(555)" length="555" index="Entity_code_idx"/>
+                  <column name="code_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_xml" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="entityInternalId"/>
+                  <element type="II">
+                     <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+                     <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+                  </element>
+               </set>
+               <property name="quantity" type="SET&lt;PQ&gt;"/>
+               <bag name="name" mutable="false" table="Entity_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                  <key column="EntityInternalId"/>
+                  <element type="EN">
+                     <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+                     <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+                     <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Entity_name_TN_IDX"/>
+                     <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+                  </element>
+               </bag>
+               <property name="desc" type="ED"/>
+               <property name="statusCode" type="CS">
+                  <column name="statusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="statusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="existenceTime" type="IVL&lt;TS&gt;"/>
+               <bag name="telecom" mutable="false" table="Entity_telecom" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                  <key column="EntityInternalId"/>
+                  <element type="TEL">
+                     <column name="url" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="use_" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="useablePeriod" sql-type="VARCHAR(555)" length="555"/>
+                  </element>
+               </bag>
+               <property name="riskCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="riskCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="riskCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="riskCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="riskCode_xml"/>
+               </property>
+               <property name="handlingCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="handlingCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="handlingCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="handlingCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="handlingCode_xml"/>
+               </property>
+               <subclass name="org.hl7.rim.impl.LivingSubjectImpl" discriminator-value="LivingSubject">
+                  <property name="administrativeGenderCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="administrativeGenderCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrativeGenderCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrativeGenderCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="administrativeGenderCode_xml"/>
+                  </property>
+                  <property name="birthTime" type="TS"/>
+                  <property name="deceasedInd" type="BL"/>
+                  <property name="deceasedTime" type="TS"/>
+                  <property name="multipleBirthInd" type="BL"/>
+                  <property name="multipleBirthOrderNumber" type="INT"/>
+                  <property name="organDonorInd" type="BL"/>
+                  <subclass name="org.hl7.rim.impl.NonPersonLivingSubjectImpl" discriminator-value="NonPersonLivingSubject">
+                     <property name="strainText" type="ED"/>
+                     <property name="genderStatusCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="genderStatusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="genderStatusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="genderStatusCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="genderStatusCode_xml"/>
+                     </property>
+                  </subclass>
+                  <subclass name="org.hl7.rim.impl.PersonImpl" discriminator-value="Person">
+                     <bag name="addr" mutable="false" table="Person_addr" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                        <key column="PersonInternalId"/>
+                        <element type="AD"/>
+                     </bag>
+                     <property name="maritalStatusCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="maritalStatusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="maritalStatusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="maritalStatusCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="maritalStatusCode_xml"/>
+                     </property>
+                     <property name="educationLevelCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="educationLevelCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="educationLevelCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="educationLevelCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="educationLevelCode_xml"/>
+                     </property>
+                     <set name="disabilityCode" mutable="false" table="Person_disabilityCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                        <key column="PersonInternalId"/>
+                        <element type="CE">
+                           <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="xml"/>
+                        </element>
+                     </set>
+                     <property name="livingArrangementCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="livingArrangementCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="livingArrangementCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="livingArrangementCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="livingArrangementCode_xml"/>
+                     </property>
+                     <property name="religiousAffiliationCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                        <column name="religiousAffiliationCode_code" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="religiousAffiliationCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="religiousAffiliationCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                        <column name="religiousAffiliationCode_xml"/>
+                     </property>
+                     <set name="raceCode" mutable="false" table="Person_raceCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                        <key column="PersonInternalId"/>
+                        <element type="CE">
+                           <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="xml"/>
+                        </element>
+                     </set>
+                     <set name="ethnicGroupCode" mutable="false" table="Person_ethnicGroupCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                        <key column="PersonInternalId"/>
+                        <element type="CE">
+                           <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="xml"/>
+                        </element>
+                     </set>
+                  </subclass>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.MaterialImpl" discriminator-value="Material">
+                  <property name="formCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="formCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="formCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="formCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="formCode_xml"/>
+                  </property>
+                  <subclass name="org.hl7.rim.impl.ManufacturedMaterialImpl" discriminator-value="ManufacturedMaterial">
+                     <property name="lotNumberText" type="ST"/>
+                     <property name="expirationTime" type="IVL&lt;TS&gt;"/>
+                     <property name="stabilityTime" type="IVL&lt;TS&gt;"/>
+                     <subclass name="org.hl7.rim.impl.ContainerImpl" discriminator-value="Container">
+                        <property name="capacityQuantity" type="PQ"/>
+                        <property name="heightQuantity" type="PQ"/>
+                        <property name="diameterQuantity" type="PQ"/>
+                        <property name="capTypeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                           <column name="capTypeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="capTypeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="capTypeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="capTypeCode_xml"/>
+                        </property>
+                        <property name="separatorTypeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                           <column name="separatorTypeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="separatorTypeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="separatorTypeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="separatorTypeCode_xml"/>
+                        </property>
+                        <property name="barrierDeltaQuantity" type="PQ"/>
+                        <property name="bottomDeltaQuantity" type="PQ"/>
+                     </subclass>
+                     <subclass name="org.hl7.rim.impl.DeviceImpl" discriminator-value="Device">
+                        <property name="manufacturerModelName" type="SC"/>
+                        <property name="softwareName" type="SC"/>
+                        <property name="localRemoteControlStateCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                           <column name="localRemoteControlStateCode_code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="localRemoteControlStateCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="localRemoteControlStateCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="localRemoteControlStateCode_xml"/>
+                        </property>
+                        <property name="alertLevelCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                           <column name="alertLevelCode_code" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="alertLevelCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="alertLevelCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                           <column name="alertLevelCode_xml"/>
+                        </property>
+                        <property name="lastCalibrationTime" type="TS"/>
+                     </subclass>
+                  </subclass>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.OrganizationImpl" discriminator-value="Organization">
+                  <bag name="addr" mutable="false" table="Organization_addr" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                     <key column="OrganizationInternalId"/>
+                     <element type="AD"/>
+                  </bag>
+                  <property name="standardIndustryClassCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="standardIndustryClassCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="standardIndustryClassCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="standardIndustryClassCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="standardIndustryClassCode_xml"/>
+                  </property>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.PlaceImpl" discriminator-value="Place">
+                  <property name="mobileInd" type="BL"/>
+                  <property name="addr" type="AD"/>
+                  <property name="directionsText" type="ED"/>
+                  <property name="positionText" type="ED"/>
+                  <property name="gpsText" type="ST"/>
+               </subclass>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+   <class discriminator-value="Role" name="org.hl7.rim.BasicRole" table="role_" lazy="false">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicRoleImpl" abstract="true">
+         <property name="classCode">
+            <column name="classCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.110</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.Role" abstract="true">
+            <subclass name="org.hl7.rim.impl.RoleImpl" discriminator-value="RoleImpl">
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <many-to-one name="player" column="PlayerInternalId" class="org.hl7.rim.BasicEntity" cascade="save-update" access="property"/>
+               <many-to-one name="scoper" column="ScoperInternalId" class="org.hl7.rim.BasicEntity" cascade="save-update" access="property"/>
+               <bag name="participation" cascade="all" inverse="true">
+                  <key column="roleInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicParticipation"/>
+               </bag>
+               <bag name="outboundLink" cascade="all" inverse="true">
+                  <key column="sourceInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicRoleLink"/>
+               </bag>
+               <bag name="inboundLink" cascade="all" inverse="true">
+                  <key column="targetInternalId"/>
+                  <one-to-many class="org.hl7.rim.BasicRoleLink"/>
+               </bag>
+               <set name="id" mutable="false" table="Role_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="roleInternalId"/>
+                  <element type="II">
+                     <column name="root" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+                     <column name="extension" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+                  </element>
+               </set>
+               <property name="code" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="code_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_displayName" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="code_xml"/>
+               </property>
+               <property name="negationInd" type="BL"/>
+               <bag name="name" mutable="false" table="Role_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                  <key column="RoleInternalId"/>
+                  <element type="EN">
+                     <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Role_name_PN_IDX"/>
+                     <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Role_name_PN_IDX"/>
+                     <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Role_name_TN_IDX"/>
+                     <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+                  </element>
+               </bag>
+               <bag name="addr" mutable="false" table="Role_addr" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                  <key column="RoleInternalId"/>
+                  <element type="AD"/>
+               </bag>
+               <bag name="telecom" mutable="false" table="Role_telecom" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+                  <key column="RoleInternalId"/>
+                  <element type="TEL">
+                     <column name="url" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="use_" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="useablePeriod" sql-type="VARCHAR(555)" length="555"/>
+                  </element>
+               </bag>
+               <property name="statusCode" type="CS">
+                  <column name="statusCode_code" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="statusCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <property name="effectiveTime" type="IVL&lt;TS&gt;"/>
+               <property name="certificateText" type="ED"/>
+               <set name="confidentialityCode" mutable="false" table="Role_confidentialityCode" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+                  <key column="RoleInternalId"/>
+                  <element type="CE">
+                     <column name="code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="xml"/>
+                  </element>
+               </set>
+               <property name="quantity" type="RTO" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                  <column name="quantity_numeratorNumber" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="quantity_numeratorUnit" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="quantity_denominatorNumber" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="quantity_denominatorUnit" sql-type="VARCHAR(555)" length="555"/>
+                  <column name="quantity_xml"/>
+               </property>
+               <property name="positionNumber" type="LIST&lt;INT&gt;"/>
+               <subclass name="org.hl7.rim.impl.AccessImpl" discriminator-value="Access">
+                  <property name="approachSiteCode" type="CD" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="approachSiteCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="approachSiteCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="approachSiteCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="approachSiteCode_xml"/>
+                  </property>
+                  <property name="targetSiteCode" type="CD" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="targetSiteCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="targetSiteCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="targetSiteCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="targetSiteCode_xml"/>
+                  </property>
+                  <property name="gaugeQuantity" type="PQ"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.EmployeeImpl" discriminator-value="Employee">
+                  <property name="jobCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="jobCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobCode_xml"/>
+                  </property>
+                  <property name="jobTitleName" type="SC"/>
+                  <property name="jobClassCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="jobClassCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobClassCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobClassCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="jobClassCode_xml"/>
+                  </property>
+                  <property name="occupationCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="occupationCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="occupationCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="occupationCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="occupationCode_xml"/>
+                  </property>
+                  <property name="salaryTypeCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="salaryTypeCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="salaryTypeCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="salaryTypeCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="salaryTypeCode_xml"/>
+                  </property>
+                  <property name="salaryQuantity" type="MO"/>
+                  <property name="hazardExposureText" type="ED"/>
+                  <property name="protectiveEquipmentText" type="ED"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.LicensedEntityImpl" discriminator-value="LicensedEntity">
+                  <property name="recertificationTime" type="TS"/>
+               </subclass>
+               <subclass name="org.hl7.rim.impl.PatientImpl" discriminator-value="Patient">
+                  <property name="veryImportantPersonCode" type="CE" access="org.hl7.hibernate.StrategicPropertyAccessor">
+                     <column name="veryImportantPersonCode_code" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="veryImportantPersonCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="veryImportantPersonCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+                     <column name="veryImportantPersonCode_xml"/>
+                  </property>
+               </subclass>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+   <class discriminator-value="RoleLink" name="org.hl7.rim.BasicRoleLink" table="rolelink" lazy="true">
+      <id name="internalId" column="internalId" type="string" unsaved-value="null" access="property">
+         <generator class="assigned"/>
+      </id>
+      <discriminator column="internalDiscriminator" type="string"/>
+      <version name="internalVersionNumber" column="internalVersionNumber" type="long" unsaved-value="negative" access="property"/>
+      <subclass name="org.hl7.rim.impl.BasicRoleLinkImpl" abstract="true">
+         <property name="typeCode">
+            <column name="typeCode" sql-type="VARCHAR(32)" length="32"/>
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+               <param name="type">CS</param>
+               <param name="interface">org.hl7.types.CS</param>
+               <param name="class">org.hl7.types.impl.CSimpl</param>
+               <param name="staticFactoryMethod">valueOf</param>
+               <param name="properties">2</param>
+               <param name="property.0.name">code</param>
+               <param name="property.0.class">org.hl7.types.ST</param>
+               <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+               <param name="property.0.type.params">1</param>
+               <param name="property.0.type.param.0.type">ST</param>
+               <param name="property.1.const">2.16.840.1.113883.5.107</param>
+               <param name="property.1.typeSpec">UID</param>
+               <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+         </property>
+         <subclass name="org.hl7.rim.RoleLink" abstract="true">
+            <subclass name="org.hl7.rim.impl.RoleLinkImpl" discriminator-value="RoleLinkImpl">
+               <property name="cloneCode" type="CS_CloneCode">
+                  <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+               </property>
+               <many-to-one name="source" column="SourceInternalId" class="org.hl7.rim.BasicRole" cascade="save-update" access="property"/>
+               <many-to-one name="target" column="TargetInternalId" class="org.hl7.rim.BasicRole" cascade="save-update" access="property"/>
+               <property name="priorityNumber" type="INT"/>
+               <property name="effectiveTime" type="IVL&lt;TS&gt;"/>
+            </subclass>
+         </subclass>
+      </subclass>
+   </class>
+</hibernate-mapping>

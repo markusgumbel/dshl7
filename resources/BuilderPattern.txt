@@ -1,0 +1,72 @@
+/*
+package scala.net.gumbix.hl7dsl
+/**
+ * Created by IntelliJ IDEA.
+ * User: a.guel
+ * Date: 30.06.2010
+ * Time: 11:17:46
+ * To change this template use File | Settings | File Templates.
+ */
+object BuilderPattern  {
+  Document {
+    Title("Entlassungskurzbrief der Deutschen Rentenversicherung Bund")
+    RecordTarget {
+      PatientRolle {
+        Id("I01877","1.2.3.4.5")
+        Address{
+          Street("Am Himmelreich")
+          HouseNumber("77")
+          PostalCode(98527)
+          City("Suhl")
+        }
+        Telecom("HP","tel:")
+        Patient("Gilbert","Gildner","F","19610806")
+        ProviderOrganization{
+          Telecom("WP","tel:0332-4556")
+          Telecom("WP","fax:0332-45577")
+          Address{
+            Street("Zempiner Steig")
+            HouseNumber("4")
+            PostalCode(15266)
+            City("Berlin")
+          }
+        }
+      }
+    }
+    Author {
+      Time("20070920")
+      AsssignedAuthor{
+        Id("a0082373","9.8.7.6")
+        AssignedPerson("","Test13 PNT1")
+        RepresendedOrganization{
+          Name("K30 auf 81355")
+          Telecom("WP","tel:0332-4556")
+          Telecom("WP","fax:0332-45577")
+          Address{
+            Street("Zempiner Steig")
+            HouseNumber("4")
+            PostalCode(15266)
+            City("Berlin")
+          }
+        }
+      }
+    }
+    Custodian {}
+    InformationRecipient{}
+    LegalAuthenticator{}
+    ComponentOf{}
+    Component{
+      Section{
+        Title("Diagnosen mit ICD 10")
+        Text{}
+        Entry{}
+        Entry{}
+        Entry{}
+      }
+    }
+    Component{}
+    Component{}
+    Component{}
+  }
+}
+*/
