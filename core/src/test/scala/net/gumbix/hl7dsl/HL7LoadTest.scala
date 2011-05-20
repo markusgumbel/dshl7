@@ -19,11 +19,11 @@ import scala.collection.JavaConversions._
 
 class HL7LoadTest extends TestCase {
   def testLoadVHitG01() {
-    loadCDA("cda-examples/vhitg-POCD_EX000001.xml")
+    loadCDA("../cda-examples/vhitg-POCD_EX000001.xml")
   }
 
   def testLoadMessage() {
-    loadCDA("cda-examples/Arztbrief-02-Level3.xml")
+    loadCDA("../cda-examples/Arztbrief-02-Level3.xml")
   }
 
   def loadCDA(filename: String) {
@@ -77,11 +77,11 @@ class HL7LoadTest extends TestCase {
   }
 
   def testModifyMessage1() {
-    modifyCDA("cda-examples/Arztbrief-02-Level3.xml")
+    modifyCDA("../cda-examples/Arztbrief-02-Level3.xml")
   }
 
   def testModifyMessage2() {
-    modifyCDA("cda-examples/vhitg-POCD_EX000001.xml")
+    modifyCDA("../cda-examples/vhitg-POCD_EX000001.xml")
   }
 
 
