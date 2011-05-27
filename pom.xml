@@ -174,10 +174,9 @@
             <artifactId>jsig</artifactId>
             <version>unknown</version>
             <scope>system</scope>
-            <!-- geht nicht <systemPath>${project.basedir}/lib/jsig-0.0.1.jar</systemPath> -->
-            <!-- geht -->
             <systemPath>
-                d:/users/markus/src/eclipse/hs-ma-workspace/dshl7/hl7-javasig/jsig.jar
+                <!-- ../. because basedir refers to the POM in the sub-projects! -->
+                ${basedir}/../hl7-javasig/jsig.jar
             </systemPath>
         </dependency>
         <dependency>
@@ -186,7 +185,7 @@
             <version>unknown</version>
             <scope>system</scope>
             <systemPath>
-                d:/users/markus/src/eclipse/hs-ma-workspace/dshl7/hl7-javasig/lib/serialMif.jar
+                ${basedir}/../hl7-javasig/lib/serialMif.jar
             </systemPath>
         </dependency>
         <dependency>
@@ -195,7 +194,7 @@
             <version>unknown</version>
             <scope>system</scope>
             <systemPath>
-                d:/users/markus/src/eclipse/hs-ma-workspace/dshl7/hl7-javasig/lib/flatMif.jar
+                ${basedir}/../hl7-javasig/lib/flatMif.jar
             </systemPath>
         </dependency>
         <!-- Test framework -->
