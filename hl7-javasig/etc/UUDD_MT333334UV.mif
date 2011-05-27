@@ -1,0 +1,158 @@
+<mif:staticModel xmlns:mif="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="" packageKind="realm" representationKind="flat" isSerializable="true" isAbstract="false" name="UV">
+   <mif:packageLocation root="DEFN" section="UU" subSection="UU" domain="DD" artifact="MT-deprecated" realm="UV" id="333334"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="8.575" height="9.714"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="UU" subSection="UU" domain="DD" artifact="RM-deprecated" realm="UV" id="333334"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="UU" subSection="UU" domain="DD" artifact="HD-deprecated" realm="UV" id="333334"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="UUDD_MT333334UV" name="Location" isAbstract="false" className="LocationChoice">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>Description</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.1" containerDiagramName="Main">
+            <mif:position x="2.583" y="0.914"/>
+            <mif:size width="1.134" height="0.500"/>
+            <mif:anchorage connectToShapeId="Sheet.1">
+               <mif:position x="3.100" y="1.414"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.8">
+                     <mif:position x="3.200" y="3.782"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+   </mif:ownedEntryPoint>
+   <mif:ownedClass>
+                  <mif:class name="City" isAbstract="false">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Place"/>
+                     <mif:derivationSupplier staticModelDerivationId="2" className="City"/>
+                     <mif:derivationSupplier staticModelDerivationId="3" className="City"/>
+                     <mif:graphicRepresentation presentation="HL7">
+                        <mif:graphElement shapeId="Sheet.14" containerDiagramName="Main" shapeTemplate="Entity" isWidthAutoSize="true" isHeightAutoSize="true">
+                           <mif:position x="2.303" y="4.939"/>
+                           <mif:size width="1.794" height="0.782"/>
+                        </mif:graphElement>
+                     </mif:graphicRepresentation>
+                     <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="true" isStructural="true">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="classCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="City" attributeName="classCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="City" attributeName="classCode"/>
+                        <mif:type name="CS"/>
+                        <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="CITY"/>
+                     </mif:attribute>
+                     <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="true" isStructural="true">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="determinerCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="City" attributeName="determinerCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="City" attributeName="determinerCode"/>
+                        <mif:type name="CS"/>
+                        <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="INSTANCE"/>
+                     </mif:attribute>
+                     <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" isStructural="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="id"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="City" attributeName="id"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="City" attributeName="id"/>
+                        <mif:type name="SET">
+                           <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+                        </mif:type>
+                     </mif:attribute>
+                     <mif:attribute name="name" sortKey="4" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" isStructural="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="name"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="City" attributeName="name"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="City" attributeName="name"/>
+                        <mif:type name="BAG">
+                           <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="EN"/>
+                        </mif:type>
+                     </mif:attribute>
+                  </mif:class>
+               </mif:ownedClass>
+   <mif:ownedClass>
+         <mif:class name="LocationChoice" isAbstract="true">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Entity"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="LocationChoice"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="LocationChoice"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.8" containerDiagramName="Main" shapeTemplate="Choice" isWidthAutoSize="true" isHeightAutoSize="true" nodeOrientation="Portrait">
+                  <mif:position x="2.178" y="3.782"/>
+                  <mif:size width="2.044" height="2.064"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:specializationChild childClassName="Province">
+            <mif:graphicRepresentation>
+                  <mif:graphElement shapeId="Sheet.10" containerDiagramName="Main" shapeTemplate="Entity" isWidthAutoSize="true" isHeightAutoSize="true">
+                     <mif:position x="2.303" y="4.032"/>
+                     <mif:size width="1.794" height="0.782"/>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+         </mif:specializationChild>
+            <mif:specializationChild childClassName="City">
+            <mif:graphicRepresentation>
+                  <mif:graphElement shapeId="Sheet.14" containerDiagramName="Main" shapeTemplate="Entity" isWidthAutoSize="true" isHeightAutoSize="true">
+                     <mif:position x="2.303" y="4.939"/>
+                     <mif:size width="1.794" height="0.782"/>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+         </mif:specializationChild>
+         </mif:class>
+      </mif:ownedClass>
+   <mif:ownedClass>
+                  <mif:class name="Province" isAbstract="false">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Place"/>
+                     <mif:derivationSupplier staticModelDerivationId="2" className="Province"/>
+                     <mif:derivationSupplier staticModelDerivationId="3" className="Province"/>
+                     <mif:graphicRepresentation presentation="HL7">
+                        <mif:graphElement shapeId="Sheet.10" containerDiagramName="Main" shapeTemplate="Entity" isWidthAutoSize="true" isHeightAutoSize="true">
+                           <mif:position x="2.303" y="4.032"/>
+                           <mif:size width="1.794" height="0.782"/>
+                        </mif:graphElement>
+                     </mif:graphicRepresentation>
+                     <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="true" isStructural="true">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="classCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Province" attributeName="classCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Province" attributeName="classCode"/>
+                        <mif:type name="CS"/>
+                        <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="PROVINCE"/>
+                     </mif:attribute>
+                     <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R" isMandatory="true" isStructural="true">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="determinerCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Province" attributeName="determinerCode"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Province" attributeName="determinerCode"/>
+                        <mif:type name="CS"/>
+                        <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="INSTANCE"/>
+                     </mif:attribute>
+                     <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" isStructural="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="id"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Province" attributeName="id"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Province" attributeName="id"/>
+                        <mif:type name="SET">
+                           <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+                        </mif:type>
+                     </mif:attribute>
+                     <mif:attribute name="name" sortKey="4" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" isStructural="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="name"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Province" attributeName="name"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Province" attributeName="name"/>
+                        <mif:type name="BAG">
+                           <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="EN"/>
+                        </mif:type>
+                     </mif:attribute>
+                  </mif:class>
+               </mif:ownedClass>
+</mif:staticModel>

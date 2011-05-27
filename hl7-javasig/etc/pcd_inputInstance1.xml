@@ -1,0 +1,24 @@
+<glucoseDeviceObservation>
+	<time>
+		20071113212900.000
+	</time>
+	<mrn>1234567</mrn>
+	<patientName>
+		<prefix>Mr</prefix>
+		<given>Thomas</given>
+		<middle>J</middle>
+		<family>MacIntire</family>
+		<suffix></suffix>
+	</patientName>
+	<observation>
+		<value>102</value>
+		<units>mg%</units>
+	</observation>
+	<provider>
+		<prefix>Dr</prefix>
+		<given>Peter</given>
+		<middle>L</middle>
+		<family>Hendler</family>
+		<suffix>FACP</suffix>
+	</provider>
+</glucoseDeviceObservation>

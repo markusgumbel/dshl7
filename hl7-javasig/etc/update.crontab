@@ -1,0 +1,9 @@
+SHELL=/bin/sh
+PATH=/usr/local/bin:/etc:/bin:/sbin:/usr/bin:/usr/sbin
+HOME=/home/javasig
+#
+#minute hour    mday    month   wday    command
+#
+15 	2 	* 	* 	* 	sh trunk/etc/update.sh >update.log 2>&1
+35	*	*	*	*	sh trunk/etc/tracSpamEx.sh >spamex.log 2>&1
+

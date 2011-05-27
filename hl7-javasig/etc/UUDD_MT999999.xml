@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="ASCII"?>
+<information xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" moodCode="EVN">
+   <effectiveTime xsi:type="SXCM_TS" value="19950607"/>   
+<subject>
+<act classCode="CACT" moodCode="EVN">
+   <participant typeCode="SBJ">
+      <role classCode="ASSIGNED">
+         <id xsi:type="II" root="2.16.840.1.113883.19.3.2410" extension="mcarlson" displayable="true"/>
+         <statusCode code="active"/>
+         <certificateText mediaType="application/x-password">drowssap</certificateText>
+         <playingPerson determinerCode="INSTANCE">
+            <name use="L">
+               <given>Matthew</given> <given>Rice</given> <family>Carlson</family>
+            </name>
+         </playingPerson>
+      </role>
+   </participant>
+   <participant typeCode="SBJ">
+      <role classCode="ASSIGNED">
+         <id root="2.16.840.1.113883.19.3.2410" extension="gschadow" displayable="true"/>
+         <statusCode code="active"/>
+         <certificateText mediaType="application/x-password">drowssap</certificateText>
+         <playingPerson determinerCode="INSTANCE">
+            <name use="L">
+               <given>Gunther</given> <family>Schadow</family>
+            </name>
+         </playingPerson>
+      </role>
+   </participant>
+   <participant typeCode="SBJ">
+      <role classCode="ASSIGNED">
+         <id root="2.16.840.1.113883.19.3.2410" extension="crosenthal" displayable="true"/>
+         <statusCode code="active"/>
+         <certificateText mediaType="application/x-password">drowssap</certificateText>
+         <playingPerson determinerCode="INSTANCE">
+            <name use="L">
+               <given>Chris</given> <family>Rosenthal</family>
+            </name>
+         </playingPerson>
+      </role>
+   </participant>
+   <participant typeCode="SBJ">
+      <patient>
+         <id root="2.16.840.1.113883.19.3.2409" extension="1-976-245" displayable="true"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="200202111400" inclusive="true"/>
+            <high value="200202111700" inclusive="false"/>
+         </effectiveTime>
+         <patientPerson determinerCode="INSTANCE">
+            <name use="L">
+               <given>John</given> <family>Doe</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19450508"/>
+            <addr use="HP">
+               <city>Indianapolis</city>
+            </addr>
+         </patientPerson>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration classCode="SBADM" moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="8" unit="h"/> 
+	     </effectiveTime>
+	     <effectiveTime xsi:type="IVL_TS" operator="A">
+	       <width value="10" unit="d"/>
+	     </effectiveTime>
+	     <routeCode code="PO" codeSystem="2.16.840.1.113883.5.112" codeSystemName="RouteOfAdministration"/>
+	     <doseQuantity xsi:type="IVL_PQ" value="1"/>
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name xsi:type="TN">Amoxicillin 250mg caps</name>
+		   <formCode code="CAPS" codeSystem="1.2.9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="250" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">amoxicillin</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="1" unit="d"/> 
+	     </effectiveTime>
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name  xsi:type="TN">Aspirin 125mg tab</name>
+		   <formCode code="TAB" codeSystem="1.2.3.9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="125" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">acetyl-salicylic acid</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="12" unit="h"/> 
+	     </effectiveTime>
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name xsi:type="TN">Capoten 50mg tab</name>
+		   <formCode code="TAB" codeSystem="1.2.3.9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="50" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">captopril</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+      </patient>
+   </participant>
+   <participant typeCode="SBJ">
+      <patient>
+         <id root="2.16.840.1.113883.19.3.2409" extension="1-976-111" displayable="true"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="200202111400" inclusive="true"/>
+            <high value="200202111700" inclusive="false"/>
+         </effectiveTime>
+         <patientPerson determinerCode="INSTANCE">
+            <name use="L">
+               <given>Jane</given> <family>Boe</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19450509"/>
+            <addr use="HP">
+               <city>Carmel</city>
+            </addr>
+         </patientPerson>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="12" unit="h"/> 
+	     </effectiveTime>
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name xsi:type="TN">Metoprolol 50mg tab</name>
+		   <formCode code="TAB" codeSystem="1.2.3.9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="50" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">metoprolol</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="12" unit="h"/> 
+	     </effectiveTime>
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name xsi:type="TN">Capoten 50mg tab</name>
+		   <formCode code="TAB" codeSystem="1.2.3.9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="50" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">captopril</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+      </patient>
+   </participant>
+</act>
+</subject>
+</information>

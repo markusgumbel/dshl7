@@ -1,0 +1,49 @@
+Notes on creating a webservice that will take CDA's as part of a SOAP or RESTful payload
+and put them in a database using Hibernate.
+
+The following classes are in org.hl7.util
+they have static methods and can be used to buld a webservice where you make a string from a file
+on the client side with something like this, the args[0] would represent a file path:
+
+		String cda = "CDA not read yet";
+		try{
+		cda = StringFromFile.readFileAsString(args[0]);
+		}catch(Exception e){e.printStackTrace();}
+
+Then the String cda contains the entire file contents which will be sent to the webservice where
+it will become the CDAstr parameter for some code like this on the server side:	
+
+
+
+		Object rim = MessageLoader.LoadMessage("POCD_HD000040",CDAstr);
+		String id = CDAPersister.HibernateIt(rim);
+		return "rim: " + rim + "\nHibernateID: " + id ;
+
+of course for this to all work, the server will have to have jsig.jar
+it will have to have a hibernate.cfg.xml file appropriate for your database jdbc connection
+and it will have to have in it's classpath all of the following jar files from the lib folder.
+It will have to have the properties files that map the MIF files to the message type names,
+and it will have to have the MIF files themselves.
+These can be put in the build directory inside the jsig.jar if they are not already there.
+
+antlr-2.7.6.jar
+antlr.license.txt
+asm-attrs.jar
+asm.jar
+cglib-2.1.3.jar
+commons-collections-2.1.1.jar
+commons-logging-1.0.4.jar
+dom4j-1.6.1.jar
+essential_Jars.txt
+hibernate3.jar
+hsqldb.jar
+jsig.jar
+jta.jar
+jta.licence.txt
+mysql-connector-java-3.0.11-stable-bin.jar
+serialMif.jar
+xbean.jar
+xbean_xpath.jar
+xercesImpl.jar
+
+

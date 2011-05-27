@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false"><!--THIS FILE IS GENERATED AUTOMATICALLY - DO NOT MODIFY.
+
+The contents of this file are subject to the Health Level-7 Public
+License Version 1.0 (the "License"); you may not use this file except
+in compliance with the License. You may obtain a copy of the License
+at http://www.hl7.org/HPL/
+
+Software distributed under the License is distributed on an "AS IS"
+basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See
+the License for the specific language governing rights and limitations
+under the License.
+
+The Original Code is all this file.
+
+The Initial Developer of the Original Code is automatically generated
+from HL7 copyrighted standards specification which may be subject to
+different license. Portions created by Initial Developer are Copyright
+(C) 2002-2004 Health Level Seven, Inc. All Rights Reserved.
+
+THIS FILE IS GENERATED AUTOMATICALLY - DO NOT MODIFY.-->
+   <subclass name="org.hl7.UUDD_MT333333UV.impl.CitizenImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.CitizenImpl" extends="org.hl7.rim.impl.BasicRoleImpl">
+      <property name="cloneCode" type="CS_CloneCode">
+         <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+      </property>
+      <many-to-one name="politicalLocationChoice" column="scoperInternalId" class="org.hl7.rim.impl.BasicEntityImpl" cascade="save-update" access="property" lazy="false"/>
+      <set name="id" mutable="false" table="Role_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+         <key column="RoleInternalId"/>
+         <element type="II">
+            <column name="root" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+            <column name="extension" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+         </element>
+      </set>
+   </subclass>
+   <subclass name="org.hl7.UUDD_MT333333UV.impl.LocationChoiceImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.LocationChoiceImpl" extends="org.hl7.rim.impl.BasicEntityImpl">
+      <property name="cloneCode" type="CS_CloneCode">
+         <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+      </property>
+      <subclass name="org.hl7.UUDD_MT333333UV.impl.CountryImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.CountryImpl">
+         <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="EntityInternalId"/>
+            <element type="II">
+               <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+               <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+            </element>
+         </set>
+         <bag name="name" mutable="false" table="Entity_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="EntityInternalId"/>
+            <element type="EN">
+               <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Entity_name_TN_IDX"/>
+               <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+            </element>
+         </bag>
+      </subclass>
+   </subclass>
+   <subclass name="org.hl7.UUDD_MT333333UV.impl.PatientImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.PatientImpl" extends="org.hl7.rim.impl.BasicRoleImpl">
+      <property name="cloneCode" type="CS_CloneCode">
+         <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+      </property>
+      <many-to-one name="providerChoice" column="scoperInternalId" class="org.hl7.UUDD_MT333333UV.impl.ProviderChoiceImpl" cascade="save-update" access="property"/>
+      <set name="id" mutable="false" table="Role_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+         <key column="RoleInternalId"/>
+         <element type="II">
+            <column name="root" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+            <column name="extension" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX"/>
+         </element>
+      </set>
+   </subclass>
+   <subclass name="org.hl7.UUDD_MT333333UV.impl.PersonImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.PersonImpl" extends="org.hl7.rim.impl.BasicEntityImpl">
+      <property name="cloneCode" type="CS_CloneCode">
+         <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+      </property>
+      <bag name="asCitizen" cascade="all" access="org.hl7.hibernate.StrategicPropertyAccessor">
+         <key column="playerInternalId"/>
+         <one-to-many class="org.hl7.UUDD_MT333333UV.impl.CitizenImpl"/>
+         <loader query-ref="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asCitizen"/>
+      </bag>
+      <bag name="asPatient" cascade="all" access="org.hl7.hibernate.StrategicPropertyAccessor">
+         <key column="playerInternalId"/>
+         <one-to-many class="org.hl7.UUDD_MT333333UV.impl.PatientImpl"/>
+         <loader query-ref="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asPatient"/>
+      </bag>
+      <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+         <key column="EntityInternalId"/>
+         <element type="II">
+            <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+            <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+         </element>
+      </set>
+      <bag name="name" mutable="false" table="Entity_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+         <key column="EntityInternalId"/>
+         <element type="EN">
+            <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+            <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+            <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Entity_name_TN_IDX"/>
+            <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+         </element>
+      </bag>
+      <property name="riskCode" type="CV" access="org.hl7.hibernate.StrategicPropertyAccessor">
+         <column name="riskCode_code" sql-type="VARCHAR(555)" length="555"/>
+         <column name="riskCode_codeSystem" sql-type="VARCHAR(555)" length="555"/>
+         <column name="riskCode_displayName" sql-type="VARCHAR(555)" length="555"/>
+         <column name="riskCode_xml"/>
+      </property>
+   </subclass>
+   <subclass name="org.hl7.UUDD_MT333333UV.impl.ProviderChoiceImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.ProviderChoiceImpl" extends="org.hl7.rim.impl.BasicEntityImpl">
+      <property name="cloneCode" type="CS_CloneCode">
+         <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555"/>
+      </property>
+      <subclass name="org.hl7.UUDD_MT333333UV.impl.OrganizationImpl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.OrganizationImpl">
+         <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="EntityInternalId"/>
+            <element type="II">
+               <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+               <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+            </element>
+         </set>
+         <bag name="name" mutable="false" table="Entity_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="EntityInternalId"/>
+            <element type="EN">
+               <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Entity_name_TN_IDX"/>
+               <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+            </element>
+         </bag>
+      </subclass>
+      <subclass name="org.hl7.UUDD_MT333333UV.impl.Person2Impl" lazy="true" discriminator-value="org.hl7.UUDD_MT333333UV.impl.Person2Impl">
+         <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="EntityInternalId"/>
+            <element type="II">
+               <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+               <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX"/>
+            </element>
+         </set>
+         <bag name="name" mutable="false" table="Entity_name" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="EntityInternalId"/>
+            <element type="EN">
+               <column name="familyName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="givenName" sql-type="VARCHAR(555)" length="555" index="Entity_name_PN_IDX"/>
+               <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="Entity_name_TN_IDX"/>
+               <column name="xml" sql-type="VARCHAR(555)" length="555"/>
+            </element>
+         </bag>
+      </subclass>
+   </subclass>
+   <sql-query name="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asCitizen">
+      <load-collection alias="i" role="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asCitizen"/>
+select * from role_ where playerInternalId = :id and internalDiscriminator in ('org.hl7.UUDD_MT333333UV.impl.CitizenImpl')
+</sql-query>
+   <sql-query name="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asPatient">
+      <load-collection alias="i" role="org.hl7.UUDD_MT333333UV.impl.PersonImpl.asPatient"/>
+select * from role_ where playerInternalId = :id and internalDiscriminator in ('org.hl7.UUDD_MT333333UV.impl.PatientImpl')
+</sql-query>
+</hibernate-mapping>

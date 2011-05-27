@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ASCII"?>
+<information xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" moodCode="EVN">
+<subject>
+<act classCode="CACT" moodCode="EVN">
+   <participant typeCode="SBJ">
+      <patient>
+         <id root="2.16.840.1.113883.19.3.2409" extension="1-976-245" displayable="true"/>
+	 <participation typeCode="SBJ">
+	   <substanceAdministration moodCode="RQO">
+	     <effectiveTime xsi:type="PIVL_TS">
+	       <period value="8" unit="h"/> 
+	     </effectiveTime>
+	     <effectiveTime xsi:type="IVL_TS" operator="A">
+	       <width value="10" unit="d"/>
+	     </effectiveTime>
+             <doseQuantity xsi:type="IVL_PQ" value="250" unit="mg"/>
+	     <!--doseQuantity xsi:type="IVL_PQ">
+	       <low xsi:type="PQ" value="1"/>
+	       <high xsi:type="PQ" value="5"/>
+             </doseQuantity-->
+	     <participant typeCode="CSM">
+	       <role classCode="ROL">
+	         <playingManufacturedMaterial determinerCode="KIND">
+		   <name xsi:type="TN">Ibuprofen 250mg caps</name>
+		   <formCode code="CAPS" codeSystem="9.9.9"/>
+		   <role classCode="ACTI">
+		     <quantity>
+		       <numerator xsi:type="PQ" value="250" unit="mg"/>
+		       <denominator xsi:type="INT" value="1"/>
+     		     </quantity>
+		     <playingMaterial determinerCode="KIND">
+		       <name xsi:type="TN">ibuprofen</name>
+		     </playingMaterial>
+		   </role>
+	         </playingManufacturedMaterial>
+	       </role>
+	     </participant>
+	   </substanceAdministration>
+	 </participation>
+      </patient>
+   </participant>
+</act>
+</subject>
+</information>

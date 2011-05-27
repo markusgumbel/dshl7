@@ -1,0 +1,366 @@
+/*
+ * HQLGUI.java
+ *
+ * Created on May 24, 2008, 9:26 AM
+ * By Peter Hendler
+ */
+
+package org.hl7.demo;
+
+//import org.hibernate.classic.Session;
+import org.hibernate.Query;
+import org.hibernate.classic.Session;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hl7.hibernate.Persistence;
+import org.hibernate.Transaction;
+import org.hl7.rim.*;
+import org.hl7.rim.impl.*;
+import org.hibernate.Query;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Date;
+import org.hl7.rim.*;
+import org.hl7.types.*;
+import org.hl7.types.impl.*;
+import java.lang.reflect.*;
+
+/**
+ *
+ * @author  phend
+ */
+public class HQLGUI extends javax.swing.JFrame {
+    
+    /** Creates new form HQLGUI */
+    public HQLGUI() {
+        initComponents();
+    }
+    
+    String hqlSamples = "SELECT name.givenName FROM EntityImpl e INNER JOIN e.name AS name \n" +    
+     "WHERE e.determinerCode.code='INSTANCE'\n"+
+     "AND name.familyName like 'Hendler'\n"+
+      "\n"+       
+     "SELECT new list( a.value, i.root, i.extension)\n"+ 
+     "FROM RoleImpl r\n"+ 
+     "INNER JOIN r.id AS i\n"+ 
+     "INNER JOIN r.participation AS p\n"+ 
+     "INNER JOIN p.act as a\n"+ 
+     "WHERE  i.extension = '12345' AND a.classCode like 'OBS'\n"+
+    "\n"+
+     "select obs.code.displayName from Act as obs\n"+
+     "where obs.code.displayName is not null\n"+
+     "\n"+ 
+     "from Act\n"+
+      "\n"+
+     "SELECT a.cloneCode FROM ActImpl a WHERE a.classCode like 'DOCCLIN'\n"+
+     "\n"+      
+    "SELECT distinct new list(a.code.code, a.code.codeSystem)\n"+
+    "FROM ActImpl a\n"+
+    "WHERE a.moodCode.code='EVN'\n" +
+     "\n" +       
+    "select distinct new list(a.value, a.value.unit, ClinDoc.classCode, structBody.classCode, \n" + 
+    "subject.typeCode, patient.classCode, patPerson.classCode, name.familyName, \n" +  
+    "name.givenName) \n" +  
+    "from ActImpl a \n" + 
+    "inner join a.inboundRelationship entry \n" + 
+    "inner join entry.source section \n" + 
+    "inner join section.inboundRelationship component \n" + 
+    "inner join component.source structBody \n" + 
+    "inner join structBody.inboundRelationship comp2 \n" + 
+    "inner join comp2.source ClinDoc \n" + 
+    "inner join ClinDoc.participation subject \n" + 
+    "inner join subject.role patient \n" + 
+    "inner join patient.player patPerson \n" + 
+    "inner join patPerson.name as name \n" + 
+    "where subject.typeCode like 'RCT'";    
+    // this is only used when the database has pre existing units='1'
+    // I used it to fix KP sandbox DB
+    public void fixBlankUnits(){
+         String hql = "update Act a set a.value.unit = 'mg/dl' where a.value.unit = '1'";
+         try{
+		Session session = Persistence.getSessionFactory().openSession();
+                Transaction tx = session.beginTransaction();
+                int rows = session.createQuery(hql).executeUpdate();;
+                HQLTextArea.setText("rows updated: " + rows);
+                tx.commit();
+                session.close();
+        }catch(Exception e){ResultTextArea.append("error---------\n" + e.getMessage() + "\n------------\n");}
+    }
+    
+    public void showResult(Iterator resit){
+        ResultTextArea.append("---------- new query ------------\n");
+        ResultTextArea.append(HQLTextArea.getText() + "\n------------------\n\n");
+        while(resit.hasNext()){           
+            ResultTextArea.append(resit.next().toString() + "\n");           
+        }
+        
+    }	
+    
+    public void query(String query){
+        try{
+		Session session = Persistence.getSessionFactory().openSession();
+                Query q = session.createQuery(query);
+                q.setMaxResults(100);
+                Date date = new Date();
+                long start = date.getTime();
+                List rlist = q.list();
+		Iterator resit = rlist.iterator();
+                date = new Date();
+                long end = date.getTime();
+                long elapsed = end - start;                
+		showResult(resit);
+                ResultTextArea.append("--------query max 100 rows miliseconds--- " + elapsed + " ms \n");
+                java.awt.Toolkit.getDefaultToolkit( ).beep( );
+        }catch(Exception e){ResultTextArea.append("\nerror---------\n" + e.getMessage() + "\n------------\n");}
+    }
+    
+    public void showFields(String query){
+       try{
+        	Session session = Persistence.getSessionFactory().openSession();
+                Query q = session.createQuery(query);
+                q.setMaxResults(25);
+                Date date = new Date();
+                long start = date.getTime();
+                Iterator it  = q.list().iterator();
+                date = new Date();
+                long end = date.getTime();
+                long elapsed = end - start;
+               
+              while(it.hasNext()){
+                 Object o = it.next();                  
+                Class clazz = o.getClass();
+                Field[] fields = clazz.getDeclaredFields();
+                Class[] classes = clazz.getInterfaces();
+                 ResultTextArea.append("----------  interfaces ------------\n");
+                 ResultTextArea.append("for class " + clazz.getName() + "\n");
+                 for(Class claxx : classes){
+                   ResultTextArea.append(claxx.getName() + "\n");   
+                 }
+                ResultTextArea.append("---------- Declared fields ------------\n");
+                ResultTextArea.append("for class " + clazz.getName() + "\n");
+               for(Field field : fields){
+                 ResultTextArea.append(field.getName() + "\n");                     
+               }
+                ResultTextArea.append("---------- end of fields ------------\n");
+                
+             }
+                 ResultTextArea.append("----- elapsed miliseconds for query max rows = 25 --- " + elapsed + " ms \n");
+                 java.awt.Toolkit.getDefaultToolkit( ).beep( );
+           }catch(Exception e){ResultTextArea.append("\nerror---------\n" + e.getMessage() + "\n------------\n");} 
+    }
+	
+    /* ----------------------------------------------------------------
+    Some sample HQL
+     SELECT name.givenName FROM EntityImpl e INNER JOIN e.name AS name 
+     WHERE e.determinerCode.code='INSTANCE'
+     AND name.familyName like 'Hendler'
+             
+     SELECT new list( a.value, i.root, i.extension) 
+     FROM RoleImpl r 
+     INNER JOIN r.id AS i 
+     INNER JOIN r.participation AS p 
+     INNER JOIN p.act as a 
+     WHERE  i.extension = '12345' AND a.classCode like 'OBS'
+    
+     select obs.code.displayName from Act as obs
+     where obs.code.displayName is not null
+      
+     from Act
+      
+     SELECT a.cloneCode FROM ActImpl a WHERE a.classCode like 'DOCCLIN'
+      
+      
+    SELECT distinct new list(a.code.code, a.code.codeSystem)
+    FROM ActImpl a
+    WHERE a.moodCode.code='EVN'
+      
+    select distinct new list(a.value, a.value.unit, ClinDoc.classCode, structBody.classCode, 
+    subject.typeCode, patient.classCode, patPerson.classCode, name.familyName, 
+    name.givenName) 
+    from ActImpl a
+    inner join a.inboundRelationship entry
+    inner join entry.source section
+    inner join section.inboundRelationship component
+    inner join component.source structBody
+    inner join structBody.inboundRelationship comp2
+    inner join comp2.source ClinDoc
+    inner join ClinDoc.participation subject
+    inner join subject.role patient
+    inner join patient.player patPerson
+    inner join patPerson.name as name
+    where subject.typeCode like 'RCT'
+
+      
+    Also look in etc/query.hbm.xml for more ideas
+     * -------------------------------------------------------------------
+     * /
+             
+          
+             
+    
+    
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        HQLTextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        RunButton = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ResultTextArea = new javax.swing.JTextArea();
+        ClearALLButton1 = new javax.swing.JButton();
+        SamplesButton = new javax.swing.JButton();
+        ShowFieldsButton = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HL7 Java SIG HQL browser");
+
+        HQLTextArea.setColumns(20);
+        HQLTextArea.setRows(5);
+        jScrollPane1.setViewportView(HQLTextArea);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
+        jLabel1.setText("HL7 Java SIG Hibernate Query Language Browser");
+
+        RunButton.setText("Run HQL");
+        RunButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RunButtonActionPerformed(evt);
+            }
+        });
+
+        ClearButton.setText("Reset To Sample");
+        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearButtonActionPerformed(evt);
+            }
+        });
+
+        ResultTextArea.setColumns(20);
+        ResultTextArea.setRows(5);
+        jScrollPane2.setViewportView(ResultTextArea);
+
+        ClearALLButton1.setText("Clear Results");
+        ClearALLButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearALLButton1ActionPerformed(evt);
+            }
+        });
+
+        SamplesButton.setText("Show HQL Samples");
+        SamplesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SamplesButtonActionPerformed(evt);
+            }
+        });
+
+        ShowFieldsButton.setText("Show Declared Fields");
+        ShowFieldsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowFieldsButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(RunButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ClearButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ClearALLButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SamplesButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(ShowFieldsButton))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RunButton)
+                    .addComponent(ClearButton)
+                    .addComponent(ClearALLButton1)
+                    .addComponent(SamplesButton)
+                    .addComponent(ShowFieldsButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+        HQLTextArea.setText("SELECT new list( a.value, i.root, i.extension) \n" + 
+ "FROM RoleImpl r \n" + 
+ "INNER JOIN r.id AS i \n" + 
+ "INNER JOIN r.participation AS p \n" + 
+ "INNER JOIN p.act as a \n" +                   
+ "WHERE  i.extension = '12345' AND a.classCode like 'OBS'");
+        ResultTextArea.setText("");        
+    }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void RunButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunButtonActionPerformed
+        query(HQLTextArea.getText());        
+    }//GEN-LAST:event_RunButtonActionPerformed
+
+    private void ClearALLButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearALLButton1ActionPerformed
+        ResultTextArea.setText("");
+        //HQLTextArea.setText("");
+    }//GEN-LAST:event_ClearALLButton1ActionPerformed
+
+    private void SamplesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SamplesButtonActionPerformed
+                ResultTextArea.setText("");
+                //HQLTextArea.setText("");
+                ResultTextArea.setText(hqlSamples);
+    }//GEN-LAST:event_SamplesButtonActionPerformed
+
+    private void ShowFieldsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowFieldsButtonActionPerformed
+        showFields(HQLTextArea.getText());
+    }//GEN-LAST:event_ShowFieldsButtonActionPerformed
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new HQLGUI().setVisible(true);
+            }
+        });
+    }
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ClearALLButton1;
+    private javax.swing.JButton ClearButton;
+    private javax.swing.JTextArea HQLTextArea;
+    private javax.swing.JTextArea ResultTextArea;
+    private javax.swing.JButton RunButton;
+    private javax.swing.JButton SamplesButton;
+    private javax.swing.JButton ShowFieldsButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    // End of variables declaration//GEN-END:variables
+    
+}

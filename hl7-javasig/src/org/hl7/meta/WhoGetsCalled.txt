@@ -1,0 +1,120 @@
+Peter Hendler  04/16/05
+What getter methods in what clone classes actually ever get called?
+What are examples of returned data from these methods?
+
+We will ignore messageType meta loading and see what is actually used when a message is
+parsed or built.
+
+This information will help tell which parts of the parsed MIF file get put into which fields
+of the meta classes.
+
+If the method is called directly from outside the meta package I'll put a ** next to it.
+
+Message loading*********************************************
+
+XmlIts lookupMetaDataByTag (this returns a Feature)  foldGeneralizations(messageType) only
+       seems to have only to do with getting CMETs loaded
+       which is a form of metaloading that only occurs during the time that the
+       actual message is being parsed. 
+
+DataType getFullName**  
+SimpleDataType getFullName**(returns things like OID, CS, TS, II, EN, TEL) getHandler** 
+ParameterizedDataType getFullName** getHandler** isPure** getParameter(int)**
+            fullName   SET<II>  BAG<AD> BAG<EN>
+            type       SET      BAG     BAG
+            isPure    is the SET or BAG filled with one kind of thing?
+            Parameter(int)  for example asks for the first TS in a PIVL<TS>  
+
+CloneClass  getInstance** getName** isAbstract** getChild(int) getRimClass getFullName getName
+            Note: none of the iterateChildren etc are ever called?
+            
+            getInstance calles Factory to get RIM (not meta) Class
+            Examples of getName     (AdverseEventInvestigation, AssignedPerson, AssignedPerson)
+            Examples of getFullName (AdverseEventInvestigation, AssignedPerson, null.assignedEntity) 
+            When rimClass=ActRelationship name=PertinentInformation2 fullName=null
+            When rimClass=Role name and full name both= AssignedPerson
+            When rimClass=Participation name=ResponsibleParty
+            FullName might be names of all ancestors separated by "."
+ 
+Attribute getDataType getDomains isStructuralInternal isExtraInternal isStructural 
+          isExtra getDefaultValue getFixedValues 
+ 
+Feature getName getRimPropertyName getCardinality getRimClass getParent isMandetory getConformance
+        getConstraint
+        
+        method             returns            returns            returns            returns   returns
+        getName            templateId         realmCode          typeID             type      classCode
+        getRimPropertyName templateId         realmCode          typeID             type      classCode
+        getRimClass	   InfrastructureRoot InfrastructureRoot InfrastructureRoot RimObject Act 		
+        getParent                                                                             CloneClassImpl
+                                                                                                 name=AdverseEventInvestigation
+                                                                                                 rimClass=PublicHealthCase
+       rimClass seems to mean "Which Rim Class contains this feature?"
+       RimPropertyName and Name seem to be the same.
+       Parent seems to refer to containing class and not IsA relationship.                                                                                                    
+
+CloneClassAssociation both getTarget** and getPrefix and getMetSource(both only as part
+       of stack to CmetAssociation.getTarget) are called
+       getTarget returns CloneClassImpl where name=PrincipleChoiceList and rimClass=Entity
+       getPrefix returns "assigned"
+       when the name of the CloneClassAssociation itself is assignedPrincipleChoiceList
+       ...and then ...
+       getTarget CloneClass with name of PrincipleChoiceList_comp1_1 and rimClass of LivingSubject
+       getPrefix assignedPrincipleChoiceList_
+       name assignedPrincipleChoiceList_PrincipleChoiceList_comp1_1
+       
+       Note: the "name" parameter of an org.hl7.meta feature of any kind
+       is the same as the XML tag. And Associations have the XML element
+       tag followed by underscore _ to be the prefix of thier names.
+       Look at XMLItsBallot3Impl.lookupMetadataByTag() to see this.
+       Any message parser will need a similar method.
+       
+       
+CmetAssociation  only getTarget** is called which is a CloneClass
+                Target is the same as rootClass and is a CloneClass
+ChoiceAssociation  only getChoice is called as part of CmetAssociation.getTarget
+                   In meta parsing target is Intervention when name is subjectIntervention
+                   and property name is "source" and rimclass is Act
+                   
+                   When name is pertinentIndication property name = "target" rimClass
+                   is Act and the Target itself is a CloneClassImpl with name="Indication
+                   and rimClass=Act
+
+MessageType  getRootClass getId lookUpCloneClass recursivelyOutputCloneClasses
+             
+             recursivelyOutputCloneClasses really is not needed
+             and only populates a StringBuffer with human readable
+             info
+
+Message building*********************************************
+
+XmlIts nothing gets called
+
+DataType getFullName
+
+SimpleDataType getFullName isCompleteTypeOf
+ 
+ParameterizedDataType getParameter(int) getType getFullName
+        getType="SET" or "BAG" or "IVL"   
+
+CloneClass getName** getFullName 
+           Note: none of the iterateChildren etc are ever called?
+
+Attribute getFixedValues getDefaultValue getDataType isStructural isExtra 
+
+Feature getRimPropertyName getCardinality getName getParent 
+
+CloneClassAssociation   only getTarget** gets called.
+
+CmetAssociation   only getTarget**
+  
+ChoiceAssociation  countChoices was called as part of stack of CmetAssociation.getTarget
+                   toString** was called by messageBuilderImpl.processChoiceAssociation
+
+MessageType getRootClass is the only thing called.
+
+** means method is called from outside the meta package
+
+Many methods are called in response to CmetAssociation.getTarget.  All of the folding
+seems to be related to folding the CMET into a single CloneClass that can be added to
+the graph.

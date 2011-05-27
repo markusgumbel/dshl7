@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ASCII"?>
+<information xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" moodCode="EVN">
+<subject>
+<act classCode="CACT" moodCode="EVN">
+   <participant typeCode="SBJ">
+      <patient>
+         <!-- adds problems to a patient in rim-instance2.xml -->
+	 <id root="2.16.840.1.113883.19.3.2409" extension="1-976-245" displayable="true"/>
+	 <participation typeCode="SBJ">
+	    <act classCode="LIST">
+	       <sourceOf typeCode="COMP">
+		  <sequenceNumber value="1"/>
+		  <act classCode="CNOD">
+		     <statusCode code="active" codeSystem="2.16.840.1.113883.5.14"/>
+		     <sourceOf typeCode="SUBJ">
+			<observation classCode="OBS" moodCode="EVN">
+			   <code code="complaint" codeSystem="2.16.840.1.113883.6.96"/>
+			   <effectiveTime value="1950"/>
+			   <value xsi:type="CD" code="Asthma" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Asthma">
+			      <originalText>
+				 <reference value="#a1"/>
+			      </originalText>
+			   </value>
+			</observation>
+		     </sourceOf>              
+		  </act>          
+	       </sourceOf>
+	       <sourceOf typeCode="COMP">
+               <sequenceNumber value="2"/>
+               <act classCode="CNOD">
+                 <statusCode code="completed" codeSystem="2.16.840.1.113883.5.14"/>
+                 <sourceOf typeCode="SUBJ">
+                   <observation classCode="OBS" moodCode="EVN">
+                     <code code="complaint" codeSystem="2.16.840.1.113883.6.96"/>
+                     <effectiveTime value="1955"/>
+                     <value xsi:type="CD" code="ChestPain" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Chest Pain">
+                       <originalText>
+                         <reference value="#a1"/>
+                       </originalText>
+                     </value>
+                   </observation>
+                 </sourceOf>              
+               </act>          
+             </sourceOf>
+             <sourceOf typeCode="COMP">
+               <sequenceNumber value="3"/>
+               <act classCode="CNOD">
+                 <statusCode code="active" codeSystem="2.16.840.1.113883.5.14"/>
+                 <sourceOf typeCode="SUBJ">
+                   <observation classCode="OBS" moodCode="EVN">
+                     <code code="diagnosis" codeSystem="2.16.840.1.113883.6.96"/>
+                     <effectiveTime value="1969"/>
+                     <value xsi:type="CD" code="Headache" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Headache">
+                       <originalText>
+                         <reference value="#a1"/>
+                       </originalText>
+                     </value>
+                   </observation>
+                 </sourceOf>              
+               </act>          
+             </sourceOf>
+           </act>
+	 </participation>
+      </patient>
+   </participant>
+</act>
+</subject>
+</information>

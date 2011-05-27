@@ -1,0 +1,881 @@
+<project name="Java SIG Project" default="all" basedir=".">
+  <property name="database" value="hsqldb"/>
+  <property name="root.dir" value="${basedir}"/>
+  <property environment="env"/>
+  <property name="version" value="${java.version}"></property>
+  <property name="ant.home" value="${env.ANT_HOME}"/>
+  <property name="java.home" value="${env.JAVA_HOME}"/>
+  <property name="build.dir" value="${root.dir}/build"/>
+  <property name="config.jar.dir" value="${build.dir}/config"/>
+  <property name="doc.dir" value="${root.dir}/doc"/>
+  <property name="apidoc.dir" value="${doc.dir}/api"/>
+  <property name="etc.dir" value="${basedir}/etc"/>
+  <property name="lib.dir" value="${root.dir}/lib"/>
+  <property name="src.dir" value="${root.dir}/src"/>
+  <property name="test.dir" value="${root.dir}/test"/>
+  <property name="demo.dir" value="${root.dir}/demo"/>
+  <property name="tmp.dir" value="${root.dir}/tmp"/>
+  <property name="jar.file" value="jsig.jar"/>
+  <property name="web.dir" value="${tmp.dir}/web"/>
+  <property name="war.file" value="${web.dir}/jsig-${database}.war"/>
+  <property name="web.port" value="8080"/>
+  <property name="web.url" value="http://localhost:${web.port}/jsig-${database}"/>
+  <property name="post.xml" value="${etc.dir}/rim-instance2.xml"/>
+  <property name="post.mt" value="UUDD_MT999999"/>
+  <property name="gencode-input" value="etc"/>
+
+    <!-- GUM: Here we need to inlcude the HL7v3-CD -->
+  <property name="cdrom.drive" value="D:"/>
+  <!-- put the name of your CD ROM drive here -->
+  <property name="edition.dir" value="${cdrom.drive}/docs/eHealth/HL7/HL7-v3-CD"/>
+  <property name="processable.dir" value="${edition.dir}/processable"/>
+  <property name="rim.mif" value="${tmp.dir}/rim.coremif"/>
+  <property name="rim-augment.transform" value="${etc.dir}/rim-augment.xsl"/>
+  <property name="cmetinfo.mif" value="${tmp.dir}/cmetinfo.coremif"/>
+  <property name="mif.zip" value="${processable.dir}/mif/mif.zip"/>
+  <property name="voc.xml" value="${processable.dir}/intermediatexml/Vocabulary.xml"/>
+  <property name="voc-augment.transform" value="${etc.dir}/voc-augment.xsl"/>
+  <property name="schemas.dir" value="${processable.dir}/multicacheschemas"/>
+  <property name="mif.java.transform" value="${etc.dir}/mif2java.xsl"/>
+  <property name="dmif.java.transform" value="${etc.dir}/dmif2java.xsl"/>
+  <property name="voc.java.transform" value="${etc.dir}/voc2java.xsl"/>
+  <property name="gencode.basename" value="gencode"/>
+  <property name="gencode.dir" value="${root.dir}/gencode"/>
+  <property name="gencode.rim.file" value="${gencode.dir}/org/hl7/rim/Act.java"/>
+  <property name="gencode.enums.file" value="${gencode.dir}/org/hl7/types/enums/ActRelationshipType.java"/>
+  <property name="gencode.tests.file" value="${test.dir}/org/hl7/UUDD_MT333333UV/Citizen.java"/>
+  <property name="mif.hbm.transform" value="${etc.dir}/mif2hbm.xsl"/>
+  <property name="mif.hbm.typedef.transform" value="${etc.dir}/mif2hbm-typedef.xsl"/>
+  <property name="hbm.out.file" value="${gencode.dir}/rim-class.hbm.xml"/>
+  <property name="hbm.typedef.out.file" value="${gencode.dir}/typedef.hbm.xml"/>
+  <property name="hbm.template.basename" value="template.hbm.xml"/>
+  <property name="hbm.template" value="${etc.dir}/${hbm.template.basename}"/>
+  <property name="hbm.specializationStyle" value="subclass"/>
+  <!-- OR: value="union-subclass"/-->
+  <property name="domainmap.out.file" value="${gencode.dir}/domain-oid-map.xml"/>
+  <property name="voc.domainmap.transform" value="${etc.dir}/voc2domainmap.xsl"/>
+  <property name="units.table.transform" value="${src.dir}/org/regenstrief/ucum/unit-table.xsl"/>
+  <property name="ucum.source" value="${etc.dir}/ucum-source.xml"/>
+  <property name="units.table" value="${build.dir}/units.xml"/>
+  <path id="classpath">
+    <pathelement location="."/>
+    <pathelement location="${build.dir}"/>
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+      <include name="**/*.zip"/>
+    </fileset>
+    <pathelement location="${java.home}/lib/rt.jar"/>
+    <pathelement location="${mif.zip}"/>
+    <pathelement location="${schemas.dir}"/>
+    <!-- SHOULD NOT INCLUDE THE CLASSPATH, AS THIS MAY NOT BE REPRODUCABLE ON OTHER INSTALLATIONS pathelement path="${java.class.path}"/ -->
+  </path>
+  <target name="classpath" description="show the effective classpath">
+    <pathconvert targetos="unix" property="classpath-check.path" refid="classpath"/>
+    <echo message="${classpath-check.path}"/>
+  </target>
+  <target name="all" description="build from current state" depends="prepare, gencode, compile, setupcfg"/>
+  <target name="setupcfg" description="build all generated configuration files" depends="units, hbm, domainmap"/>
+  <target name="clean" description="clean files that can be recreated">
+    <delete dir="${build.dir}"/>
+    <delete file="${jar.file}"/>
+    <delete file="${war.file}"/>
+    <delete dir="${web.dir}"/>
+    <delete dir="${gencode.dir}"/>
+    <delete dir="${apidoc.dir}"/>
+    <delete dir="tmp.gencode.rim.done"/>
+    <delete dir="tmp.gencode.enums.done"/>
+  </target>
+  <target name="buildclean" description="remove the build dir">
+    <delete dir="${build.dir}"/>
+    <delete file="${jar.file}"/>
+    <delete file="${war.file}"/>
+  </target>
+  <target name="distclean" description="clean but leave generated sources and javadoc">
+    <delete dir="${build.dir}"/>
+    <delete dir="${web.dir}"/>
+    <delete dir="${tmp.dir}"/>
+    <delete file="tmp.gencode.rim.done"/>
+    <delete file="tmp.gencode.enums.done"/>
+  </target>
+  <target name="jar" description="create a deployable jar file" depends="prepare, gencode, quick-compile-base, quick-compile-demo">
+    <jar jarfile="${jar.file}" basedir="${build.dir}"/>
+  </target>
+  <target name="war" description="create a deployable war file" depends="all">
+    <war destfile="${war.file}" webxml="${etc.dir}/web.xml">
+      <fileset dir="${etc.dir}">
+	<include name="index.xsl"/>
+	<include name="fault.xsl"/>
+	<include name="soap-adapter.xsl"/>
+	<include name="soap-process.xsl"/>
+	<include name="exception.xsl"/>
+	<include name="empty-soap.xml"/>
+	<include name="empty.xml"/>
+      </fileset>
+      <lib dir="${lib.dir}">
+	<include name="**/*.jar"/>
+	<include name="**/*.zip"/>
+	<exclude name="**/servlet*"/>
+	<exclude name="**/Inspector*"/>
+	<exclude name="**/jetty*"/>
+	<exclude name="**/junit*"/>
+	<exclude name="**/swing*"/>
+	<exclude name="**/xmlunit*"/>
+      </lib>
+      <classes dir="${build.dir}"/>
+      <classes file="${mif.zip}"/>
+    </war>
+  </target>
+  <path id="web.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/jetty*.jar"/>
+      <include name="**/servlet*.jar"/>
+    </fileset>
+  </path>
+  <target name="webServer" description="run the web server" depends="war, hsqldbServer">
+    <echo message="starting web server"/>
+    <java fork="yes" spawn="yes" classname="org.mortbay.jetty.Main" classpathref="web.classpath">
+      <jvmarg value="-mx1024M"/>
+      <arg value="8080"/>
+      <arg value="-webapps"/>
+      <arg value="${web.dir}"/>
+    </java>
+  </target>
+  <path id="saxon.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/saxon*.jar"/>
+    </fileset>
+  </path>
+  <target name="postData" description="post an message to the server">
+    <java fork="yes" classname="net.sf.saxon.Transform" failonerror="true" classpathref="saxon.classpath">
+      <arg value="${post.xml}"/>
+      <arg value="${etc.dir}/post.xsl"/>
+      <arg value="url=${web.url}/${post.mt}/"/>
+    </java>
+  </target>
+  <target name="postCDA" description="post a CDA message to the server">
+    <java fork="yes" classname="net.sf.saxon.Transform" failonerror="true" classpathref="saxon.classpath">
+      <arg value="${etc.dir}/makeCDA.xml"/>
+      <arg value="${etc.dir}/post.xsl"/>
+      <arg value="url=${web.url}/POCD_HD000040/"/>
+    </java>
+  </target>
+  <target name="dist" description="create a complete distribution" depends="clean, jar, javadoc, distclean, dist-zip"/>
+  <target name="dist-zip" description="create a complete distribution">
+    <zip destfile="../hl7-javasig.zip">
+      <zipfileset dir="." filemode="755" dirmode="755" prefix="hl7-javasig-${dist.timestamp}/">
+	<include name="**/bin/*"/>
+	<include name="**/*.sh"/>
+	<include name="**/*.so"/>
+	<include name="**/*.dll"/>
+	<exclude name="**/.svn"/>
+	<exclude name="**/*~"/>
+      </zipfileset>
+      <zipfileset dir="." filemode="644" dirmode="644" prefix="hl7-javasig-${dist.timestamp}/">
+	<include name="**/*"/>
+	<exclude name="**/bin/*"/>
+	<exclude name="**/*.sh"/>
+	<exclude name="**/*.so"/>
+	<exclude name="**/*.dll"/>
+	<exclude name="**/.svn"/>
+	<exclude name="**/*~"/>
+      </zipfileset>
+    </zip>
+  </target>
+  <target name="javadoc" description="build API documentation" depends="prepare, gencode">
+    <echo message="Runing javadoc..."/>
+    <mkdir dir="${apidoc.dir}"/>
+    <javadoc destdir="${apidoc.dir}">
+      <packageset dir="${gencode.dir}">
+	<include name="org/**"/>
+	<exclude name="test/**/*"/>
+	<exclude name="**/CVS/**/*"/>
+	<exclude name="**/holdit/**/*"/>
+	<exclude name="**/*-holdit/**/*"/>
+	<exclude name="**/*-holdit"/>
+      </packageset>
+      <packageset dir="${src.dir}">
+	<include name="org/**"/>
+	<exclude name="test/**/*"/>
+	<exclude name="**/CVS/**/*"/>
+	<exclude name="**/holdit/**/*"/>
+	<exclude name="**/*-holdit/**/*"/>
+	<exclude name="**/*-holdit"/>
+      </packageset>
+    </javadoc>
+  </target>
+  <target name="prepare" depends="banner">
+    <echo message="Preparing directories for build..."/>
+    <!-- make necessary directories -->
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${tmp.dir}"/>
+    <mkdir dir="${web.dir}"/>
+    <!-- copy any static files -->
+    <copy file="${etc.dir}/rim-map.properties" todir="${build.dir}"/>
+    <copy file="${etc.dir}/type-map.properties" todir="${build.dir}"/>
+    <copy file="${etc.dir}/cmet-file.properties" todir="${build.dir}"/>
+    <copy file="${etc.dir}/hibernate.cfg.xml" todir="${build.dir}"/>
+    <copy file="${etc.dir}/query.hbm.xml" todir="${build.dir}"/>
+    <copy file="${etc.dir}/code-value-factory.xml" todir="${build.dir}"/>
+    <copy file="${etc.dir}/UUDD_MT999999.mif" todir="${build.dir}"/>
+    <copy file="${etc.dir}/UUDD_MT000000.mif" todir="${build.dir}"/>
+    <copy file="${etc.dir}/PORP_MT050032.mif" todir="${build.dir}"/>
+    <copy file="${etc.dir}/POCD_HD000040.mif" todir="${build.dir}"/>
+  </target>
+  <target name="banner">
+    <echo>HL7 Java SIG ${version}
+    Please visit: http://aurora.regenstrief.org/javasig
+
+    Set the property -Dcdrom.drive to point to the drive (or directory) with the HL7 v3 CD-ROM. 
+
+    ALTERNATIVELY:
+
+    Set the property -Dedition.dir to point to the directory of the HL7 v3 Edition directory.
+
+    Current values are
+
+    cdrom.drive = "${cdrom.drive}"
+    edition.dir = "${edition.dir}"</echo>
+  </target>
+  <!-- GENCODE -->
+  <target name="gencode" description="create all generated code" depends="quick-compile-support, gencode.rim, gencode.enums, hbm, domainmap, gencode.UUDD_MT333333UV, gen.UUDD_MT333333UV.hbm"/>
+  <target name="gencode.rim" description="create generated RIM classes" depends="rim.mif, check.gencode.rim.uptodate" unless="gencode.rim.uptodate">
+    <echo message="Generating code for RIM classes"/>
+    <java fork="yes" classname="org.regenstrief.util.TRAXPipe" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-i"/>
+      <arg value="${rim.mif}"/>
+      <arg value="-o"/>
+      <arg value="tmp.gencode.rim.done"/>
+      <arg value="${rim-augment.transform}"/>
+      <arg value="${mif.java.transform}"/>
+      <arg value="base-path=${gencode.basename}"/>
+      <!-- note this is NOT the ${gencode.dir} -->
+      <arg value="bean-package=org.hl7.rim.impl"/>
+      <arg value="bean-suffix=Impl"/>
+    </java>
+  </target>
+
+  
+  <target name="check.gencode.tests.uptodate">
+    <uptodate property="gencode.tests.uptodate" targetfile="${gencode.tests.file}">
+      <srcfiles dir=".">
+	<include name="${cmetinfo.mif}"/>
+	<include name="${dmif.java.transform}"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+  <target name="check.cmetinfo.mif.available">
+    <available property="rim.cmetinfo.available" file="${cmetinfo.mif}"/>
+  </target>
+  <target name="cmetinfo.mif" depends="prepare, check.cmetinfo.mif.available" unless="rim.cmetinfo.available">
+    <unzip src="${mif.zip}" dest="${tmp.dir}">
+      <patternset>
+	<include name="**/cmetinfo.coremif"/>
+      </patternset>
+    </unzip>
+  </target>
+
+  <target name="gencode.UUDD_MT333333UV" description="create generated UUDD_MT333333 Java classes" depends="cmetinfo.mif, check.gencode.tests.uptodate" unless="gencode.tests.uptodate">
+    <echo message="Generating Java for UUDD_MT333333"/>
+    <antcall target="gencode.mif" inheritall="true"><param name="mif" value="UUDD_MT333333UV"/></antcall>
+    <antcall target="gencode.mif" inheritall="true"><param name="mif" value="UUDD_MT333334UV"/></antcall>
+  </target>
+  
+  <target name="gencode.mif" description="create generated classes for a mif" depends="gencode.rim">
+    <echo message="Generating code for ${mif} classes"/>
+    <java fork="yes" classname="net.sf.saxon.Transform" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="tmp.gencode.${mif}.done"/>
+      <arg value="${etc.dir}/${mif}.mif"/>
+      <arg value="${dmif.java.transform}"/>
+      <arg value="base-package=org.hl7.${mif}"/>
+      <arg value="base-path=test"/>
+      <arg value="cmet-mif=../tmp/cmetinfo.coremif"/>
+      <arg value="rim-mif=../tmp/rim.coremif"/>
+      <!-- note this is NOT the ${gencode.dir} -->
+      <arg value="bean-package=org.hl7.${mif}.impl"/>
+      <arg value="bean-suffix=Impl"/>
+    </java>
+  </target>
+
+  <target name="gen.UUDD_MT333333UV.hbm" description="create generated UUDD_MT333333 hbm mapping" depends="cmetinfo.mif, check.gencode.tests.uptodate" unless="gencode.tests.uptodate">
+    <echo message="Generating hbm for UUDD_MT333333"/>
+    <antcall target="gen.cmet.hbm" inheritall="true"><param name="mif" value="UUDD_MT333333UV"/></antcall>
+    <antcall target="gen.cmet.hbm" inheritall="true"><param name="mif" value="UUDD_MT333334UV"/></antcall>
+  </target>
+  
+  <target name="gen.cmet.hbm" description="create generated ${mif} classes" depends="gencode.rim">
+    <echo message="Generating hbm for ${mif}/package.hbm.xml"/>
+    <java fork="yes" classname="net.sf.saxon.Transform" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="test/org/hl7/${mif}/package.hbm.xml"/>
+      <arg value="${gencode-input}/${mif}.mif"/>
+      <arg value="${etc.dir}/dmif2hbm.xsl"/>
+      <arg value="hbm-template-url=${hbm.template.basename}"/>
+      <arg value="namespace=org.hl7.${mif}.impl"/>
+      <arg value="rim-mif=../tmp/rim.coremif"/>
+      <arg value="bean-suffix=Impl"/>
+      <arg value="cmet-mif=../tmp/cmetinfo.coremif"/>
+    </java>
+  </target>
+  
+  <target name="check.gencode.rim.uptodate">
+    <uptodate property="gencode.rim.uptodate" targetfile="${gencode.rim.file}">
+      <srcfiles dir=".">
+	<include name="${rim.mif}"/>
+	<include name="${mif.java.transform}"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+  <target name="check.rim.mif.available">
+    <available property="rim.mif.available" file="${rim.mif}"/>
+  </target>
+  <target name="rim.mif" depends="prepare, check.rim.mif.available" unless="rim.mif.available">
+    <unzip src="${mif.zip}" dest="${tmp.dir}">
+      <patternset>
+	<include name="**/rim.coremif"/>
+      </patternset>
+    </unzip>
+  </target>
+  <target name="gencode.enums" description="create generated enums for structural vocabulary" depends="check.gencode.enums.uptodate" unless="gencode.enums.uptodate">
+    <echo message="Generating enums for structural vocabulary"/>
+    <java fork="yes" classname="org.regenstrief.util.TRAXPipe" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="tmp.gencode.enums.done"/>
+      <arg value="-i"/>
+      <arg value="${voc.xml}"/>
+      <arg value="${voc-augment.transform}"/>
+      <arg value="${voc.java.transform}"/>
+      <arg value="base-path=${gencode.basename}"/>
+      <!-- note this is NOT the ${gencode.dir} -->
+      <arg value="base-package=org.hl7.types.enums"/>
+    </java>
+  </target>
+  <target name="check.gencode.enums.uptodate">
+    <uptodate property="gencode.enums.uptodate" targetfile="${gencode.enums.file}">
+      <srcfiles dir=".">
+	<include name="${voc.xml}"/>
+	<include name="${voc.java.transform}"/>
+	<include name="etc/code-value-factory.xml"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+
+  <target name="hbm-generated" description="create hibernate mappings" depends="prepare, check.hbm.uptodate" unless="hbm.uptodate">
+    <echo message="Generating Hibernate mapping files from ${hbm.template}"/>
+    <java fork="yes" classname="net.sf.saxon.Transform" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="${hbm.typedef.out.file}"/>
+      <arg value="${hbm.template}"/>
+      <arg value="${mif.hbm.typedef.transform}"/>
+    </java>
+    <java fork="yes" classname="org.regenstrief.util.TRAXPipe" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="${hbm.out.file}"/>
+      <arg value="-i"/>
+      <arg value="${rim.mif}"/>
+      <arg value="${rim-augment.transform}"/>
+      <arg value="${mif.hbm.transform}"/>
+      <arg value="bean-package=org.hl7.rim.impl"/>
+      <arg value="bean-suffix=Impl"/>
+      <arg value="hbm-template-url=${hbm.template.basename}"/>
+      <arg value="specializationStyle=${hbm.specializationStyle}"/>
+    </java>
+  </target>
+  <target name="hbm" description="create hibernate mappings" depends="hbm-generated">
+    <copy file="${hbm.out.file}" todir="${build.dir}"/>
+    <copy file="${hbm.typedef.out.file}" todir="${build.dir}"/>
+  </target>
+  <target name="check.hbm.uptodate">
+    <uptodate property="hbm.uptodate" targetfile="${hbm.out.file}">
+      <srcfiles dir=".">
+	<include name="${rim.mif}"/>
+	<include name="${mif.hbm.transform}"/>
+	<include name="${etc.dir}/${hbm.template}"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+
+  <!-- COMPILE -->
+  <target name="compile" description="compile everything" depends="prepare, gencode, quick-compile"/>
+  <target name="quick-compile" description="compile without preparation (developer only)" depends="quick-compile-base, quick-compile-demo, quick-compile-test"/>
+  <target name="quick-compile-support" description="compile base only (developer only)">
+    <echo message="compiling base code"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" fork="yes" debug="on" failonerror="true"   target="1.5"  >
+      <exclude name="org/hl7/**/*"/>
+      <exclude name="org/regenstrief/ucum/**/*"/>
+      <exclude name="**/holdit/**/*"/>
+      <exclude name="**/*-holdit/**/*"/>
+    </javac>
+  </target>
+  <target name="quick-compile-base" description="compile base only (developer only)">
+    <echo message="compiling base code"/>
+    <javac srcdir="${src.dir}:${gencode.dir}" destdir="${build.dir}" classpathref="classpath" fork="yes" debug="on" failonerror="true"   target="1.5"  >
+      <exclude name="**/holdit/**/*"/>
+      <exclude name="**/*-holdit/**/*"/>
+    </javac>
+  </target>
+  <target name="quick-compile-demo" description="compile demo only (developer only)" depends="quick-compile-base">
+    <echo message="compiling demo"/>
+    <javac srcdir="${demo.dir}" destdir="${build.dir}" classpathref="classpath" fork="yes" debug="on" failonerror="true"   target="1.5"  >
+      <exclude name="**/holdit/**/*"/>
+      <exclude name="**/*-holdit/**/*"/>
+    </javac>
+  </target>
+  <target name="quick-compile-test" description="compile tests only (developer only)" depends="quick-compile-base">
+    <echo message="compiling tests"/>
+    <javac srcdir="${test.dir}" destdir="${build.dir}" classpathref="classpath" fork="yes" debug="on" failonerror="true"   target="1.5"  >
+      <exclude name="**/holdit/**/*"/>
+      <exclude name="**/*-holdit/**/*"/>
+    </javac>
+  </target>
+  <target name="domainmap-generated" description="create final domain-oid-map" depends="prepare, check.domainmap.uptodate" unless="domainmap.uptodate">
+    <java fork="yes" classname="org.regenstrief.util.TRAXPipe" taskname="saxon" failonerror="true" classpathref="classpath">
+      <arg value="-o"/>
+      <arg value="${domainmap.out.file}"/>
+      <arg value="-i"/>
+      <arg value="${voc.xml}"/>
+      <arg value="${voc-augment.transform}"/>
+      <arg value="${voc.domainmap.transform}"/>
+      <classpath refid="classpath"/>
+    </java>
+  </target>
+  <target name="domainmap" description="create hibernate mappings" depends="domainmap-generated">
+    <copy file="${domainmap.out.file}" todir="${build.dir}"/>
+  </target>
+  <target name="check.domainmap.uptodate">
+    <uptodate property="domainmap.uptodate" targetfile="${domainmap.out.file}">
+      <srcfiles dir=".">
+	<include name="${voc.xml}"/>
+	<include name="${voc.domainmap.transform}"/>
+	<include name="${etc.dir}/domain-oid-map.xml"/>
+	<include name="${etc.dir}/code-value-factory.xml"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+  <target name="units" description="create units table for PQ" depends="compile, check.units.uptodate" unless="units.uptodate">
+    <echo message="create units of measure definition table for PQ"/>
+    <java fork="yes" classname="net.sf.saxon.Transform" taskname="saxon" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="-o"/>
+      <arg value="${units.table}"/>
+      <arg value="${ucum.source}"/>
+      <arg value="${units.table.transform}"/>
+      <classpath refid="classpath"/>
+    </java>
+  </target>
+  <target name="check.units.uptodate">
+    <uptodate property="units.uptodate" targetfile="${units.table}">
+      <srcfiles dir=".">
+	<include name="${ucum.source}"/>
+	<include name="${units.table.transform}"/>
+      </srcfiles>
+    </uptodate>
+  </target>
+  <!-- TESTS -->
+  <target name="tests" description="run unit tests" depends="all">
+    <junit>
+      <sysproperty key="etc.dir" value="${etc.dir}"/>
+      <sysproperty key="hl7v3.schema.dir" value="${schemas.dir}"/>
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y"/>
+      <classpath refid="classpath"/>
+      <formatter type="brief" usefile="false"/>
+      <test name="org.hl7.test.AllTests" haltonfailure="no"/>
+    </junit>
+  </target>
+  <target name="tests2" description="run unit tests (specific)" depends="all">
+    <junit>
+      <sysproperty key="etc.dir" value="${etc.dir}"/>
+      <sysproperty key="hl7v3.schema.dir" value="${schemas.dir}"/>
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y"/>
+      <classpath refid="classpath"/>
+      <formatter type="brief" usefile="false"/>
+      <test name="org.hl7.types.impl.REALdoubleAdapterTest" haltonfailure="no"/>
+    </junit>
+  </target>
+  <target name="oldtest" description="run old unit tests (defuct?)" depends="compile">
+    <java fork="yes" classname="junit.textui.TestRunner" taskname="junit" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="org.hl7.test.AllTests"/>
+    </java>
+  </target>
+  <target name="test-units" description="run some tests on units">
+    <!-- depends="units"-->
+    <java fork="yes" classname="org.regenstrief.ucum.UnitSystem" taskname="units" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <!-- arg value="dyn.s/cm5"/>
+      <arg value="[p'diop]"/ -->
+      <arg value="{EU}/dL/{semi}"/>
+    </java>
+  </target>
+  <target name="test-pq-direct" description="run some tests with PQ" depends="units">
+    <java fork="yes" classname="org.hl7.types.impl.PQimpl" taskname="pq" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="100"/>
+      <arg value="[p'diop]"/>
+      <classpath refid="classpath"/>
+    </java>
+  </target>
+  <target name="test-hpath-direct" description="run some tests with hpath" depends="setupcfg">
+    <java fork="yes" classname="org.hl7.hpath.HPathTest" taskname="hpath" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="one"/>
+      <arg value="two"/>
+      <arg value="bar"/>
+      <arg value='\"hello\"|\"world\"'/>
+      <arg value='(\"hello\"|\"world\")[1]'/>
+      <arg value='(\"hello\"|\"world\")[2]'/>
+      <arg value='\"hello\"|\"world\"[1]'/>
+      <arg value="one|one"/>
+      <arg value="bar|bar"/>
+      <arg value="one|two|bar"/>
+      <arg value="(one|two|bar)[1]"/>
+      <arg value="(bar.foo|self())"/>	 
+      <arg value="bar.foo"/>
+      <arg value="boo"/>
+      <arg value="self()"/>
+      <arg value="(bar.foo[1]|self())"/>
+      <arg value="(bar.foo.none[1]|self())"/>
+      <arg value="(none|self())"/>
+      <arg value="bar.one"/>
+      <arg value="bar.foo.glue(bar)"/>
+      <arg value="bar.foo.two"/>
+      <arg value="bar.foo.one"/>
+      <arg value="bar.foo.boo"/>
+      <arg value="bar.foo.boo.one"/>
+      <arg value="bar.foo[boo].one"/>
+      <arg value='\"hello world\"'/>
+      <arg value='TS:\"19850403\"'/>
+      <arg value='PQ:\"20 kg\"'/>
+      <arg value='PQ:\"1 %[slope]\".canonical'/>
+      <arg value='PQ:\"10 %[slope]\".canonical'/>
+      <arg value='PQ:\"50 %[slope]\".canonical'/>
+      <arg value='PQ:\"100 %[slope]\".canonical'/>
+      <arg value='PQ:\"37 Cel\".canonical'/>
+      <arg value='PQ:\"100 [degF]\".canonical'/>
+    </java>
+  </target>
+  <target name="testhbm2ddl" description="run hbm2ddl (ignore this)" depends="hbm">
+    <echo message="run hbm2ddl"/>
+    <java fork="true" classname="org.hibernate.tool.hbm2ddl.SchemaExport" taskname="hbm2ddl" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="--config=hibernate.cfg.xml"/>
+      <arg value="--output=test.sql"/>
+      <arg value="--text"/>
+    </java>
+  </target>
+  <target name="codeValueFactoryTest" depends="quick-compile">
+    <junit>
+      <classpath refid="classpath"/>
+      <formatter type="brief" usefile="false"/>
+      <test name="org.hl7.types.STtest" haltonfailure="yes"/>
+      <test name="org.hl7.types.UIDtest" haltonfailure="yes"/>
+      <test name="org.hl7.types.CodeValueFactoryTest" haltonfailure="yes"/>
+    </junit>
+  </target>
+  <target name="numTest" depends="quick-compile">
+    <junit>
+      <classpath refid="classpath"/>
+      <formatter type="brief" usefile="false"/>
+      <test name="org.hl7.types.impl.REALdoubleAdapterTest" haltonfailure="no"/>
+      <test name="org.hl7.types.impl.PQimplTest" haltonfailure="no"/>
+    </junit>
+  </target>
+  <target name="hpathUpdateTest" depends="quick-compile">
+    <java fork="yes" classname="junit.swingui.TestRunner" taskname="junit" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <arg value="org.hl7.hpath.UpdateTest"/>
+    </java>
+  </target>
+  <target name="regression">
+    <java fork="yes" classname="org.hl7.xml.DatatypeTestSuite" failonerror="true" classpathref="classpath"/>
+  </target>
+  <!-- DEMO -->
+  <target name="makeCDA" description="make a CDA message from hand made RIM graph" depends="all">
+    <java fork="yes" classname="org.hl7.demo.MakeCDA" failonerror="true" classpathref="classpath">
+    </java>
+  </target>
+  
+  <target name="CDAMaker" description="GUI for makeCDA" depends="all">
+    <java fork="yes" classname="org.hl7.demo.CDAMaker" failonerror="true" classpathref="classpath">
+    </java>
+  </target>
+  <target name="demoDb4o" description="experiment with db4o object database" depends="all">
+    <java fork="yes" classname="org.hl7.demo.demoDb4o" failonerror="true" classpathref="classpath">
+    </java>
+  </target>
+  <target name="demoGUI" description="run some HPATH from a GUI" depends="all">
+    <java fork="yes" classname="org.hl7.demo.demoGUI" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+    </java>
+  </target>
+  <target name="demoRimFromScratch" description="Make a small RIM object graph from scratch and then generate message" depends="all">
+    <java fork="yes" classname="org.hl7.demo.RimFromScratch" failonerror="true" classpathref="classpath">
+    </java>
+  </target>
+  <target name="demoPatientEncounterFromRIM" description="Make a PatientEncounter RIM object graph from scratch and then generate message" depends="all">
+    <java fork="yes" classname="org.hl7.demo.PatientEncounterRIM" failonerror="true" classpathref="classpath">
+    </java>
+  </target>
+
+  <!-- FIXME: Make proper JUnit test cases for these. -->
+  <target name="demoHpath" description="roundtrip a RIM instance" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance2.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[true][true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[true][1]"/>
+      <!-- FIXME -->
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation[1].role.player.name[true][1]"/>
+      <!-- FIXME -->
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[2]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1][1]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1][true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name.use"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name.use[1]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name.use[true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[true].@use"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1].@use[true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[4].@use[true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1][true]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.name[1][type.implies(CS:EntityNamePartType:Given)]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.birthTime"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.player.birthTime.TSasDateString('d-MMM-yyyy')"/>
+      <arg value="--hpath"/>
+      <arg value='outboundRelationship.target.participation.role.player.birthTime.minus(TS:\"1900\")'/>
+      <arg value="--hpath"/>
+      <arg value='outboundRelationship.target.participation.role.player.birthTime.plus(PQ:\"1 d\")'/>
+      <arg value="--hpath"/>
+      <arg value='outboundRelationship.target.participation.role.player[birthTime.greaterThan(TS:\"1945\")].name'/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.id[root.equal(2.16.840.1.113883.19.3.2410)]"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.id[root.equal(2.16.840.1.113883.19.3.2410)].root"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role.id[root.equal(2.16.840.1.113883.19.3.2410)].extension"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation[typeCode.implies(CS:ParticipationType:Author).or(typeCode.implies(CS:ParticipationType:ParticipationTargetSubject))].typeCode"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship.target.participation.role[classCode.implies(CS:RoleClass:AssignedEntity).or(classCode.implies(CS:RoleClass:Patient))].classCode"/>
+    </java>
+  </target>
+
+  <target name="demoHpath2" description="roundtrip a RIM instance" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance2.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hpath"/>
+      <arg value="outboundRelationship"/>
+    </java>
+  </target>
+  <target name="hibernateSchemaExport" description="test hibernate mapping configuration" depends="all, hbm">
+    <java fork="yes" classname="org.hl7.hibernate.SchemaExport" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <sysproperty key="org.hl7.hibernate.database" value="${database}"/>
+    </java>
+  </target>
+  <target name="setupDB" description="setup database and load a RIM instance" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <sysproperty key="org.hl7.hibernate.database" value="${database}"/>
+      <sysproperty key="org.hl7.merger.useHibernate" value="true"/>
+      <sysproperty key="org.hl7.merger.MergerById.enabled" value="true"/>
+      <sysproperty key="org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute" value="true"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance2.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--setupDB"/>
+    </java>
+  </target>
+  <target name="demoRim" description="run Hibernate demo with RIM instance using new MIF" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <arg value="--gui"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance2.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hibernate"/>
+      <arg value="save"/>
+      <arg value="--build"/>
+    </java>
+  </target>
+  <target name="hqlInteractive" description="try HQL queries interactively" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.HQLInteractive" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+    </java>
+  </target>
+  <target name="loadData2" description="load the RIM instance 2" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <sysproperty key="org.hl7.hibernate.database" value="${database}"/>
+      <sysproperty key="org.hl7.merger.useHibernate" value="true"/>
+      <sysproperty key="org.hl7.merger.MergerById.enabled" value="true"/>
+      <sysproperty key="org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute" value="true"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance2.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hibernate"/>
+      <arg value="save"/>
+    </java>
+  </target>
+  <target name="loadData3" description="load the RIM instance 3" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <sysproperty key="org.hl7.hibernate.database" value="${database}"/>
+      <sysproperty key="org.hl7.merger.useHibernate" value="true"/>
+      <sysproperty key="org.hl7.merger.MergerById.enabled" value="true"/>
+      <sysproperty key="org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute" value="true"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance3.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hibernate"/>
+      <arg value="save"/>
+    </java>
+  </target>
+  <target name="loadData4" description="load the RIM instance 4" depends="all, hbm, hsqldbServer">
+    <java fork="yes" classname="org.hl7.demo.DemoDriver" failonerror="true" classpathref="classpath">
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
+      <sysproperty key="hibernate.cglib.use_reflection_optimizer" value="false"/>
+      <sysproperty key="org.hl7.hibernate.database" value="${database}"/>
+      <sysproperty key="org.hl7.merger.useHibernate" value="true"/>
+      <sysproperty key="org.hl7.merger.MergerById.enabled" value="true"/>
+      <sysproperty key="org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute" value="true"/>
+      <arg value="--newmif"/>
+      <arg value="--file"/>
+      <arg value="${etc.dir}/rim-instance4.xml"/>
+      <arg value="--messageType"/>
+      <arg value="UUDD_MT999999"/>
+      <arg value="--hibernate"/>
+      <arg value="save"/>
+    </java>
+  </target>
+  <!-- HSQLDB SERVER -->
+  <target name="check.need.hsqldbServer">
+    <condition property="need.hsqldbServer">
+      <equals arg1="${database}" arg2="hsqldb"/>
+    </condition>
+    <echo message="${database} == hsqldb -> ${need.hsqldbServer}"/>
+  </target>
+  <target name="hsqldbServer" description="run the hsqldb server" depends="check.need.hsqldbServer, check.hsqldbServer.running" if="need.hsqldbServer" unless="hsqldbServer.running">
+    <echo message="starting HSQLDB server demon"/>
+    <java fork="yes" spawn="yes" classname="org.hsqldb.Server" classpathref="classpath">
+      <jvmarg value="-mx1024M"/>
+      <arg value="-database.0"/>
+      <arg value="${tmp.dir}/demoHibernate"/>
+      <arg value="-dbname.0"/>
+      <arg value="javaSIG"/>
+      <arg value="-silent"/>
+      <arg value="false"/>
+      <arg value="-trace"/>
+      <arg value="true"/>
+    </java>
+  </target>
+  <target name="check.hsqldbServer.running" depends="check.need.hsqldbServer" if="need.hsqldbServer">
+    <echo message="checking if HSQLDB server is running"/>
+    <!-- delete file="demoHibernate.lck" failonerror="false"/ -->
+    <available property="hsqldbServer.running" file="demoHibernate.lck"/>
+  </target>
+  <target name="hsqldbManager" description="run the hsqldb interactive manager application">
+    <java fork="yes" spawn="yes" classname="org.hsqldb.util.DatabaseManagerSwing" classpathref="classpath">
+      <arg value="-driver"/>
+      <arg value="org.hsqldb.jdbcDriver"/>
+      <arg value="-url"/>
+      <arg value="jdbc:hsqldb:hsql://localhost/javaSIG"/>
+      <arg value="-noexit"/>
+    </java>
+  </target>
+  <target name="hsqldbShutdown" description="stop the hsqldb server gracefully">
+    <java fork="yes" spawn="no" classname="org.hsqldb.util.ScriptTool" classpathref="classpath">
+      <arg value="-driver"/>
+      <arg value="org.hsqldb.jdbcDriver"/>
+      <arg value="-url"/>
+      <arg value="jdbc:hsqldb:hsql://localhost/"/>
+      <arg value="-database"/>
+      <arg value="javaSIG"/>
+      <arg value="-script"/>
+      <arg value="${etc.dir}/hsqldb-shutdown.sql"/>
+    </java>
+  </target>
+
+  <target name="SimpleMessageLoader" description="the simplest possible message loader" depends = "all">
+    <java fork="yes"  classname="org.hl7.demo.SimpleLoadMessage" classpathref="classpath">
+    </java>	
+  </target>
+
+  <target name="SimpleMessageBuilder" description="the simplest possible message builder" depends = "all">
+    <java fork="yes"  classname="org.hl7.demo.SimpleMessageBuilder" classpathref="classpath">
+    </java>	
+  </target>
+  <target name="SimpleHibernateDemo" description="the simplest possible Hibernate Round Trip" depends = "all, hbm, hsqldbServer">
+    <java fork="yes"  classname="org.hl7.demo.SimpleHibernateDemo" classpathref="classpath">
+      <sysproperty key="org.hl7.merger.ContextConductionMerger.enabled" value="true"/>
+    </java>	
+  </target>
+
+  <target name="HibernateQueryDemo" description="Hibernate Query Language Demo" depends = "all, hbm, hsqldbServer">
+    <java fork="yes"  classname="org.hl7.demo.HibernateQueryDemo" classpathref="classpath">
+      <sysproperty key="org.hl7.merger.ContextConductionMerger.enabled" value="true"/>
+      <arg value = "SELECT new list( a.value, i.root, i.extension) FROM RoleImpl r 
+		    INNER JOIN r.id AS i 
+		    INNER JOIN r.participation AS p 
+		    INNER JOIN p.act as a                    
+		    WHERE  i.extension = '12345' AND a.classCode like 'OBS' "/>
+    </java>	
+  </target>
+  
+  <target name="HQLGUI" description="Hibernate Query Language GUI" depends = "all, hbm">
+    <echo message="If class not found rename source to .java demo/org/hl7/demo/HQLGUI.java.netbeansonly"/>
+    <java fork="yes"  classname="org.hl7.demo.HQLGUI" classpathref="classpath">
+    </java>	
+  </target>
+</project>

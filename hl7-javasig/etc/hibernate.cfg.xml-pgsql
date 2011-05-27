@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="show_sql">false</property>
+        <property name="hibernate.connection.release_mode">on_close</property>
+        <property name="hibernate.connection.provider_class">org.hl7.hibernate.PooledConnectionProvider</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	<property name="cglib.use_reflection_optimizer">true</property>
+        <property name="hibernate.cglib.use_reflection_optimizer">true</property>
+	<property name="connection.driver_class">org.postgresql.Driver</property>
+	<property name="connection.username">mw</property>
+	<property name="connection.password">mw</property>
+	<property name="connection.url">jdbc:postgresql://aurora.regenstrief.org/mw</property>
+	<property name="jdbc.batch_versioned_data">true</property>
+	<property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+         <!-- mapping files -->
+         <mapping resource="typedef.hbm.xml"/>
+         <mapping resource="rim-class.hbm.xml"/>
+         <mapping resource="query.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

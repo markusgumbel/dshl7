@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+    version="2.5"> 
+	<display-name>JavaSIG HL7 v3 Web Services</display-name>
+  <description> 
+     HL7 v3 web services using a MessageServlet. 
+     These services are done such that they do not require any transport or control act wrappers. 
+     Instead, we will determine the message type will be declared in the service name or the request headers.
+  </description>
+  
+  <servlet>
+     <servlet-name>UUDD_MT999999</servlet-name>
+     <display-name>RIM Data Load</display-name>
+     <description>
+	A service which loads RIM data.
+     </description>
+     <servlet-class>org.hl7.util.MessageServlet</servlet-class>
+     <init-param>
+	<param-name>messageTypeLoader</param-name>
+	<param-value>org.hl7.meta.mif.MessageTypeLoaderAdapter</param-value>
+     </init-param>
+     <init-param>
+	<param-name>HL7MessageType</param-name>
+	<param-value>UUDD_MT999999</param-value>
+     </init-param>
+     <!-- init-param>
+	  <param-name>HL7HPathExpression</param-name>
+	  <param-value></param-value>
+	  </init-param -->
+     <init-param>
+	<param-name>org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.useHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>SaveThroughHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerById.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfRolesByScoperPlayerAndClass.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfActRelationshipsBySourceTargetAndType.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerWedgeToCommitControlActs.enabled</param-name>
+	<param-value>false</param-value>
+     </init-param>
+  </servlet>
+  
+  <servlet>
+     <servlet-name>POCD_HD000040</servlet-name>
+     <display-name>CDA Data Load</display-name>
+     <description>
+	A service which loads CDA data.
+     </description>
+     <servlet-class>org.hl7.util.MessageServlet</servlet-class>
+     <init-param>
+	<param-name>messageTypeLoader</param-name>
+	<param-value>org.hl7.meta.mif.MessageTypeLoaderAdapter</param-value>
+     </init-param>
+     <init-param>
+	<param-name>HL7MessageType</param-name>
+	<param-value>POCD_HD000040</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.xml.parser.MessageElementContentHandler.commitEveryControlAct</param-name>
+	<param-value>false</param-value>
+     </init-param>
+     <!-- init-param>
+	  <param-name>HL7HPathExpression</param-name>
+	  <param-value></param-value>
+	  </init-param -->
+     <init-param>
+	<param-name>org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.useHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>SaveThroughHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerById.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfRolesByScoperPlayerAndClass.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfActRelationshipsBySourceTargetAndType.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerWedgeToCommitControlActs.enabled</param-name>
+	<param-value>false</param-value>
+     </init-param>
+  </servlet>
+  
+  <servlet>
+     <servlet-name>PORP_MT050032</servlet-name>
+     <display-name>SPL Data Load</display-name>
+     <description>
+	A service which loads SPL data.
+     </description>
+     <servlet-class>org.hl7.util.MessageServlet</servlet-class>
+     <init-param>
+	<param-name>messageTypeLoader</param-name>
+	<param-value>org.hl7.meta.mif.MessageTypeLoaderAdapter</param-value>
+     </init-param>
+     <init-param>
+	<param-name>HL7MessageType</param-name>
+	<param-value>PORP_MT050032</param-value>
+     </init-param>
+     <!-- init-param>
+	  <param-name>HL7HPathExpression</param-name>
+	  <param-value></param-value>
+	  </init-param -->
+     <init-param>
+	<param-name>org.hl7.xml.parser.MessageElementContentHandler.obeyJClassAttribute</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.useHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>SaveThroughHibernate</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerById.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfRolesByScoperPlayerAndClass.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfActRelationshipsBySourceTargetAndType.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerWedgeToCommitControlActs.enabled</param-name>
+	<param-value>false</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfActDefinitionsByCode.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+     <init-param>
+	<param-name>org.hl7.merger.MergerOfEntityKindsByCode.enabled</param-name>
+	<param-value>true</param-value>
+     </init-param>
+  </servlet>
+  
+  <servlet>
+     <servlet-name>index</servlet-name>
+     <display-name>GST Index</display-name>
+     <description>
+	An index page generated from the web.xml file.
+     </description>
+     <servlet-class>net.sf.xwsf.gstserver.CommonServlet</servlet-class>
+     <init-param>
+	<param-name>transformerFactory</param-name>
+	<param-value>net.sf.saxon.TransformerFactoryImpl</param-value>
+     </init-param>
+    <init-param>
+       <param-name>transform</param-name>
+       <param-value>/index.xsl</param-value>
+    </init-param>
+    <init-param>
+       <param-name>defaultInput</param-name>
+       <param-value>/WEB-INF/web.xml</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+     <servlet-name>UUDD_MT999999</servlet-name>
+     <url-pattern>/UUDD_MT999999/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>POCD_HD000040</servlet-name>
+     <url-pattern>/POCD_HD000040/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>PORP_MT050032</servlet-name>
+     <url-pattern>/PORP_MT050032/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+     <servlet-name>index</servlet-name>
+     <url-pattern>/index/*</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+     <welcome-file>index</welcome-file>
+  </welcome-file-list>
+  
+  <session-config>
+     <session-timeout>30</session-timeout>
+  </session-config>
+</web-app>

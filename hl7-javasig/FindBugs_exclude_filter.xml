@@ -1,0 +1,8 @@
+<FindBugsFilter>
+	<Match>
+		<Package name="org.regenstrief*" />
+	</Match>
+	<Match>
+		<Package name="net.sf.xwsf.gstserver" />
+	</Match>
+</FindBugsFilter>

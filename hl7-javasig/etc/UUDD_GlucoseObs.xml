@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ControlAct xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" moodCode="EVN">
+   <subject>
+      <observation moodCode="EVN">
+	<code code="365811003" displayName="Glucose level" codeSystem="2.16.840.1.113883.6.1" codeSystemName="SNOMED"/>
+	<effectiveTime xsi:type="IVL_TS">
+      <low inclusive="true" value="20061107212900.000"/>
+      <high inclusive="true" value="20061107212900.000"/>
+   </effectiveTime>
+	 <statusCode code="complete"/>
+	 <value xsi:type="PQ" value="45454545" unit="mmol/L"/>
+	 <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" displayName="normal"/>
+	 <participant typeCode="SBJ">
+	    <patient>
+	       <id root="2.16.840.1.113883.19.3.2409" extension="99AA9999"/>
+	       <statusCode code="active"/>
+	       <patientPerson determinerCode="INSTANCE">
+		  <name use="L">
+		     <given>John</given>
+		     <family>Doe</family>
+		  </name>
+	       </patientPerson>
+	       <providerOrganization determinerCode="INSTANCE">
+		  <id root="2.16.840.1.113883.19.3.2409" extension="1-976-245"/>
+		  <name use="L" xsi:type="ON">Good Health Clinic</name>
+		  <addr>
+		     <streetAddressLine>2143 W 10th Street</streetAddressLine>
+		     <city>Metropolis</city> <state>ET</state> <postalCode>12345</postalCode>
+		     <country>Neverland</country>
+		  </addr>
+	       </providerOrganization>
+	    </patient>
+	 </participant>
+	 <participant typeCode="AUT">
+	    <role classCode="ASSIGNED">
+	       <statusCode code="active"/>
+	       <playingPerson determinerCode="INSTANCE">
+		  <name use="L">
+		     <given>Brian</given>
+		     <family>Duh</family>
+		     <suffix>M.D.</suffix>
+		  </name>
+	       </playingPerson>
+	       <scopingOrganization>
+		  <id root="2.16.840.1.113883.19.3.2409" extension="1-976-245"/>
+	       </scopingOrganization>
+	    </role>
+	 </participant>
+      </observation>
+   </subject>
+</ControlAct>

@@ -1,0 +1,29 @@
+<glucoseDeviceObservation>
+	<time>
+		<date></date>
+		<timestamp></timestamp>
+	</time>
+<mrn>
+</mrn>
+	<patientName>
+		<prefix></prefix>
+		<given></given>
+		<middle></middle>
+		<family></family>
+		<suffix></suffix></patientName>
+	<observation>
+		<value></value>
+		<units></units>
+		<time>
+			<date></date>
+			<timestamp></timestamp>
+		</time>
+	</observation>
+	<provider>
+		<prefix></prefix>
+		<given></given>
+		<middle></middle>
+		<family></family>
+		<suffix></suffix>
+	</provider>
+</glucoseDeviceObservation>

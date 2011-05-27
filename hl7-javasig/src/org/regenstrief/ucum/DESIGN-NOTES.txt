@@ -1,0 +1,41 @@
+A Unit is a coded DimensionedQuantity. 
+
+DimensionedQuantity implements the mathmatical concept
+without regards to conventional name quantities (i.e.,
+Units). That's why DimensionedQuantities can be 
+easily computed without having to pay attention to
+the Unit symbols etc. 
+
+Units are then codes that have a DimensionedQuantity.
+So Units implement the CS interface and they are
+essentially DimensionedQuantities.
+
+The HL7 PQ is more than just a DimensionedQuantity. It is
+a DimensionedQuantity with a fixed Unit.
+
+Special Units implement the CS interface and are 
+SpecialDimensionedQuantities. SpecialDimensionedQuantities
+is the abstract mathmathical substrate of special units.
+
+How do DimensionedQuantities and SpecialDimensionedQuantities
+relate? Either the Special.D.Q. is a specialization or they 
+are entirely separate. The latter makes sense since the 
+also have a name (e.g., Cel, degF). This requires to split interface from
+implementation:
+
+            DimensionedQuantity <--------------------+
+               A                                     |
+               |                                     |
+               +----- RatioDimensionedQuantity       |
+               |                                     |
+               +----- SpecialDimensionedQuantity     |
+               |                                     |
+               +----- Unit --------------------------+
+
+while Unit can be used as a dimensioned quantity, it really
+needs to delegate the operations to the underlying Ratio or 
+Special DimensionedQuantity.
+
+Well, because of time constraints, I had to make degF and
+Cel etc. work anyway. So I have just added it to Unit. The 
+Dimensioned quantity is untouched. 

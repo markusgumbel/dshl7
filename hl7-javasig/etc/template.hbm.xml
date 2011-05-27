@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="ASCII"?>
+<hibernate-mapping>
+    <!-- String Literals Mappings -->
+    <typedef name="BL" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">BL</param>
+    </typedef>
+    <typedef name="UID" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">UID</param>
+    </typedef>
+    <typedef name="ST" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">ST</param>
+    </typedef>
+    <typedef name="URL" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">URL</param>
+    </typedef>
+    <typedef name="REAL" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">REAL</param>
+    </typedef>
+    <typedef name="INT" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">INT</param>
+    </typedef>
+    <typedef name="TS" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">TS</param>
+    </typedef>
+    <typedef name="OID" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">OID</param>
+    </typedef>
+    <typedef name="TN" class="org.hl7.hibernate.StringLiteralPersistedDataTypeUserType">
+        <param name="type">TN</param>
+    </typedef>
+
+    <!-- XML Mappings -->
+    <typedef name="TNXP" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">TNXP</param>
+    </typedef>
+    <typedef name="ED" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">ED</param>
+    </typedef>
+    <typedef name="BIN" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">BIN</param>
+    </typedef>
+    <typedef name="AD" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">AD</param>
+    </typedef>
+    <typedef name="ADXP" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">ADXP</param>
+    </typedef>
+    <typedef name="PQR" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">PQR</param>
+    </typedef>
+    <typedef name="QTY" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">QTY</param>
+    </typedef>
+    <typedef name="PQ" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">PQ</param>
+    </typedef>
+    <typedef name="MO" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">MO</param>
+    </typedef>
+    <typedef name="CR" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">CR</param>
+    </typedef>
+    <!--typedef name="RTO" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">RTO</param>
+        </typedef-->
+
+    <!-- Indexed XML types -->
+    <typedef name="ANY" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">ANY</param>
+        <param name="properties">5</param>
+        <param name="property.0.name">displayName</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.0.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.0.accessorMethod">getDisplayName</param>
+        <param name="property.1.name">code</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.1.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.1.accessorMethod">getCode</param>
+        <param name="property.2.name">codeSystem</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.2.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.2.accessorMethod">getCodeSystem</param>
+        <param name="property.3.name">number</param>
+        <param name="property.3.class">org.hl7.types.ST</param>
+        <param name="property.3.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.3.type.params">1</param>
+        <param name="property.3.type.param.0.type">ST</param>
+        <param name="property.3.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.3.accessorMethod">getPQCanonicalValue</param>
+        <param name="property.4.name">unit</param>
+        <param name="property.4.class">org.hl7.types.ST</param>
+        <param name="property.4.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.4.type.params">1</param>
+        <param name="property.4.type.param.0.type">ST</param>
+        <param name="property.4.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.4.accessorMethod">getPQCanonicalUnit</param>
+        <param name="property.5.name">xml</param>
+    </typedef>
+
+    <typedef name="RTO" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">RTO</param>
+        <param name="properties">4</param>
+        <param name="property.0.name">numeratorNumber</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.0.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.0.accessorMethod">getRTONumeratorPQCanonicalValue</param>
+        <param name="property.1.name">numeratorUnit</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.1.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.1.accessorMethod">getRTONumeratorPQCanonicalUnit</param>
+        <param name="property.2.name">denominatorNumber</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.2.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.2.accessorMethod">getRTODenominatorPQCanonicalValue</param>
+        <param name="property.3.name">denominatorUnit</param>
+        <param name="property.3.class">org.hl7.types.ST</param>
+        <param name="property.3.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.3.type.params">1</param>
+        <param name="property.3.type.param.0.type">ST</param>
+        <param name="property.3.accessorTool">org.hl7.types.DatatypeTool$ANYTool</param>
+        <param name="property.3.accessorMethod">getRTODenominatorPQCanonicalUnit</param>
+        <param name="property.4.name">xml</param>
+    </typedef>
+
+    <typedef name="EN" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">EN</param>
+        <param name="properties">3</param>
+        <param name="property.0.name">familyName</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.0.accessorTool">org.hl7.types.DatatypeTool$ENTool</param>
+        <param name="property.0.accessorMethod">getFamilyName</param>
+        <param name="property.1.name">givenName</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.1.accessorTool">org.hl7.types.DatatypeTool$ENTool</param>
+        <param name="property.1.accessorMethod">getGivenName</param>
+        <param name="property.2.name">trivialName</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.2.accessorTool">org.hl7.types.DatatypeTool$ENTool</param>
+        <param name="property.2.accessorMethod">getTrivialName</param>
+        <param name="property.3.name">xml</param>
+    </typedef>
+
+    <!-- Coded Types -->
+    <typedef name="SC" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SC</param>
+    </typedef>
+    <typedef name="CS" class="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+        <param name="type">CS</param>
+        <param name="interface">org.hl7.types.CS</param>
+        <param name="class">org.hl7.types.impl.CSimpl</param>
+        <param name="staticFactoryMethod">valueOf</param>
+        <param name="properties">2</param>
+        <param name="property.0.name">code</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.1.name">codeSystem</param>
+        <param name="property.1.class">org.hl7.types.UID</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">UID</param>
+    </typedef>
+    <typedef name="CS_CloneCode" class="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+        <param name="type">CS</param>
+        <param name="interface">org.hl7.types.CS</param>
+        <param name="class">org.hl7.types.impl.CSimpl</param>
+        <param name="staticFactoryMethod">valueOf</param>
+        <param name="properties">2</param>
+        <param name="property.0.name">code</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.1.class">org.hl7.types.UID</param>
+        <param name="property.1.const">1.2.3.4</param>
+        <param name="property.1.typeSpec">UID</param>
+    </typedef>
+    <typedef name="CV" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">CV</param>
+        <param name="properties">3</param>
+        <param name="property.0.name">code</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.1.name">codeSystem</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.2.name">displayName</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.3.name">xml</param>
+    </typedef>
+    <typedef name="CE" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">CE</param>
+        <param name="properties">3</param>
+        <param name="property.0.name">code</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.1.name">codeSystem</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.2.name">displayName</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.3.name">xml</param>
+    </typedef>
+    <typedef name="CD" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">CD</param>
+        <param name="properties">3</param>
+        <param name="property.0.name">code</param>
+        <param name="property.0.class">org.hl7.types.ST</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.1.name">codeSystem</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <param name="property.2.name">displayName</param>
+        <param name="property.2.class">org.hl7.types.ST</param>
+        <param name="property.2.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">ST</param>
+        <param name="property.3.name">xml</param>
+    </typedef>
+
+    <!-- Other MultiColumn types -->
+    <typedef name="TEL" class="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+        <param name="type">TEL</param>
+        <param name="interface">org.hl7.types.TEL</param>
+        <param name="class">org.hl7.types.impl.TELimpl</param>
+        <param name="staticFactoryMethod">valueOf</param>
+        <param name="properties">3</param>
+        <param name="property.0.name">url</param>
+        <param name="property.0.accessor">toString</param>
+        <param name="property.0.type">string</param>
+        <param name="property.0.class">java.lang.String</param>
+        <param name="property.1.name">use_</param>
+        <param name="property.1.accessor">spaceDelimitedListOfUseCode</param>
+        <param name="property.1.type">string</param>
+        <param name="property.1.class">java.lang.String</param>
+        <param name="property.2.name">useablePeriod</param>
+        <param name="property.2.class">org.hl7.types.QSET</param>
+        <param name="property.2.type">org.hl7.hibernate.XMLPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">QSET&lt;TS></param>
+    </typedef>
+    <typedef name="II" class="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+        <param name="type">II</param>
+        <param name="interface">org.hl7.types.II</param>
+        <param name="class">org.hl7.types.impl.IIimpl</param>
+        <param name="staticFactoryMethod">valueOf</param>
+        <param name="properties">2</param>
+        <param name="property.0.name">root</param>
+        <param name="property.0.class">org.hl7.types.UID</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">UID</param>
+        <param name="property.1.name">extension</param>
+        <param name="property.1.class">org.hl7.types.ST</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">ST</param>
+        <!-- param name="property.2.class">java.lang.String</param -->
+    </typedef>
+
+    <!--INCOMPLETE typedef name="RTO_PQ_PQ" class="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+        <param name="type">RTO</param>
+        <param name="interface">org.hl7.types.RTO</param>
+        <param name="valueFactoryMethod">RTOvalueOf</param>
+        <param name="properties">2</param>
+        <param name="property.0.name">numerator</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">ST</param>
+        <param name="property.0.class">java.lang.String</param>
+        <param name="property.1.name">use</param>
+        <param name="property.1.accessor">spaceDelimitedListOfUseCode</param>
+        <param name="property.1.type">string</param>
+        <param name="property.1.class">java.lang.String</param>
+        <param name="property.2.name">validTime</param>
+        <param name="property.2.type">org.hl7.hibernate.XMLPersistedDataTypeUserType</param>
+        <param name="property.2.type.params">1</param>
+        <param name="property.2.type.param.0.type">SET&lt;TS></param>
+        <param name="property.2.class">org.hl7.types.SET</param>
+        </typedef-->
+
+    <!-- 
+      IVL types are stored as raw XML.
+    -->
+    <!-- TODO: Make this generic so that it works for all IVL types. -->
+    <typedef name="PIVL" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">PIVL</param>
+    </typedef>
+    <typedef name="IVL&lt;TS>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;TS&gt;</param>
+    </typedef>
+    <typedef name="IVL&lt;PQ>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;PQ&gt;</param>
+    </typedef>
+    <typedef name="IVL&lt;INT>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;INT&gt;</param>
+    </typedef>
+    <typedef name="IVL&lt;REAL>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;REAL&gt;</param>
+    </typedef>
+    <typedef name="IVL&lt;RTO>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;RTO&gt;</param>
+    </typedef>
+    <typedef name="IVL&lt;MO>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">IVL&lt;MO&gt;</param>
+    </typedef>
+    
+    <!--typedef name="IVL&lt;TS>" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">IVL&lt;TS&gt;</param>
+        <param name="properties">2</param>
+        <param name="property.0.name">low</param>
+        <param name="property.0.accessor">low</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">TS</param>
+        <param name="property.1.name">high</param>
+        <param name="property.1.accessor">high</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">TS</param>
+        <param name="property.2.name">xml</param>
+        </typedef-->
+
+    <!-- 
+      Collection classes may be stored as xml with or without some information captured 
+      in a separate column for indexing, or as values in a separate table.
+    -->
+    <!-- 
+      Collections stored as xml in a single row.
+    -->
+    <typedef name="SET&lt;PQ>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;PQ></param>
+    </typedef>
+    <typedef name="SET&lt;CS>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;CS></param>
+    </typedef>
+    <typedef name="SET&lt;OID>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;OID></param>
+    </typedef>
+    <typedef name="SET&lt;ST>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;ST></param>
+    </typedef>
+    <typedef name="SET&lt;ED>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;ED></param>
+    </typedef>
+    <typedef name="LIST&lt;ANY&gt;" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">LIST&lt;ANY&gt;</param>
+    </typedef>
+    <typedef name="LIST&lt;INT&gt;" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">LIST&lt;INT&gt;</param>
+    </typedef>
+
+    <!-- typedef name="SET&lt;TS>" class="org.hl7.hibernate.XMLPersistedDataTypeUserType">
+        <param name="type">SET&lt;TS></param>
+        </typedef -->
+    <typedef name="SET&lt;TS>" class="org.hl7.hibernate.XMLWithIndexableColumnsPersistedDataTypeUserType">
+        <param name="type">SET&lt;TS></param>
+        <param name="properties">2</param>
+        <param name="property.0.name">low</param>
+        <param name="property.0.accessorTool">org.hl7.types.DatatypeTool$GTSTool</param>
+        <param name="property.0.accessorMethod">getLowBoundaryOfHull</param>
+        <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.0.type.params">1</param>
+        <param name="property.0.type.param.0.type">TS</param>
+        <param name="property.1.name">high</param>
+        <param name="property.1.accessorTool">org.hl7.types.DatatypeTool$GTSTool</param>
+        <param name="property.1.accessorMethod">getHighBoundaryOfHull</param>
+        <param name="property.1.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+        <param name="property.1.type.params">1</param>
+        <param name="property.1.type.param.0.type">TS</param>
+        <param name="property.2.name">xml</param>
+    </typedef>
+
+    <!-- 
+       Collections that are stored in a separate table. The class-name and attribute-name tags are place holders for 
+       text subsitution. They do not evaluate as XSL variables, even though they look just like that. :) Also, 
+       these really are not used as typedefs (even though they look like that). In this case 'typedef' has no
+       meaning other than a tag for selecting a particular type - which is identified somewhat arbitrarily in the
+       @name attribute.
+    -->
+    <typedef name="SET&lt;II>">
+        <set name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="II">
+                <column name="root" sql-type="VARCHAR(555)" length="555" index="{$class-name}_{$attribute-name}_IDX" />
+                <column name="extension" sql-type="VARCHAR(555)" length="555" index="{$class-name}_{$attribute-name}_IDX" />
+            </element>
+        </set>
+    </typedef>
+
+    <typedef name="BAG&lt;EN>">
+        <bag name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="EN">
+                <column name="familyName" sql-type="VARCHAR(555)" length="555" index="{$class-name}_{$attribute-name}_PN_IDX" />
+                <column name="givenName" sql-type="VARCHAR(555)" length="555" index="{$class-name}_{$attribute-name}_PN_IDX" />
+                <column name="trivialName" sql-type="VARCHAR(555)" length="555" index="{$class-name}_{$attribute-name}_TN_IDX" />
+                <column name="xml" sql-type="VARCHAR(555)" length="555" />
+            </element>
+        </bag>
+    </typedef>
+
+    <typedef name="SET&lt;CE&gt;">
+        <set name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="CE" />
+        </set>
+    </typedef>
+
+    <typedef name="SET&lt;CD&gt;">
+        <set name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="CD" />
+        </set>
+    </typedef>
+
+    <typedef name="SET&lt;RTO&gt;">
+        <set name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="RTO" />
+        </set>
+    </typedef>
+
+    <typedef name="BAG&lt;AD&gt;">
+        <bag name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="AD" />
+        </bag>
+    </typedef>
+
+    <typedef name="BAG&lt;TEL&gt;">
+        <bag name="{$attribute-name}" mutable="false" table="{$class-name}_{$attribute-name}" lazy="true" access="org.hl7.hibernate.WrappingBagAccessor">
+            <key column="{$class-name}InternalId" />
+            <element type="TEL">
+                <column name="url" sql-type="VARCHAR(555)" length="555" />
+                <column name="use_" sql-type="VARCHAR(555)" length="555" />
+                <column name="useablePeriod" sql-type="VARCHAR(555)" length="555" />
+            </element>
+        </bag>
+    </typedef>
+
+    <!-- RIM core class templates -->
+    <class name="#BasicAct" table="act" lazy="false"><!-- lazy true doesn't handle polymorphism right -->
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <bag name="outboundRelationship" cascade="all" inverse="true">
+            <key column="sourceInternalId" />
+            <one-to-many class="#BasicActRelationship" />
+        </bag>
+        <bag name="inboundRelationship" cascade="all" inverse="true">
+            <key column="targetInternalId" />
+            <one-to-many class="#BasicActRelationship" />
+        </bag>
+        <bag name="participation" cascade="all" inverse="true">
+            <key column="actInternalId" />
+            <one-to-many class="#BasicParticipation" />
+        </bag>
+        <set name="id" mutable="false" table="Act_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="actInternalId" />
+            <element type="II">
+                <column name="root" sql-type="VARCHAR(555)" length="555" index="Act_id_IDX" />
+                <column name="extension" sql-type="VARCHAR(555)" length="555" index="Act_id_IDX" />
+            </element>
+        </set>
+    </class>
+
+    <class name="#BasicActRelationship" table="actrelationship" lazy="true">
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <many-to-one name="source" column="SourceInternalId" class="#BasicAct" access="property" cascade="save-update,refresh" />
+        <many-to-one name="target" column="TargetInternalId" class="#BasicAct" access="property" cascade="save-update,refresh" />
+    </class>
+
+    <class name="#BasicParticipation" table="participation" lazy="true">
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <many-to-one name="act" column="ActInternalId" class="#BasicAct" cascade="save-update" access="property" />
+        <many-to-one name="role" column="RoleInternalId" class="#BasicRole" cascade="save-update" access="property" />
+    </class>
+
+    <class name="#BasicRole" table="role_" lazy="false">
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <many-to-one name="player" column="PlayerInternalId" class="#BasicEntity" cascade="save-update" access="property" />
+        <many-to-one name="scoper" column="ScoperInternalId" class="#BasicEntity" cascade="save-update" access="property" />
+        <bag name="participation" cascade="all" inverse="true">
+            <key column="roleInternalId" />
+            <one-to-many class="#BasicParticipation" />
+        </bag>
+        <bag name="outboundLink" cascade="all" inverse="true">
+            <key column="sourceInternalId" />
+            <one-to-many class="#BasicRoleLink" />
+        </bag>
+        <bag name="inboundLink" cascade="all" inverse="true">
+            <key column="targetInternalId" />
+            <one-to-many class="#BasicRoleLink" />
+        </bag>
+        <set name="id" mutable="false" table="Role_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="roleInternalId" />
+            <element type="II">
+                <column name="root" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX" />
+                <column name="extension" sql-type="VARCHAR(555)" length="555" index="Role_id_IDX" />
+            </element>
+        </set>
+    </class>
+
+    <class name="#BasicEntity" table="entity" lazy="false">
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <bag name="playedRole" cascade="all" inverse="true">
+            <key column="playerInternalId" />
+            <one-to-many class="#BasicRole" />
+        </bag>
+        <bag name="scopedRole" cascade="all" inverse="true">
+            <key column="scoperInternalId" />
+            <one-to-many class="#BasicRole" />
+        </bag>
+        <!-- 
+        <property name="determinerCode">
+            <column name="determinerCode" sql-type="VARCHAR(32)" length="32" index="Entity_code_idx" />
+            <type name="org.hl7.hibernate.MultiColumnPersistedDataTypeUserType">
+                <param name="type">CS</param>
+                <param name="interface">org.hl7.types.CS</param>
+                <param name="class">org.hl7.types.impl.CSimpl</param>
+                <param name="staticFactoryMethod">valueOf</param>
+                <param name="properties">2</param>
+                <param name="property.0.name">code</param>
+                <param name="property.0.class">org.hl7.types.ST</param>
+                <param name="property.0.type">org.hl7.hibernate.StringLiteralPersistedDataTypeUserType</param>
+                <param name="property.0.type.params">1</param>
+                <param name="property.0.type.param.0.type">ST</param>
+                <param name="property.1.const">2.16.840.1.113883.5.30</param>
+                <param name="property.1.typeSpec">UID</param>
+                <param name="property.1.class">org.hl7.types.UID</param>
+            </type>
+        </property>
+        -->
+        <property name="code" type="CE">
+            <column name="code_code" sql-type="VARCHAR(555)" length="555" index="Entity_code_idx" />
+            <column name="code_codeSystem" sql-type="VARCHAR(555)" length="555" index="Entity_code_idx" />
+            <column name="code_displayName" sql-type="VARCHAR(555)" length="555" />
+            <column name="code_xml" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <set name="id" mutable="false" table="Entity_id" lazy="true" access="org.hl7.hibernate.WrappingSetAccessor">
+            <key column="entityInternalId" />
+            <element type="II">
+                <column name="root" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX" />
+                <column name="extension" sql-type="VARCHAR(555)" length="555" index="Entity_id_IDX" />
+            </element>
+        </set>
+    </class>
+
+    <class name="#BasicRoleLink" table="rolelink" lazy="true">
+        <property name="cloneCode" type="CS_CloneCode">
+            <column name="cloneCode_code" sql-type="VARCHAR(555)" length="555" />
+        </property>
+        <many-to-one name="source" column="SourceInternalId" class="#BasicRole" cascade="save-update" access="property" />
+        <many-to-one name="target" column="TargetInternalId" class="#BasicRole" cascade="save-update" access="property" />
+    </class>
+
+</hibernate-mapping>

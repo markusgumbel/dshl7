@@ -1,0 +1,45 @@
+                search and replance (case sensitive) with the part you want and then paste the new method
+                into DatatypeTool  inner class EntityNameTool  
+                
+                family prefix, suffix academic nobility professional voorvoegsel
+                adopted birth spouse callme initial title 
+                
+                *************************************************************************************************
+                
+                
+                public static BAG<EN> setInitialName(BAG<EN> name, String initialName)
+                {
+			List<ENXP> enxpList = new ArrayList<ENXP>();
+			Collection<EN> data = new ArrayList<EN>();
+			
+			if (name == null)
+			{
+				enxpList.add(ENXPimpl.valueOf(initialName, EntityNamePartType.Initial, DSETnull.NA));
+			}
+			else
+			{
+				boolean foundNamePart = false;
+				Iterator<ANY> it = name.iterator();
+				while (it.hasNext())
+				{
+					EN next = (EN) it.next();
+					Iterator<ENXP> itt = next.iterator();
+					while (itt.hasNext())
+					{
+						ENXP part = itt.next();
+						if (part.type().equal(EntityNamePartType.Initial).isTrue())
+						{
+							enxpList.add(ENXPimpl.valueOf(initialName, part.type(), part.qualifier()));
+							foundNamePart = true;
+						}
+						else
+							enxpList.add(part);
+					}
+					if (!foundNamePart)
+						enxpList.add(ENXPimpl.valueOf(initialName, EntityNamePartType.Initial, DSETnull.NA));
+				}
+			}
+			data.add(ENimpl.valueOf(enxpList));
+			return BAGjuListAdapter.valueOf(data);
+		}
+		

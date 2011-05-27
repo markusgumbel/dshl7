@@ -1,0 +1,61 @@
+What are all these libraries for?
+
+MIF Stuff
+  flatMif.jar
+  serialMif.jar
+    xbean.jar
+    xbean_xpath.jar
+  jdom.jar
+    DOM, one of the currently needed for meta stuff
+
+Development and Debugging
+  junit-3.8.1.jar
+  Inspector.zip
+    used by DemoDriver --gui option, useful for debugging
+  xmlunit1.0.jar
+
+Hibernate Libraries
+  hibernate3.jar
+  antlr-2.7.6.jar, antlr.license.txt
+  asm-attrs.jar
+  asm.jar
+  c3p0-0.9.1.jar
+  cglib-2.1.3.jar
+  commons-collections-2.1.1.jar
+  commons-logging-1.0.4.jar
+  ehcache-1.2.3.jar
+  jta.jar, jta.licence.txt
+  dom4j-1.6.1.jar
+  xml-apis.jar
+  xercesImpl.ja
+    Do not replace this with something else, it's tricky
+
+JDBC Drivers
+  hsqldb.jar
+  ojdbc14.jar
+  postgresql-8.2-504.jdbc3.jar
+  mysql-connector-java-3.0.11-stable-bin.jar, connector.licence.txt
+
+Message Servlet
+  jetty-6.0.1.jar
+  jetty-util-6.0.1.jar
+  servlet.jar
+
+XSLT Saxon for code generator etc.
+  saxon8.jar
+  saxon-xwsf.jar
+
+Miscellanea
+  caBIO.jar
+    heavily outdate for EVS bound CV implementation
+
+Peter brought these in for experiments
+  jdbc2_0-stdext.jar, jdbc2_0-stdext.licence.txt
+  swing-layout-1.0.jar
+  db4o-5.5-java5.jar
+    not really used AFAIK but some developers play with it
+  FastInfoset.jar  
+    not really used AFAIK but some developers play with it
+  javassist.jar
+  jaxen-1.1-beta-7.jar
+

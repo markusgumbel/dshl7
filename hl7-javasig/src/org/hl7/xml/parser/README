@@ -1,0 +1,56 @@
+I have added some extra documentation on the DynamicContentHandler and 
+related classes and interfaces to clarify things. In a nutshell, all 
+dynamic content handlers (as long as they inherit from D.C.H.Base)  
+need to implement the notifyActivation(Attributes atts) method to be
+informed of the XML attributes that belong to the element invoking the
+handler, and it should call returnResults(Object result) method to 
+notify the prior content handler of the result object that was
+constructed. In general all content handlers that expect nested content
+should implement the notifyResult(Object result) method.
+
+Actually while documenting I have fixed a few oddities to simplify the 
+calling protocol of these things. There are now only two cases:
+
+The DynamicContentHandler and ResultReceiver interfaces are kind of 
+low level in that the implementing class has a lot of responsibilities
+as to maintaining the previous handler to be able to restore it 
+later on and returning results to a result receiver with notifyResult.
+
+The DynamicContentHandlerBase implements much of that protocol, so 
+that all you have to do if you extend that base class is to (a) override
+notifyActivation(Attributes atts) if you are interested in your 
+XML attributes (or if you are just interested in the mere fact that
+you were being activated before you receive any further SAX events); 
+and (b) call returnResult when you are done. Think procedure call
+"protocol" where you put a return statement at the end. The method
+returnResult exists in two forms just like the return statement:
+
+   returnResults(Object result);
+
+and 
+
+   returnResult();
+
+in any case the returnResult statement restores the content handler 
+that was in effect before this content handler was activated.
+
+The DynamicContentHandlerBase also simplifies the activation of a 
+new DynamicContentHandler by providing the suspendWith method. So
+for all practical purpose, the suspendWith and returnResult methods
+deal with all the content handler change and passing results.
+
+CAVEAT: Make extra sure that all your handlers that expect nested
+results EXPLICITLY IMPLEMENT THE ResultReceiver interface. The 
+DynamicContentHandlerBase does NOT implement the ResultReceiver 
+interface by itself.
+
+There is also a third level of abstraction/simplification: the 
+SimpleTypeContentHandler (which is a DataTypeContentHandler). 
+Extending this class even releaves you of handling SAX events.
+The SimpleTypeContentHandler by default ignores all nested elements
+and calls returnResult(getResult()) upon encountering the appropriate
+endElement event. This means, a SimpleTypeContentHandler needs 
+to implement only the getResult() method and very likely the 
+notifyActivation method but does not have to worry about any active
+responsibilities in the DynamicContentHandler protocols.
+

@@ -1,0 +1,17 @@
+I decided to set the special dimensioned quantity issue asside
+to move on with PQ and the HL7 stuff. I got stuck with that
+I can't seem to solve the mystery of the special units. I don't
+know is 
+
+(a) 20 Cel * 2 = 40 Cel 
+
+or 
+
+(b) 20 Cel * 2 = (20 + 273.15) K * 2 = 586.3 K = 313.15 Cel
+
+or 
+
+(c) error, illegal argument
+
+so, for now I just leave it without special units until I 
+figured it out. Need to move on.

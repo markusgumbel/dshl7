@@ -1,0 +1,430 @@
+These are notes by Peter Hendler started on May 26 2008  <br/>
+They may be updated as I learn more about rules of using HQL to query a RIM database.  <br/>
+
+When using HQL
+If the field you want is a "property" as shown in the HBM mapping file and the derived
+<b>RIM_HBM.html </b>  Then you can chain dot notation. <br/>
+
+If the field is a "bag" then you can use dot notation to get the collection, but if you
+want go go further then you cant use dot notation but must use a join to get the bag-field.<br/>
+For example these work<br/>
+select a.participation from ActImpl a <br/>
+select p.cloneCode from ActImpl a inner join a.participation p <br/>
+
+But this does not work <br/>
+select a.participation.cloneCode from ActImpl a <br/>
+
+Once you have an alias for the bag-field obtained by a join then you can use dot notation on that. <br/>
+
+This is probably also true of set type fields <br/>
+This does not work <br/>
+select a.id from ActImpl a  <br/>
+Nor does this   <br/>
+select i from ActImpl a inner join a.id as i  <br/>
+But this does work  <br/>
+select i.extension from ActImpl a inner join a.id as i  <br/>
+To find out what parts the "id" has you must find it's datatype from the JavaSIG API and then look at the
+parts it has, for example i.extension and i.root. <br/>
+
+For another example of querying a bag let's look at EntityImpl.name. <br/>
+This doesn't work <br/>
+select e.name from EntityImpl e <br/>
+because Entity.name is a bag.  <br/>
+This also doesn't work.  <br/>
+select n from EntityImpl e inner join e.name as n  <br/>
+Because n is a bag <br/>
+Looking at the datatype of Entity.name in the API you find BAG<EN>. <br/>
+This is more tricky to know that you can look for n.familyName, n.givenName, and n.trivialName. Those
+are found in a class called org.hl7.types.DatatypeTool.ENTool .  <br/>
+
+As long as the Mapping files use simple properties instead of collections like bag or set, then it
+appears you can chain the dots. For example, this is a working chain of properties. <br/>
+select l.administrativeGenderCode.displayName from LivingSubjectImpl l . <br/>
+  
+
+The following are lists of dataType and fields, and then Classes and fields.
+
+DataType fields----------------------------------------------------------------------------------
+
+ANY
+	displayName
+	code
+	codeSystem
+	number
+	unit
+	xml
+	
+RTO
+	numeratorNumber
+	numeratorUnit
+	denominatorNumber
+	denominatorUnit
+	xml
+	
+EN
+	familyName
+	givenName
+	trivialName
+	xml
+	
+CS
+	code
+	codeSystem
+	
+CV
+	code
+	codeSystem
+	displayName
+	xml
+	
+CE
+	same as above
+	
+CD
+	same as above
+	
+TEL
+	url
+	use_
+	useablePeriod
+	
+II
+	root
+	extension
+
+SET<TS>
+	low
+	high
+
+Classes and Properties------------------------------------------------------------
+	
+Act ********************************************************
+
+--Property: classCode
+--Property: moodCode
+Subclass: org.hl7.rim.Act
+
+Subclass: org.hl7.rim.impl.ActImpl
+
+--Property: cloneCode
+--------Bag: : outboundRelationship
+--------Bag: : inboundRelationship
+--------Bag: : participation
+----Set: id
+--Property: code
+--Property: negationInd
+--Property: derivationExpr
+--Property: title
+--Property: text
+--Property: statusCode
+--Property: effectiveTime
+--Property: activityTime
+--Property: availabilityTime
+----Set: priorityCode
+----Set: confidentialityCode
+--Property: repeatNumber
+--Property: interruptibleInd
+--Property: levelCode
+--Property: independentInd
+--Property: uncertaintyCode
+----Set: reasonCode
+--Property: languageCode
+
+Subclass: org.hl7.rim.impl.AccountImpl
+
+--Property: balanceAmt
+--Property: currencyCode
+--Property: interestRateQuantity
+--Property: allowedBalanceQuantity
+Subclass: org.hl7.rim.impl.ControlActImpl
+Subclass: org.hl7.rim.impl.DeviceTaskImpl
+--Property: parameterValue
+
+Subclass: org.hl7.rim.impl.FinancialContractImpl
+
+--Property: paymentTermsCode
+
+Subclass: org.hl7.rim.impl.FinancialTransactionImpl
+
+--Property: amt
+--Property: creditExchangeRateQuantity
+--Property: debitExchangeRateQuantity
+
+Subclass: org.hl7.rim.impl.InvoiceElementImpl
+
+----Set: modifierCode
+--Property: unitQuantity
+--Property: unitPriceAmt
+--Property: netAmt
+--Property: factorNumber
+--Property: pointsNumber
+
+Subclass: org.hl7.rim.impl.ObservationImpl
+
+--Property: value
+----Set: interpretationCode
+----Set: methodCode
+----Set: targetSiteCode
+
+Subclass: org.hl7.rim.impl.DiagnosticImageImpl
+
+--Property: subjectOrientationCode
+
+Subclass: org.hl7.rim.impl.PublicHealthCaseImpl
+
+--Property: detectionMethodCode
+--Property: transmissionModeCode
+--Property: diseaseImportedCode
+
+Subclass: org.hl7.rim.impl.PatientEncounterImpl
+
+--Property: admissionReferralSourceCode
+--Property: lengthOfStayQuantity
+--Property: dischargeDispositionCode
+--Property: preAdmitTestInd
+----Set: specialCourtesiesCode
+----Set: specialArrangementCode
+
+Subclass: org.hl7.rim.impl.ProcedureImpl
+
+----Set: methodCode
+----Set: approachSiteCode
+----Set: targetSiteCode
+
+Subclass: org.hl7.rim.impl.SubstanceAdministrationImpl
+
+--Property: routeCode
+----Set: approachSiteCode
+--Property: doseQuantity
+--Property: rateQuantity
+----Set: doseCheckQuantity
+----Set: maxDoseQuantity
+--Property: administrationUnitCode
+
+Subclass: org.hl7.rim.impl.SupplyImpl
+
+--Property: quantity
+--Property: expectedUseTime
+
+Subclass: org.hl7.rim.impl.DietImpl
+
+--Property: energyQuantity
+--Property: carbohydrateQuantity
+
+Subclass: org.hl7.rim.impl.WorkingListImpl
+
+--Property: ownershipLevelCode
+
+Subclass: org.hl7.rim.impl.ContextStructureImpl
+
+--Property: setId
+--Property: versionNumber
+
+Subclass: org.hl7.rim.impl.DocumentImpl
+
+--Property: completionCode
+--Property: storageCode
+--Property: copyTime
+
+--Property: bibliographicDesignationText
+
+ActRelationship ********************************
+
+--Property: typeCode
+
+Subclass: org.hl7.rim.ActRelationship
+
+Subclass: org.hl7.rim.impl.ActRelationshipImpl
+
+--Property: cloneCode
+--Property: inversionInd
+--Property: contextControlCode
+--Property: contextConductionInd
+--Property: sequenceNumber
+--Property: priorityNumber
+--Property: pauseQuantity
+--Property: checkpointCode
+--Property: splitCode
+--Property: joinCode
+--Property: negationInd
+--Property: conjunctionCode
+--Property: localVariableName
+--Property: seperatableInd
+--Property: subsetCode
+--Property: uncertaintyCode
+
+Participation *********************************
+
+--Property: typeCode
+
+Subclass: org.hl7.rim.Participation
+
+Subclass: org.hl7.rim.impl.ParticipationImpl
+
+--Property: cloneCode
+--Property: functionCode
+--Property: contextControlCode
+--Property: sequenceNumber
+--Property: negationInd
+--Property: noteText
+--Property: time
+--Property: modeCode
+--Property: awarenessCode
+--Property: signatureCode
+--Property: signatureText
+--Property: performInd
+--Property: substitutionConditionCode
+--Property: subsetCode
+
+Subclass: org.hl7.rim.impl.ManagedParticipationImpl
+
+----Set: id
+--Property: statusCode
+
+Entity *******************************************
+
+--Property: classCode
+--Property: determinerCode
+
+Subclass: org.hl7.rim.Entity
+
+Subclass: org.hl7.rim.impl.EntityImpl
+
+--Property: cloneCode
+--------Bag: : playedRole
+--------Bag: : scopedRole
+--Property: code
+----Set: id
+--Property: quantity
+--------Bag: : name
+--Property: desc
+--Property: statusCode
+--Property: existenceTime
+--------Bag: : telecom
+--Property: riskCode
+--Property: handlingCode
+
+Subclass: org.hl7.rim.impl.LivingSubjectImpl
+
+--Property: administrativeGenderCode
+--Property: birthTime
+--Property: deceasedInd
+--Property: deceasedTime
+--Property: multipleBirthInd
+--Property: multipleBirthOrderNumber
+--Property: organDonorInd
+
+Subclass: org.hl7.rim.impl.NonPersonLivingSubjectImpl
+
+--Property: strainText
+--Property: genderStatusCode
+Subclass: org.hl7.rim.impl.PersonImpl
+--------Bag: : addr
+--Property: maritalStatusCode
+--Property: educationLevelCode
+----Set: disabilityCode
+--Property: livingArrangementCode
+--Property: religiousAffiliationCode
+----Set: raceCode
+----Set: ethnicGroupCode
+
+Subclass: org.hl7.rim.impl.MaterialImpl
+
+--Property: formCode
+
+Subclass: org.hl7.rim.impl.ManufacturedMaterialImpl
+
+--Property: lotNumberText
+--Property: expirationTime
+--Property: stabilityTime
+
+--Property: capacityQuantity
+--Property: heightQuantity
+--Property: diameterQuantity
+--Property: capTypeCode
+--Property: separatorTypeCode
+--Property: barrierDeltaQuantity
+--Property: bottomDeltaQuantity
+
+Subclass: org.hl7.rim.impl.DeviceImpl
+
+--Property: manufacturerModelName
+--Property: softwareName
+--Property: localRemoteControlStateCode
+--Property: alertLevelCode
+--Property: lastCalibrationTime
+
+Subclass: org.hl7.rim.impl.OrganizationImpl
+
+--------Bag: : addr
+--Property: standardIndustryClassCode
+
+Subclass: org.hl7.rim.impl.PlaceImpl
+
+--Property: mobileInd
+--Property: addr
+--Property: directionsText
+--Property: positionText
+--Property: gpsText
+
+Role ***************************************************
+
+--Property: classCode
+
+Subclass: org.hl7.rim.Role
+
+Subclass: org.hl7.rim.impl.RoleImpl
+
+--Property: cloneCode
+--------Bag: : participation
+--------Bag: : outboundLink
+--------Bag: : inboundLink
+----Set: id
+--Property: code
+--Property: negationInd
+--------Bag: : name
+--------Bag: : addr
+--------Bag: : telecom
+--Property: statusCode
+--Property: effectiveTime
+--Property: certificateText
+----Set: confidentialityCode
+--Property: quantity
+--Property: positionNumber
+
+Subclass: org.hl7.rim.impl.AccessImpl
+
+--Property: approachSiteCode
+--Property: targetSiteCode
+--Property: gaugeQuantity
+
+Subclass: org.hl7.rim.impl.EmployeeImpl
+
+--Property: jobCode
+--Property: jobTitleName
+--Property: jobClassCode
+--Property: occupationCode
+--Property: salaryTypeCode
+--Property: salaryQuantity
+--Property: hazardExposureText
+--Property: protectiveEquipmentText
+
+Subclass: org.hl7.rim.impl.LicensedEntityImpl
+
+--Property: recertificationTime
+
+Subclass: org.hl7.rim.impl.PatientImpl
+
+--Property: veryImportantPersonCode
+
+RoleLink *********************************************************
+
+--Property: typeCode
+
+Subclass: org.hl7.rim.RoleLink
+
+Subclass: org.hl7.rim.impl.RoleLinkImpl
+
+--Property: cloneCode
+--Property: priorityNumber
+--Property: effectiveTime

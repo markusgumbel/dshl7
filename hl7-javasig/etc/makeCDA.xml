@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" classCode="DOCCLIN" moodCode="EVN">
+   <id root="1234567" extension="123.123.123" displayable="false"/>
+   <code xsi:type="CS" code="11488-4"/>
+   <effectiveTime xsi:type="IVL_TS">
+      <low inclusive="true" value="20061105212900.000"/>
+      <high inclusive="true" value="20061105212900.000"/>
+   </effectiveTime>
+   <recordTarget typeCode="RCT" contextControlCode="OP">
+      <patientRole classCode="PAT">
+         <patient classCode="NOPSN" determinerCode="INSTANCE">
+            <id root="123433" extension="123.234.345" displayable="false"/>
+            <name xsi:type="EN">
+               <prefix>Mr</prefix>
+               <given>Robert</given>
+               <family>Zimmerman</family>
+               <suffix>VII</suffix>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="10173"/>
+            <birthTime value="19870605"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <author typeCode="AUT" contextControlCode="OP">
+      <assignedAuthor classCode="ASSIGNED">
+         <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+            <name xsi:type="EN">
+               <prefix>Dr</prefix>
+               <given>John</given>
+               <family>Night</family>
+               <suffix>FACP</suffix>
+            </name>
+         </assignedPerson>
+      </assignedAuthor>
+   </author>
+   <custodian typeCode="CST">
+      <assignedCustodian classCode="ASSIGNED">
+         <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+            <id xsi:type="II" root="1234" extension="" assigningAuthorityName="" displayable="false"/>
+            <name xsi:type="EN">Good Health Clinic</name>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+   <component typeCode="COMP" contextConductionInd="true">
+      <structuredBody classCode="DOCBODY" moodCode="EVN">
+         <component typeCode="COMP" contextConductionInd="true">
+            <section classCode="DOCSECT" moodCode="EVN">
+               <subject typeCode="SBJ" contextControlCode="OP">
+                  <relatedSubject classCode="PRS"/>
+               </subject>
+               <entry typeCode="x_ActRelationshipEntry" contextConductionInd="true">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <code code="44100-6" codeSystem="2.16.840.1.113883.6.1"/>
+                     <text xsi:type="ST" representation="TXT" mediaType="text/plain">
+ Pt is a 46 yo male with a hx of CREST syndrome first diagnosed 4 years ago at Stanford.
+ He is treated with Cupramine and Prilosec.  Family Hx is neg for CTD.
+ His condition is most remarkable for dysphagia Raynauds and telangiectasias on face.
+ </text>
+                  </observation>
+               </entry>
+               <entry typeCode="x_ActRelationshipEntry" contextConductionInd="true">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <code code="44100-6" codeSystem="2.16.840.1.113883.6.1"/>
+                     <text xsi:type="ST" representation="TXT" mediaType="text/plain">
+Telangiectasias on face, palms and in mouth.
+Nail fold capillaries dilated and redundant.
+Skin and joints of upper extremeties unremarkable.
+</text>
+                  </observation>
+               </entry>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</ClinicalDocument>
