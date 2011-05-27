@@ -7,7 +7,7 @@
     <artifactId>dsl7</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>domain specific language HL7 version 3</name>
+    <name>Domain specific language for HL7 version 3</name>
     <url>https://github.com/markusgumbel/dshl7</url>
     <developers>
         <developer>
@@ -172,30 +172,30 @@
         <dependency>
             <groupId>org.hl7</groupId>
             <artifactId>jsig</artifactId>
-            <version>0.0.1</version>
+            <version>unknown</version>
             <scope>system</scope>
             <!-- geht nicht <systemPath>${project.basedir}/lib/jsig-0.0.1.jar</systemPath> -->
             <!-- geht -->
             <systemPath>
-                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\lib\jsig-0.0.1.jar
+                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\hl7-javasig\jsig.jar
             </systemPath>
         </dependency>
         <dependency>
             <groupId>org.hl7</groupId>
             <artifactId>serialMif</artifactId>
-            <version>0.0.1</version>
+            <version>unknown</version>
             <scope>system</scope>
             <systemPath>
-                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\lib\serialMif-0.0.1.jar
+                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\hl7-javasig\lib\serialMif.jar
             </systemPath>
         </dependency>
         <dependency>
             <groupId>org.hl7</groupId>
             <artifactId>flatMif</artifactId>
-            <version>0.0.1</version>
+            <version>unknown</version>
             <scope>system</scope>
             <systemPath>
-                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\lib\flatMif-0.0.1.jar
+                d:\users\markus\src\eclipse\hs-ma-workspace\dshl7\hl7-javasig\lib\flatMif.jar
             </systemPath>
         </dependency>
         <!-- Test framework -->
