@@ -1,3 +1,5 @@
 h2. Overview
 
-The complete HL7v3 DSL project will be pushed soon. If you are interested in a preview copy, please contact m.gumbel@hs-mannheim.de.
+This repository provides a domain specific language for HL7v3 written Scala.
+More infos will published soon.
+If you have any questions, please contact m.gumbel@hs-mannheim.de.
